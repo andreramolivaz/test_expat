@@ -20,7 +20,10 @@ body{background:var(--void)!important;color:var(--white);font-family:'Arial Narr
 
 /* INTRO */
 .intro{position:fixed;inset:0;background:var(--void);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem}
-.intro.done{animation:iWipe 1s cubic-bezier(.65,0,.35,1) .2s forwards}
+.intro.done{
+  animation:iWipe 1.4s cubic-bezier(.22,1,.36,1) forwards;
+}
+
 @keyframes iWipe{to{clip-path:inset(50% 0 50% 0)}}
 .intro-logo{width:55px;height:62px;opacity:0;animation:iLogo .5s ease .3s forwards}
 @keyframes iLogo{to{opacity:1}}
@@ -212,6 +215,22 @@ footer{padding:3rem 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.025)}
   .hero-ct{max-width:650px}
   .a-text{max-width:550px}
   .flag-c{padding:3rem 4rem}
+
+  nav, main, section {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(6px);
+  transition: opacity 1.2s ease, transform 1.2s ease, filter 1.2s ease;
+}
+
+body.loaded nav,
+body.loaded main,
+body.loaded section {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
 }
 </style>
 </head>
@@ -415,7 +434,11 @@ footer{padding:3rem 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.025)}
 
 <script>
 // INTRO
-setTimeout(()=>document.getElementById('intro').classList.add('done'),3800);
+setTimeout(() => {
+  document.getElementById('intro').classList.add('done');
+  document.body.classList.add('loaded');
+}, 3600);
+
 
 // 3D PAPER PLANE
 const c=document.getElementById('c3d'),ctx=c.getContext('2d');
@@ -485,53 +508,124 @@ const gObs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)globeA
 gObs.observe(gc);
 
 function drawGlobe(){
-  gx.clearRect(0,0,GW,GH);gt+=.006;
-  const cx=GW/2,cy=GH/2,R=Math.min(GW,GH)*.37;
-  const rotY=gt*.25;
-  
-  // Wireframe latitudes
-  gx.strokeStyle='rgba(255,255,255,.025)';gx.lineWidth=.5;
+  gx.clearRect(0,0,GW,GH);
+  gt += .006;
+
+  const cx = GW / 2;
+  const cy = GH / 2;
+  const R  = Math.min(GW, GH) * .38;
+  const rotY = gt * .25;
+
+  /* --- ATMOSFERA / GLOW --- */
+  const glow = gx.createRadialGradient(cx, cy, R * .6, cx, cy, R * 1.2);
+  glow.addColorStop(0, 'rgba(255,255,255,.08)');
+  glow.addColorStop(1, 'rgba(255,255,255,0)');
+  gx.fillStyle = glow;
+  gx.beginPath();
+  gx.arc(cx, cy, R * 1.2, 0, Math.PI * 2);
+  gx.fill();
+
+  /* --- LATITUDINI --- */
+  gx.strokeStyle = 'rgba(255,255,255,.08)';
+  gx.lineWidth = .6;
   for(let i=0;i<7;i++){
-    const lat=(i-3)*25*Math.PI/180;
-    const r=R*Math.cos(lat);const y=cy-R*Math.sin(lat);
-    gx.beginPath();gx.ellipse(cx,y,r,r*.3,0,0,Math.PI*2);gx.stroke();
+    const lat = (i-3)*25*Math.PI/180;
+    const r = R * Math.cos(lat);
+    const y = cy - R * Math.sin(lat);
+    gx.beginPath();
+    gx.ellipse(cx, y, r, r*.35, 0, 0, Math.PI*2);
+    gx.stroke();
   }
-  // Meridians
+
+  /* --- MERIDIANI --- */
+  gx.strokeStyle = 'rgba(255,255,255,.06)';
   for(let i=0;i<12;i++){
-    const lon=i*30*Math.PI/180+rotY;
+    const lon = i*30*Math.PI/180 + rotY;
     gx.beginPath();
     for(let j=0;j<=60;j++){
-      const lat=(j-30)*3*Math.PI/180;
-      const px=cx+R*Math.cos(lat)*Math.sin(lon);
-      const py=cy-R*Math.sin(lat);
-      const pz=Math.cos(lat)*Math.cos(lon);
-      if(pz>-.1){if(j===0)gx.moveTo(px,py);else gx.lineTo(px,py)}
+      const lat = (j-30)*3*Math.PI/180;
+      const px = cx + R*Math.cos(lat)*Math.sin(lon);
+      const py = cy - R*Math.sin(lat);
+      const pz = Math.cos(lat)*Math.cos(lon);
+      if(pz > -.15){
+        j === 0 ? gx.moveTo(px,py) : gx.lineTo(px,py);
+      }
     }
     gx.stroke();
   }
-  
-  // City dots converging to LA
-  const progress=globeActive?Math.min(1,(gt-.5)*.2):0;
-  cities.forEach((city,idx)=>{
-    const latR=city.lat*Math.PI/180,lonR=city.lon*Math.PI/180;
-    const tLat=LA.lat*Math.PI/180,tLon=LA.lon*Math.PI/180;
-    const p=Math.max(0,Math.min(1,progress*3-idx*.1));
-    const cLat=latR+(tLat-latR)*p;
-    const cLon=lonR+(tLon-lonR)*p;
-    const px=cx+R*Math.cos(cLat)*Math.sin(cLon+rotY);
-    const py=cy-R*Math.sin(cLat);
-    const pz=Math.cos(cLat)*Math.cos(cLon+rotY);
+
+  /* --- EARTH AT NIGHT (LUCI SATELLITARI) --- */
+  gx.fillStyle = 'rgba(255,255,255,.035)';
+  for(let i=0;i<140;i++){
+    const lat = (Math.random()-.5)*Math.PI;
+    const lon = Math.random()*Math.PI*2 + rotY;
+    const px = cx + R*Math.cos(lat)*Math.sin(lon);
+    const py = cy - R*Math.sin(lat);
+    const pz = Math.cos(lat)*Math.cos(lon);
     if(pz>0){
-      const a=pz*.5;
-      gx.beginPath();gx.arc(px,py,2,0,Math.PI*2);
-      gx.fillStyle=`rgba(255,255,255,${a})`;gx.fill();
-      if(p<.8){
-        gx.font='700 7px Arial Narrow,Arial,sans-serif';
-        gx.fillStyle=`rgba(255,255,255,${a*.4})`;
-        gx.fillText(city.n.toUpperCase(),px+5,py+3);
-      }
+      gx.beginPath();
+      gx.arc(px,py,Math.random()*1.5,0,Math.PI*2);
+      gx.fill();
+    }
+  }
+
+  /* --- LOOP CITTÀ → LA → RITORNO --- */
+  const cycle = (Math.sin(gt * .6) + 1) / 2;
+
+  cities.forEach((city,idx)=>{
+    const latR = city.lat*Math.PI/180;
+    const lonR = city.lon*Math.PI/180;
+    const tLat = LA.lat*Math.PI/180;
+    const tLon = LA.lon*Math.PI/180;
+
+    const p = Math.max(0,Math.min(1,cycle*3 - idx*.08));
+    const cLat = latR + (tLat - latR) * p;
+    const cLon = lonR + (tLon - lonR) * p;
+
+    const px = cx + R*Math.cos(cLat)*Math.sin(cLon+rotY);
+    const py = cy - R*Math.sin(cLat);
+    const pz = Math.cos(cLat)*Math.cos(cLon+rotY);
+
+    if(pz>0){
+      const a = pz*.8;
+      gx.beginPath();
+      gx.arc(px,py,3.2,0,Math.PI*2);
+      gx.fillStyle = `rgba(255,255,255,${a})`;
+      gx.fill();
+
+      gx.font='700 7px Arial Narrow,Arial,sans-serif';
+      gx.fillStyle=`rgba(255,255,255,${a*.45})`;
+      gx.fillText(city.n.toUpperCase(),px+6,py+3);
     }
   });
+
+  /* --- LOS ANGELES FIX --- */
+  const laLat=LA.lat*Math.PI/180;
+  const laLon=LA.lon*Math.PI/180;
+  const lx=cx+R*Math.cos(laLat)*Math.sin(laLon+rotY);
+  const ly=cy-R*Math.sin(laLat);
+  const lz=Math.cos(laLat)*Math.cos(laLon+rotY);
+
+  if(lz>0){
+    gx.beginPath();
+    gx.arc(lx,ly,4+Math.sin(gt*2)*.6,0,Math.PI*2);
+    gx.fillStyle=`rgba(255,255,255,${lz*.9})`;
+    gx.fill();
+
+    gx.beginPath();
+    gx.arc(lx,ly,14,0,Math.PI*2);
+    gx.strokeStyle=`rgba(255,255,255,${lz*.18})`;
+    gx.lineWidth=1.2;
+    gx.stroke();
+
+    gx.font='700 9px Arial Narrow,Arial,sans-serif';
+    gx.fillStyle=`rgba(255,255,255,${lz*.7})`;
+    gx.fillText('LOS ANGELES',lx+10,ly+4);
+  }
+
+  requestAnimationFrame(drawGlobe);
+}
+
   
   // LA always visible
   const laLat=LA.lat*Math.PI/180,laLon=LA.lon*Math.PI/180;
