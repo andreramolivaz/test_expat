@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#030303">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>EXPAT SOCIETY — Los Angeles</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3944.79 4199.8'%3E%3Cpath fill='%23fff' d='M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z'/%3E%3Cpath fill='%23fff' d='M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z'/%3E%3Cpath fill='%23fff' d='M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z'/%3E%3C/svg%3E">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
+:root{--void:#030303;--ink:#080808;--smoke:#0e0e0e;--ash:#161616;--dim:#2a2a2a;--mist:#666;--silver:#999;--bone:#bbb;--pearl:#ddd;--white:#eee;--pure:#fff}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;color-scheme:dark!important;background:var(--void)!important}
+body{background:var(--void)!important;color:var(--white);font-family:'Arial Narrow',Arial,sans-serif;font-weight:400;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--pure);color:var(--void)}
+
+.grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.02;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:100px}
+
+/* INTRO */
+.intro{position:fixed;inset:0;background:var(--void);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem}
+.intro.done{animation:iWipe 1s cubic-bezier(.65,0,.35,1) .2s forwards}
+@keyframes iWipe{to{clip-path:inset(50% 0 50% 0)}}
+.intro-logo{width:55px;height:62px;opacity:0;animation:iLogo .5s ease .3s forwards}
+@keyframes iLogo{to{opacity:1}}
+.intro-logo svg{width:100%;height:100%}
+.lp{fill:none;stroke:var(--pure);stroke-width:65;stroke-dasharray:12000;stroke-dashoffset:12000;animation:drawL 1.8s cubic-bezier(.22,1,.36,1) .5s forwards;stroke-linejoin:round}
+@keyframes drawL{to{stroke-dashoffset:0}}
+.lf{fill:var(--pure);opacity:0;animation:fillL .6s ease 1.8s forwards}
+@keyframes fillL{to{opacity:1}}
+.intro-t{font-size:.5rem;letter-spacing:.7em;text-transform:uppercase;color:var(--silver);opacity:0;animation:iTxt .7s ease 2s forwards;font-weight:700}
+.intro-s{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.95rem;font-weight:300;color:var(--bone);opacity:0;animation:iTxt .7s ease 2.3s forwards}
+@keyframes iTxt{from{opacity:0;transform:translateY(8px);filter:blur(2px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(3,3,3,.95),transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);opacity:0;animation:fadeIn 1s ease 3.8s forwards}
+@keyframes fadeIn{to{opacity:1}}
+.nb{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--pure)}
+.nb svg{width:18px;height:20px}.nb span{font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;font-weight:700}
+.nr{display:flex;align-items:center;gap:1.2rem}
+.nr a{color:var(--silver);text-decoration:none;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+.nr a:hover{color:var(--pure)}
+.na{padding:.4rem 1rem!important;border:1px solid rgba(255,255,255,.2)!important;color:var(--pure)!important;transition:all .3s!important}
+.na:hover{background:var(--pure)!important;color:var(--void)!important}
+
+/* HERO */
+.hero{height:100svh;position:relative;display:flex;align-items:center;overflow:hidden}
+canvas#c3d{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hero-ov{position:absolute;inset:0;z-index:2;background:linear-gradient(135deg,rgba(3,3,3,.75) 35%,transparent 75%);pointer-events:none}
+.hero-ct{position:relative;z-index:5;padding:0 1.5rem;max-width:550px;opacity:0;animation:heroIn 1.2s ease 3.6s forwards}
+@keyframes heroIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.h-eye{font-size:.4rem;letter-spacing:.65em;text-transform:uppercase;color:var(--silver);margin-bottom:1.3rem;font-weight:700}
+.h-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,8.5vw,4.5rem);font-weight:300;line-height:.95;margin-bottom:1rem;letter-spacing:-.02em}
+.h-title em{font-style:italic}
+.h-title .stk{-webkit-text-stroke:1px var(--pure);color:transparent;opacity:.3}
+.h-desc{font-size:.75rem;color:var(--mist);line-height:1.8;max-width:340px;margin-bottom:1.8rem;letter-spacing:.02em}
+.h-acts{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.btn-w{display:inline-flex;padding:.75rem 1.8rem;background:var(--pure);color:var(--void);font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;text-decoration:none;font-weight:700;transition:all .4s}
+.btn-w:hover{box-shadow:0 0 30px rgba(255,255,255,.06)}
+.btn-g{color:var(--mist);text-decoration:none;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.4rem;font-weight:700}
+.btn-g:hover{color:var(--pure)}
+.h-scroll{position:absolute;bottom:1.2rem;left:50%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:.4rem;opacity:0;animation:fadeIn 1s ease 4.5s forwards}
+.h-scroll span{font-size:.35rem;letter-spacing:.5em;text-transform:uppercase;color:var(--mist);font-weight:700}
+.scroll-bar{width:1px;height:30px;position:relative;overflow:hidden;background:rgba(255,255,255,.04)}
+.scroll-bar::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--pure);animation:scrollDrop 2s ease-in-out infinite}
+@keyframes scrollDrop{to{top:100%}}
+
+/* NEXT EVENT */
+.next-ev{position:relative;overflow:hidden;padding:4rem 1.5rem;min-height:50vh;display:flex;align-items:center;justify-content:center;text-align:center;background:var(--ink)}
+.next-ev::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.015),transparent 70%)}
+.ne-c{position:relative;z-index:2}
+.ne-lbl{font-size:.35rem;letter-spacing:.8em;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:1.5rem}
+.ne-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,11vw,6rem);font-weight:300;font-style:italic;line-height:1;margin-bottom:.4rem;color:var(--pure);text-shadow:0 0 80px rgba(255,255,255,.03)}
+.ne-date{font-size:.42rem;letter-spacing:.5em;text-transform:uppercase;color:var(--dim);margin-bottom:1.8rem;font-weight:700}
+.ne-mys{font-family:'Cormorant Garamond',serif;font-size:.85rem;font-style:italic;color:rgba(255,255,255,.15);max-width:280px;margin:0 auto 2rem;line-height:1.6;font-weight:300}
+.ne-dets{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
+.ne-det{text-align:center}
+.ne-det .val{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:rgba(255,255,255,.12);line-height:1}
+.ne-det .lbl{font-size:.35rem;letter-spacing:.35em;text-transform:uppercase;color:var(--dim);margin-top:.2rem;font-weight:700}
+.ne-inv{margin-top:1.5rem;font-size:.38rem;letter-spacing:.4em;text-transform:uppercase;color:var(--dim);font-weight:700;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.ne-inv::before{content:'';width:4px;height:4px;border:1px solid rgba(255,255,255,.08);border-radius:50%}
+
+/* MARQUEE */
+.mq{padding:.7rem 0;border-top:1px solid rgba(255,255,255,.02);border-bottom:1px solid rgba(255,255,255,.02);overflow:hidden}
+.mq-t{display:flex;animation:mqRun 28s linear infinite;width:max-content}
+.mq-t span{font-size:.45rem;letter-spacing:.4em;color:rgba(255,255,255,.06);white-space:nowrap;padding:0 1rem;font-weight:700;text-transform:uppercase}
+.mq-d{color:var(--pure);font-size:.25rem;padding:0 .8rem;display:flex;align-items:center;opacity:.1}
+@keyframes mqRun{to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.sec{padding:4.5rem 1.5rem}
+.s-lbl{font-size:.38rem;letter-spacing:.7em;text-transform:uppercase;color:var(--silver);font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:.7rem}
+.s-lbl::before{content:'';width:22px;height:1px;background:var(--pure)}
+.s-h{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,5.5vw,2.8rem);font-weight:300;line-height:1.1}
+.s-h em{font-style:italic}
+
+/* ABOUT + GLOBE */
+.about{position:relative;overflow:hidden}
+.globe-wrap{position:relative;width:100%;height:280px;margin:1.5rem 0}
+canvas#globe{width:100%;height:100%}
+.a-text{color:var(--mist);font-size:.78rem;line-height:1.85;margin-top:1.2rem;letter-spacing:.02em}
+.a-text strong{color:var(--pure);font-weight:700}
+.a-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.3rem,4vw,1.7rem);font-weight:300;color:var(--pure);line-height:1.3;margin:2rem 0;padding-left:1rem;border-left:1px solid rgba(255,255,255,.08)}
+.a-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.03)}
+.a-n{text-align:center}
+.a-n h3{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--pure);line-height:1}
+.a-n p{font-size:.35rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mist);margin-top:.2rem;font-weight:700}
+
+/* WHAT WE DO */
+.wwd{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:1.5rem}
+.wwd-i{background:rgba(255,255,255,.012);padding:1.5rem 1rem;border:1px solid rgba(255,255,255,.02);text-align:center}
+.wwd-ico{font-size:1.5rem;margin-bottom:.6rem;opacity:.12}
+.wwd-i h4{font-size:.45rem;letter-spacing:.25em;text-transform:uppercase;font-weight:700;margin-bottom:.3rem}
+.wwd-i p{font-size:.65rem;color:var(--mist);line-height:1.4}
+
+/* GALLERY */
+.gallery{padding:4.5rem 0;overflow:hidden}
+.gal-h{padding:0 1.5rem;margin-bottom:1.5rem}
+.g-track{display:flex;gap:.4rem;animation:galSlide 38s linear infinite;width:max-content}
+.g-track:hover{animation-play-state:paused}
+.g-item{width:220px;height:290px;background:var(--smoke);flex-shrink:0;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.015)}
+.g-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(3,3,3,.8),transparent 35%)}
+.g-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--smoke),var(--ash))}
+.g-bg .g-ico{font-size:3rem;opacity:.03}
+.g-info{position:absolute;bottom:1rem;left:1rem;z-index:3}
+.g-info h4{font-size:.85rem;font-weight:700;margin-bottom:.1rem}
+.g-info span{font-size:.35rem;letter-spacing:.25em;text-transform:uppercase;color:var(--silver);font-weight:700}
+@keyframes galSlide{to{transform:translateX(-50%)}}
+.g-track.rev{animation-direction:reverse;margin-top:.4rem}
+
+/* EVENTS */
+.events{background:var(--ink)}
+.flag-c{padding:2rem 1.5rem;border:1px solid rgba(255,255,255,.025);margin-bottom:2px;position:relative;overflow:hidden}
+.flag-badge{font-size:.3rem;letter-spacing:.6em;text-transform:uppercase;padding:.25rem .7rem;border:1px solid rgba(255,255,255,.1);color:var(--pearl);display:inline-block;margin-bottom:.8rem;font-weight:700}
+.flag-name{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,5vw,2.5rem);font-weight:300;margin-bottom:.4rem;line-height:1.1}
+.flag-name em{font-style:italic}
+.flag-desc{color:var(--mist);font-size:.7rem;line-height:1.6;margin-bottom:1rem;max-width:380px}
+.flag-inv{font-size:.35rem;letter-spacing:.35em;text-transform:uppercase;color:var(--dim);font-weight:700;display:flex;align-items:center;gap:.5rem}
+.flag-inv::before{content:'';width:4px;height:4px;border:1px solid rgba(255,255,255,.1);border-radius:50%}
+.ev-scroll{display:flex;gap:.6rem;overflow-x:auto;padding:.8rem 0;scrollbar-width:none;scroll-snap-type:x mandatory}
+.ev-scroll::-webkit-scrollbar{display:none}
+.ev-card{min-width:250px;flex-shrink:0;background:rgba(255,255,255,.008);padding:1.8rem 1.3rem;border:1px solid rgba(255,255,255,.02);scroll-snap-align:start}
+.ev-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:rgba(255,255,255,.02);line-height:1;margin-bottom:.4rem}
+.ev-tag{display:inline-block;font-size:.3rem;letter-spacing:.35em;text-transform:uppercase;padding:.2rem .6rem;border:1px solid rgba(255,255,255,.06);color:var(--pearl);margin-bottom:.8rem;font-weight:700}
+.ev-dt{font-size:.4rem;letter-spacing:.25em;text-transform:uppercase;color:var(--mist);margin-bottom:.4rem;font-weight:700}
+.ev-card h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;margin-bottom:.4rem;line-height:1.25}
+.ev-card p{color:var(--mist);font-size:.68rem;line-height:1.5}
+
+/* FAQ */
+.faq-i{border-bottom:1px solid rgba(255,255,255,.03)}
+.faq-q{padding:1.5rem 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:1rem}
+.faq-q h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--pearl)}
+.faq-t{width:28px;height:28px;border:1px solid rgba(255,255,255,.06);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .4s;position:relative}
+.faq-t::before,.faq-t::after{content:'';position:absolute;background:var(--pure);transition:transform .4s}
+.faq-t::before{width:8px;height:1px}.faq-t::after{width:1px;height:8px}
+.faq-i.open .faq-t{border-color:var(--pure);transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.22,1,.36,1),padding .5s}
+.faq-i.open .faq-a{max-height:220px;padding-bottom:1.5rem}
+.faq-a p{color:var(--mist);line-height:1.8;font-size:.78rem}
+
+/* APPLY */
+.apply{text-align:center;position:relative;overflow:hidden}
+.apply-orb{position:absolute;width:400px;height:400px;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,255,255,.02),transparent 60%);filter:blur(60px)}
+.apply-c{position:relative;z-index:2}
+.apply .s-h{max-width:350px;margin:0 auto .8rem}
+.apply-d{color:var(--mist);max-width:300px;margin:0 auto 1rem;line-height:1.7;font-size:.78rem}
+.apply-note{font-size:.4rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);margin-bottom:2rem;font-weight:700}
+.apply-btn{display:inline-flex;padding:.9rem 2.5rem;background:var(--pure);color:var(--void);font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;text-decoration:none;font-weight:700;transition:all .4s}
+.apply-btn:hover{box-shadow:0 0 40px rgba(255,255,255,.08)}
+
+/* INSTA */
+.insta{text-align:center}
+.insta-g{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:2rem}
+.insta-c{aspect-ratio:1;background:var(--smoke);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.015)}
+.insta-c .insta-e{font-size:2rem;opacity:.03}
+.insta-l{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.5rem;color:var(--pure);text-decoration:none;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;font-weight:700}
+
+/* FOOTER */
+footer{padding:3rem 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.025)}
+.f-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem}
+.f-logo{display:flex;align-items:center;gap:.5rem}
+.f-logo svg{width:18px;height:20px}
+.f-logo span{font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;font-weight:700}
+.f-links{display:flex;gap:1.5rem}
+.f-links a{color:var(--mist);text-decoration:none;font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700}
+.f-links a:hover{color:var(--pure)}
+.f-bot{font-size:.45rem;color:var(--dim);letter-spacing:.08em;text-align:center;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.02)}
+.f-bot span{display:block;margin-bottom:.3rem}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.rv.vis{opacity:1;transform:translateY(0)}
+
+/* DESKTOP */
+@media(min-width:768px){
+  .sec{padding:7rem 4rem}
+  .hero-ct{padding:0 10%}
+  .wwd{grid-template-columns:repeat(4,1fr)}
+  .insta-g{grid-template-columns:repeat(6,1fr)}
+  .a-nums{max-width:500px}
+  nav{padding:1.5rem 3rem}
+  .nr{gap:2.5rem}
+  .ev-scroll{gap:1.2rem}
+  .ev-card{min-width:320px}
+  footer{padding:4rem 4rem 2rem}
+  .gallery{padding:7rem 0}
+  .g-item{width:300px;height:380px}
+  .globe-wrap{height:350px}
+}
+@media(min-width:1200px){
+  .hero-ct{max-width:650px}
+  .a-text{max-width:550px}
+  .flag-c{padding:3rem 4rem}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<!-- INTRO -->
+<div class="intro" id="intro">
+  <div class="intro-logo">
+    <svg viewBox="0 0 3944.79 4199.8" xmlns="http://www.w3.org/2000/svg">
+      <path class="lp" d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/>
+      <path class="lp" d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z" style="animation-delay:.2s"/>
+      <path class="lp" d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z" style="animation-delay:.4s"/>
+      <path class="lf" d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/>
+      <path class="lf" d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z" style="animation-delay:1.9s"/>
+      <path class="lf" d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z" style="animation-delay:2s"/>
+    </svg>
+  </div>
+  <div class="intro-t">EXPAT SOCIETY</div>
+  <div class="intro-s">Los Angeles</div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nb">
+    <svg viewBox="0 0 3944.79 4199.8" fill="var(--pure)"><path d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg>
+    <span>Expat Society</span>
+  </a>
+  <div class="nr"><a href="#about">About</a><a href="#events">Events</a><a href="#apply" class="na">Apply</a></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="c3d"></canvas>
+  <div class="hero-ov"></div>
+  <div class="hero-ct">
+    <div class="h-eye">Los Angeles, CA</div>
+    <h1 class="h-title">Where the<br><span class="stk">World's</span> <em>Restless</em><br>Come Alive</h1>
+    <p class="h-desc">You don't get in by luck. You get in by connection. A society of international students and expats in LA — building the life you came here to live.</p>
+    <div class="h-acts">
+      <a href="#apply" class="btn-w">Apply Now</a>
+      <a href="#events" class="btn-g">See Events ↓</a>
+    </div>
+  </div>
+  <div class="h-scroll"><span>Scroll</span><div class="scroll-bar"></div></div>
+</section>
+
+<!-- NEXT EVENT TEASER -->
+<div class="next-ev rv">
+  <div class="ne-c">
+    <div class="ne-lbl">Next Event</div>
+    <div class="ne-name">ONYX</div>
+    <div class="ne-date">Date TBA · Location Undisclosed</div>
+    <div class="ne-mys">The details are revealed only to those who are already in.</div>
+    <div class="ne-dets">
+      <div class="ne-det"><div class="val">???</div><div class="lbl">Location</div></div>
+      <div class="ne-det"><div class="val">???</div><div class="lbl">Dress Code</div></div>
+      <div class="ne-det"><div class="val">???</div><div class="lbl">Capacity</div></div>
+    </div>
+    <div class="ne-inv">Members + 1 Guest Only</div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="mq"><div class="mq-t">
+<span>USC</span><div class="mq-d">◆</div><span>UCLA</span><div class="mq-d">◆</div><span>PEPPERDINE</span><div class="mq-d">◆</div><span>LOYOLA</span><div class="mq-d">◆</div><span>ONYX</span><div class="mq-d">◆</div><span>WHITE PARTY</span><div class="mq-d">◆</div><span>MAMMOTH</span><div class="mq-d">◆</div><span>BIG BEAR</span><div class="mq-d">◆</div><span>PALM SPRINGS</span><div class="mq-d">◆</div><span>SAN DIEGO</span><div class="mq-d">◆</div>
+<span>USC</span><div class="mq-d">◆</div><span>UCLA</span><div class="mq-d">◆</div><span>PEPPERDINE</span><div class="mq-d">◆</div><span>LOYOLA</span><div class="mq-d">◆</div><span>ONYX</span><div class="mq-d">◆</div><span>WHITE PARTY</span><div class="mq-d">◆</div><span>MAMMOTH</span><div class="mq-d">◆</div><span>BIG BEAR</span><div class="mq-d">◆</div><span>PALM SPRINGS</span><div class="mq-d">◆</div><span>SAN DIEGO</span><div class="mq-d">◆</div>
+</div></div>
+
+<!-- ABOUT + GLOBE -->
+<section id="about" class="sec about">
+  <div class="rv"><div class="s-lbl">About</div><h2 class="s-h">One City. <em>Every Flag.</em></h2></div>
+  <div class="globe-wrap rv"><canvas id="globe"></canvas></div>
+  <div class="a-text rv">
+    <p><strong>Expat Society</strong> is a registered LLC based in Los Angeles. We bring together international students and expats from USC, UCLA, Pepperdine, Loyola, and beyond — people from every corner of the world who chose LA to write their next chapter.</p>
+    <p>We organize exclusive themed parties, hikes, bowling nights, brunches, dinners, and weekend trips to Mammoth, Big Bear, the Desert, San Diego, and Palm Springs. <strong>This is the community you wish you'd found on day one.</strong></p>
+  </div>
+  <div class="a-quote rv">Every passport tells a story. Ours just happen to converge in Los Angeles.</div>
+  <div class="a-nums rv">
+    <div class="a-n"><h3>6K</h3><p>Community</p></div>
+    <div class="a-n"><h3>40+</h3><p>Countries</p></div>
+    <div class="a-n"><h3>750+</h3><p>Applications</p></div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="sec">
+  <div class="rv"><div class="s-lbl">What We Do</div><h2 class="s-h">Not Just Parties. <em>A Lifestyle.</em></h2></div>
+  <div class="wwd rv">
+    <div class="wwd-i"><div class="wwd-ico">🖤</div><h4>Themed Parties</h4><p>ONYX. White Party. Secret locations.</p></div>
+    <div class="wwd-i"><div class="wwd-ico">⛰️</div><h4>Hikes</h4><p>Sunrise summits, Runyon, coastal trails.</p></div>
+    <div class="wwd-i"><div class="wwd-ico">🎳</div><h4>Socials</h4><p>Bowling, brunch, dinners, game nights.</p></div>
+    <div class="wwd-i"><div class="wwd-ico">🏔️</div><h4>Trips</h4><p>Mammoth, Big Bear, Palm Springs, SD.</p></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="gal-h rv"><div class="s-lbl">Gallery</div><h2 class="s-h">The <em>Life</em></h2></div>
+  <div class="g-track">
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🖤</div></div><div class="g-info"><h4>ONYX III</h4><span>Fall 2025</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🤍</div></div><div class="g-info"><h4>White Party</h4><span>Summer 2025</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">⛰️</div></div><div class="g-info"><h4>Sunrise Hike</h4><span>Griffith Park</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🏔️</div></div><div class="g-info"><h4>Mammoth Trip</h4><span>Winter 2025</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🌴</div></div><div class="g-info"><h4>Palm Springs</h4><span>Spring 2025</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🎳</div></div><div class="g-info"><h4>Bowling Night</h4><span>DTLA</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🖤</div></div><div class="g-info"><h4>ONYX III</h4><span>Fall 2025</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🤍</div></div><div class="g-info"><h4>White Party</h4><span>Summer 2025</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">⛰️</div></div><div class="g-info"><h4>Sunrise Hike</h4><span>Griffith Park</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🏔️</div></div><div class="g-info"><h4>Mammoth Trip</h4><span>Winter 2025</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🌴</div></div><div class="g-info"><h4>Palm Springs</h4><span>Spring 2025</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🎳</div></div><div class="g-info"><h4>Bowling Night</h4><span>DTLA</span></div></div>
+  </div>
+  <div class="g-track rev" style="margin-top:.4rem">
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🌊</div></div><div class="g-info"><h4>Beach Day</h4><span>Malibu</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🍽️</div></div><div class="g-info"><h4>Group Dinner</h4><span>K-Town</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🏜️</div></div><div class="g-info"><h4>Desert Trip</h4><span>Joshua Tree</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🌅</div></div><div class="g-info"><h4>San Diego</h4><span>Weekend Trip</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🥂</div></div><div class="g-info"><h4>Brunch</h4><span>WeHo</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🎉</div></div><div class="g-info"><h4>Semester Party</h4><span>Fall 2025</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🌊</div></div><div class="g-info"><h4>Beach Day</h4><span>Malibu</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🍽️</div></div><div class="g-info"><h4>Group Dinner</h4><span>K-Town</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🏜️</div></div><div class="g-info"><h4>Desert Trip</h4><span>Joshua Tree</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🌅</div></div><div class="g-info"><h4>San Diego</h4><span>Weekend Trip</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🥂</div></div><div class="g-info"><h4>Brunch</h4><span>WeHo</span></div></div>
+    <div class="g-item"><div class="g-bg"><div class="g-ico">🎉</div></div><div class="g-info"><h4>Semester Party</h4><span>Fall 2025</span></div></div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events" class="sec events">
+  <div class="rv"><div class="s-lbl">Events</div><h2 class="s-h">Flagship <em>Experiences</em></h2></div>
+  <div class="flag-c rv">
+    <div class="flag-badge">Signature Event</div>
+    <div class="flag-name"><em>ONYX</em></div>
+    <div class="flag-desc">All-black. Undisclosed location. International DJs, bespoke cocktails, and a guest list that reads like a passport. Members + 1 guest.</div>
+    <div class="flag-inv">By Invitation Only</div>
+  </div>
+  <div class="flag-c rv">
+    <div class="flag-badge">Signature Event</div>
+    <div class="flag-name"><em>White</em> Party</div>
+    <div class="flag-desc">Pure white everything. Rooftop. Summer. The kind of night that becomes a core memory. Members + 1 guest.</div>
+    <div class="flag-inv">By Invitation Only</div>
+  </div>
+  <div style="margin-top:2rem" class="rv"><h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin-bottom:.8rem"><em>Upcoming</em></h3></div>
+  <div class="ev-scroll">
+    <div class="ev-card"><div class="ev-num">01</div><div class="ev-tag">Hike</div><div class="ev-dt">Mar 2026</div><h3>Sunrise at Griffith</h3><p>5:30AM. Golden hour over the city. Coffee at the top.</p></div>
+    <div class="ev-card"><div class="ev-num">02</div><div class="ev-tag">Social</div><div class="ev-dt">Mar 2026</div><h3>Bowling Night</h3><p>Cosmic bowling in DTLA. Teams, drinks, zero skills required.</p></div>
+    <div class="ev-card"><div class="ev-num">03</div><div class="ev-tag">Trip</div><div class="ev-dt">Apr 2026</div><h3>Big Bear Weekend</h3><p>Cabins, lake, bonfires. 48 hours off the grid.</p></div>
+    <div class="ev-card"><div class="ev-num">04</div><div class="ev-tag">Brunch</div><div class="ev-dt">Apr 2026</div><h3>Sunday Brunch</h3><p>Bottomless mimosas. Overpriced avocado toast. Good conversation.</p></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec">
+  <div class="rv"><div class="s-lbl">FAQ</div><h2 class="s-h">Common <em>Questions</em></h2></div>
+  <div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>Who can join?</h3><div class="faq-t"></div></div><div class="faq-a"><p>International students and expats in LA. Primarily from USC, UCLA, Pepperdine, Loyola — but we welcome anyone with a global mindset living in Los Angeles.</p></div></div>
+  <div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do applications work?</h3><div class="faq-t"></div></div><div class="faq-a"><p>Applications open twice a year — fall and spring. You fill out a short form and we review every single one. We look for good energy and real curiosity.</p></div></div>
+  <div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>What are ONYX and White Party?</h3><div class="faq-t"></div></div><div class="faq-a"><p>Our two flagship annual events. ONYX is all-black, secret location. White Party is all-white, rooftop. Both are invite-only — members can bring one guest.</p></div></div>
+  <div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>Do I need to know anyone to join?</h3><div class="faq-t"></div></div><div class="faq-a"><p>No. Most members joined knowing nobody. That's the whole point — this is where you find your people in a new city.</p></div></div>
+  <div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>Is there a membership fee?</h3><div class="faq-t"></div></div><div class="faq-a"><p>Details are shared with accepted applicants. Most events are included or heavily subsidized for members.</p></div></div>
+</section>
+
+<!-- APPLY -->
+<section id="apply" class="sec apply">
+  <div class="apply-orb"></div>
+  <div class="apply-c rv">
+    <div class="s-lbl" style="justify-content:center">Apply</div>
+    <h2 class="s-h">Ready to <em>Join?</em></h2>
+    <p class="apply-d">Applications open twice a year. If it's open, you'll know. If it's not — follow us and wait for the drop.</p>
+    <div class="apply-note">Applications for Fall 2026 · Coming Soon</div>
+    <a href="https://docs.google.com/forms" target="_blank" rel="noopener" class="apply-btn">Apply Now</a>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="sec insta">
+  <div class="rv"><div class="s-lbl" style="justify-content:center">Instagram</div><h2 class="s-h" style="text-align:center;margin:0 auto">@expatsociety</h2></div>
+  <div class="insta-g">
+    <div class="insta-c"><div class="insta-e">📸</div></div><div class="insta-c"><div class="insta-e">🖤</div></div><div class="insta-c"><div class="insta-e">⛰️</div></div>
+    <div class="insta-c"><div class="insta-e">🤍</div></div><div class="insta-c"><div class="insta-e">🌴</div></div><div class="insta-c"><div class="insta-e">🎉</div></div>
+    <div class="insta-c"><div class="insta-e">🏔️</div></div><div class="insta-c"><div class="insta-e">🍽️</div></div><div class="insta-c"><div class="insta-e">🌊</div></div>
+  </div>
+  <a href="https://instagram.com/expatsociety" target="_blank" rel="noopener" class="insta-l rv">Follow @expatsociety →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-top">
+    <div class="f-logo">
+      <svg viewBox="0 0 3944.79 4199.8" fill="var(--pure)"><path d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg>
+      <span>Expat Society</span>
+    </div>
+    <div class="f-links"><a href="https://instagram.com/expatsociety" target="_blank">Instagram</a><a href="mailto:hello@expatsociety.com">Contact</a></div>
+  </div>
+  <div class="f-bot">
+    <span>© 2026 Expat Society LLC · Los Angeles, CA</span>
+    <span>You don't get in by luck. You get in by connection.</span>
+  </div>
+</footer>
+
+<script>
+// INTRO
+setTimeout(()=>document.getElementById('intro').classList.add('done'),3800);
+
+// 3D PAPER PLANE
+const c=document.getElementById('c3d'),ctx=c.getContext('2d');
+let W,H;
+function resize(){W=c.width=innerWidth;H=c.height=innerHeight}
+resize();addEventListener('resize',resize);
+
+class Vec{
+  constructor(x,y,z){this.x=x;this.y=y;this.z=z}
+  rx(a){const c=Math.cos(a),s=Math.sin(a);return new Vec(this.x,this.y*c-this.z*s,this.y*s+this.z*c)}
+  ry(a){const c=Math.cos(a),s=Math.sin(a);return new Vec(this.x*c+this.z*s,this.y,-this.x*s+this.z*c)}
+  rz(a){const c=Math.cos(a),s=Math.sin(a);return new Vec(this.x*c-this.y*s,this.x*s+this.y*c,this.z)}
+  proj(d=500){const s=d/(d+this.z);return{x:this.x*s,y:this.y*s,s}}
+}
+
+const verts=[new Vec(0,-160,0),new Vec(-90,70,-8),new Vec(-12,-2,12),new Vec(12,-2,12),new Vec(90,70,-8),new Vec(0,70,-15),new Vec(0,85,0),new Vec(-15,110,0),new Vec(0,135,0),new Vec(15,110,0)];
+const faces=[
+  {v:[0,1,2],f:'rgba(255,255,255,.04)',s:'rgba(255,255,255,.1)'},
+  {v:[0,2,5],f:'rgba(255,255,255,.025)',s:'rgba(255,255,255,.06)'},
+  {v:[0,5,3],f:'rgba(255,255,255,.02)',s:'rgba(255,255,255,.05)'},
+  {v:[0,3,4],f:'rgba(255,255,255,.035)',s:'rgba(255,255,255,.09)'},
+  {v:[6,7,8],f:'rgba(255,255,255,.03)',s:'rgba(255,255,255,.08)'},
+  {v:[6,8,9],f:'rgba(255,255,255,.025)',s:'rgba(255,255,255,.06)'}
+];
+let t=0;const trail=[];
+
+function drawPlane(){
+  ctx.clearRect(0,0,W,H);t+=.003;
+  const rY=Math.sin(t*.4)*.4,rX=Math.sin(t*.3)*.15-.1,rZ=Math.sin(t*.2)*.06;
+  const fX=W*.55+Math.sin(t*.2)*15,fY=H*.45+Math.sin(t*.3)*20;
+  const n=verts[0].rx(rX).ry(rY).rz(rZ).proj();
+  trail.push({x:fX+n.x,y:fY+n.y,a:1});
+  if(trail.length>40)trail.shift();
+  for(let i=1;i<trail.length;i++){
+    trail[i].a-=.025;
+    if(trail[i].a>0){
+      ctx.beginPath();ctx.moveTo(trail[i-1].x,trail[i-1].y);ctx.lineTo(trail[i].x,trail[i].y);
+      ctx.strokeStyle=`rgba(255,255,255,${trail[i].a*.06})`;ctx.lineWidth=.5;ctx.stroke();
+    }
+  }
+  faces.forEach(fc=>{
+    const pts=fc.v.map(i=>{const p=verts[i].rx(rX).ry(rY).rz(rZ).proj();return{x:fX+p.x,y:fY+p.y}});
+    ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);pts.forEach(p=>ctx.lineTo(p.x,p.y));ctx.closePath();
+    ctx.fillStyle=fc.f;ctx.fill();ctx.strokeStyle=fc.s;ctx.lineWidth=.5;ctx.stroke();
+  });
+  requestAnimationFrame(drawPlane);
+}
+drawPlane();
+
+// 3D GLOBE
+const gc=document.getElementById('globe'),gx=gc.getContext('2d');
+let GW,GH;
+function gResize(){GW=gc.width=gc.parentElement.offsetWidth;GH=gc.height=gc.parentElement.offsetHeight}
+gResize();addEventListener('resize',gResize);
+
+const cities=[
+  {n:'Tokyo',lat:35.6,lon:139.7},{n:'London',lat:51.5,lon:-.12},{n:'Paris',lat:48.8,lon:2.3},
+  {n:'Milano',lat:45.4,lon:9.1},{n:'São Paulo',lat:-23.5,lon:-46.6},{n:'Dubai',lat:25.2,lon:55.2},
+  {n:'Sydney',lat:-33.8,lon:151.2},{n:'Seoul',lat:37.5,lon:127},{n:'Mumbai',lat:19,lon:72.8},
+  {n:'Berlin',lat:52.5,lon:13.4},{n:'Mexico City',lat:19.4,lon:-99.1},{n:'Lagos',lat:6.5,lon:3.3},
+  {n:'Buenos Aires',lat:-34.6,lon:-58.4},{n:'Istanbul',lat:41,lon:29},{n:'Beijing',lat:39.9,lon:116.3}
+];
+const LA={lat:34.05,lon:-118.24};
+let gt=0,globeActive=false;
+
+const gObs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)globeActive=true})},{threshold:.3});
+gObs.observe(gc);
+
+function drawGlobe(){
+  gx.clearRect(0,0,GW,GH);gt+=.006;
+  const cx=GW/2,cy=GH/2,R=Math.min(GW,GH)*.37;
+  const rotY=gt*.25;
+  
+  // Wireframe latitudes
+  gx.strokeStyle='rgba(255,255,255,.025)';gx.lineWidth=.5;
+  for(let i=0;i<7;i++){
+    const lat=(i-3)*25*Math.PI/180;
+    const r=R*Math.cos(lat);const y=cy-R*Math.sin(lat);
+    gx.beginPath();gx.ellipse(cx,y,r,r*.3,0,0,Math.PI*2);gx.stroke();
+  }
+  // Meridians
+  for(let i=0;i<12;i++){
+    const lon=i*30*Math.PI/180+rotY;
+    gx.beginPath();
+    for(let j=0;j<=60;j++){
+      const lat=(j-30)*3*Math.PI/180;
+      const px=cx+R*Math.cos(lat)*Math.sin(lon);
+      const py=cy-R*Math.sin(lat);
+      const pz=Math.cos(lat)*Math.cos(lon);
+      if(pz>-.1){if(j===0)gx.moveTo(px,py);else gx.lineTo(px,py)}
+    }
+    gx.stroke();
+  }
+  
+  // City dots converging to LA
+  const progress=globeActive?Math.min(1,(gt-.5)*.2):0;
+  cities.forEach((city,idx)=>{
+    const latR=city.lat*Math.PI/180,lonR=city.lon*Math.PI/180;
+    const tLat=LA.lat*Math.PI/180,tLon=LA.lon*Math.PI/180;
+    const p=Math.max(0,Math.min(1,progress*3-idx*.1));
+    const cLat=latR+(tLat-latR)*p;
+    const cLon=lonR+(tLon-lonR)*p;
+    const px=cx+R*Math.cos(cLat)*Math.sin(cLon+rotY);
+    const py=cy-R*Math.sin(cLat);
+    const pz=Math.cos(cLat)*Math.cos(cLon+rotY);
+    if(pz>0){
+      const a=pz*.5;
+      gx.beginPath();gx.arc(px,py,2,0,Math.PI*2);
+      gx.fillStyle=`rgba(255,255,255,${a})`;gx.fill();
+      if(p<.8){
+        gx.font='700 7px Arial Narrow,Arial,sans-serif';
+        gx.fillStyle=`rgba(255,255,255,${a*.4})`;
+        gx.fillText(city.n.toUpperCase(),px+5,py+3);
+      }
+    }
+  });
+  
+  // LA always visible
+  const laLat=LA.lat*Math.PI/180,laLon=LA.lon*Math.PI/180;
+  const lx=cx+R*Math.cos(laLat)*Math.sin(laLon+rotY);
+  const ly=cy-R*Math.sin(laLat);
+  const lz=Math.cos(laLat)*Math.cos(laLon+rotY);
+  if(lz>0){
+    gx.beginPath();gx.arc(lx,ly,3+Math.sin(gt*2)*.5,0,Math.PI*2);
+    gx.fillStyle=`rgba(255,255,255,${lz*.7})`;gx.fill();
+    gx.beginPath();gx.arc(lx,ly,10,0,Math.PI*2);
+    gx.strokeStyle=`rgba(255,255,255,${lz*.12})`;gx.lineWidth=1;gx.stroke();
+    gx.font='700 9px Arial Narrow,Arial,sans-serif';
+    gx.fillStyle=`rgba(255,255,255,${lz*.6})`;
+    gx.fillText('LOS ANGELES',lx+8,ly+3);
+  }
+  requestAnimationFrame(drawGlobe);
+}
+drawGlobe();
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.1});
+document.querySelectorAll('.rv').forEach(e=>obs.observe(e));
+
+// FAQ
+function toggleFaq(el){
+  const item=el.parentElement;
+  const wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-i').forEach(f=>f.classList.remove('open'));
+  if(!wasOpen)item.classList.add('open');
+}
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target)target.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+// PARALLAX
+window.addEventListener('scroll',()=>{
+  const s=scrollY;
+  const h=document.querySelector('.hero-ct');
+  if(h&&s<innerHeight){
+    h.style.transform=`translateY(${s*.1}px)`;
+    h.style.opacity=1-s/(innerHeight*.7);
+  }
+},{passive:true});
+</script>
+</body>
+</html>
