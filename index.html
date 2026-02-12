@@ -233,7 +233,10 @@ drawPlane();
 var gc=document.getElementById('globe'),gx=gc.getContext('2d');
 var GW,GH;
 var isMobile=innerWidth<768;
-var gdpr = isMobile ? 1.4 : Math.min(window.devicePixelRatio || 1, 2);
+var gdpr = isMobile 
+  ? Math.min(window.devicePixelRatio || 1, 1.8)
+  : Math.min(window.devicePixelRatio || 1, 2);
+
 
 function gResize(){var w=gc.parentElement.offsetWidth,h=gc.parentElement.offsetHeight;GW=gc.width=w*gdpr;GH=gc.height=h*gdpr;gc.style.width=w+'px';gc.style.height=h+'px'}
 gResize();addEventListener('resize',gResize);
@@ -297,7 +300,14 @@ function drawGlobe(){
   var cx=GW/2,cy=GH/2,R=Math.min(GW,GH)*.38,rY=gt*.2;
 
   // Atmosphere
-  if(!isMobile){var gr=gx.createRadialGradient(cx,cy,R*.5,cx,cy,R*1.2);gr.addColorStop(0,'rgba(255,255,255,.07)');gr.addColorStop(1,'rgba(255,255,255,0)');gx.fillStyle=gr;gx.beginPath();gx.arc(cx,cy,R*1.2,0,Math.PI*2);gx.fill()}
+var core = gx.createRadialGradient(cx,cy,0,cx,cy,R);
+core.addColorStop(0,'rgba(255,255,255,'+(isMobile?.07:.10)+')');
+core.addColorStop(.5,'rgba(255,255,255,'+(isMobile?.03:.04)+')');
+core.addColorStop(1,'rgba(255,255,255,0)');
+gx.fillStyle = core;
+gx.beginPath();
+gx.arc(cx,cy,R,0,6.283);
+gx.fill();
 
   // Outline
   gx.strokeStyle='rgba(255,255,255,.12)';gx.lineWidth=1.2;gx.beginPath();gx.arc(cx,cy,R,0,Math.PI*2);gx.stroke();
