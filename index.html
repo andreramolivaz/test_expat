@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -57,12 +56,16 @@ canvas#c3d{position:absolute;inset:0;z-index:1;pointer-events:none}
 .scroll-bar{width:1px;height:30px;position:relative;overflow:hidden;background:rgba(255,255,255,.04)}
 .scroll-bar::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--pure);animation:scrollDrop 2s ease-in-out infinite}
 @keyframes scrollDrop{to{top:100%}}
-.outro{position:relative;padding:8rem 0 6rem 0;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden}
+.outro{position:relative; padding:14rem 0 14rem 0;display:flex;align-items:center;justify-content:center;background:var(--void);overflow:visible}
 .outro-content{position:relative;z-index:2;max-width:900px;padding:0 2rem;text-align:center}
 .outro h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:400;line-height:1.05;color:var(--pure);letter-spacing:.02em}
 .outro-sign{margin-top:1rem;font-size:.6rem;letter-spacing:.2em;color:rgba(255,255,255,.7);text-align:left}
 .outro-logo{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;z-index:1;opacity:.28;filter:blur(1px);pointer-events:none}
-.outro-logo svg{width:70vw;max-width:1000px;height:auto}
+.outro-logo svg{
+  width:55vw;
+  max-width:800px;
+  height:auto;
+}
 .outro-path{fill:none;stroke:#ff1e1e;stroke-width:50;stroke-linejoin:round;stroke-dasharray:12000;stroke-dashoffset:12000;animation:drawOutro 6s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(255,0,0,.8)) drop-shadow(0 0 40px rgba(255,0,0,.4))}
 @keyframes drawOutro{0%{stroke-dashoffset:12000}40%{stroke-dashoffset:0}60%{stroke-dashoffset:0}100%{stroke-dashoffset:12000}}
 .next-ev{position:relative;overflow:hidden;padding:4rem 1.5rem;min-height:50vh;display:flex;align-items:center;justify-content:center;text-align:center;background:var(--ink)}
@@ -188,7 +191,7 @@ footer{padding:3rem 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.025)}
 </div>
 <nav><a href="#" class="nb"><svg viewBox="0 0 3944.79 4199.8" fill="var(--pure)"><path d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg><span>Expat Society</span></a><div class="nr"><a href="#about">About</a><a href="#events">Events</a><a href="#apply" class="na">Apply</a></div></nav>
 <section class="hero"><canvas id="c3d"></canvas><div class="hero-ov"></div><div class="hero-ct"><div class="h-eye">Los Angeles, CA</div><h1 class="h-title">Same Sky.<br><span class="stk">Different</span> Roots.</h1><p class="h-desc">Different origins. Same frequency.</p><div class="h-acts"><a href="#apply" class="btn-w">Apply Now</a><a href="#events" class="btn-g">See Events ↓</a></div></div><div class="h-scroll"><span>Scroll</span><div class="scroll-bar"></div></div></section>
-<div class="next-ev rv"><div class="ne-bg-media"></div><div class="ne-c"><div class="ne-lbl">Next Event</div><div class="ne-name">SOLOMA</div><div class="ne-date">Date TBA · Location Undisclosed</div><div class="ne-mys">The details are revealed only to those who are already in.</div><div class="ne-dets"><div class="ne-det"><div class="val">???</div><div class="lbl">Location</div></div><div class="ne-det"><div class="val">???</div><div class="lbl">Dress Code</div></div><div class="ne-det"><div class="val">???</div><div class="lbl">Capacity</div></div></div><div class="ne-inv">Members + 1 Guest Only</div></div></div>
+<div class="next-ev rv"><div class="ne-bg-media"></div><div class="ne-c"><div class="ne-lbl">Next Event</div><div class="ne-name">FANCYNAME</div><div class="ne-date">Date TBA · Location Undisclosed</div><div class="ne-mys">The details are revealed only to those who are already in.</div><div class="ne-dets"><div class="ne-det"><div class="val">???</div><div class="lbl">Location</div></div><div class="ne-det"><div class="val">???</div><div class="lbl">Dress Code</div></div><div class="ne-det"><div class="val">???</div><div class="lbl">Capacity</div></div></div><div class="ne-inv">Members + 1 Guest Only</div></div></div>
 <div class="mq"><div class="mq-t"><span>USC</span><div class="mq-d">◆</div><span>UCLA</span><div class="mq-d">◆</div><span>PEPPERDINE</span><div class="mq-d">◆</div><span>LOYOLA</span><div class="mq-d">◆</div><span>ONYX</span><div class="mq-d">◆</div><span>WHITE PARTY</span><div class="mq-d">◆</div><span>MAMMOTH</span><div class="mq-d">◆</div><span>BIG BEAR</span><div class="mq-d">◆</div><span>PALM SPRINGS</span><div class="mq-d">◆</div><span>SAN DIEGO</span><div class="mq-d">◆</div><span>USC</span><div class="mq-d">◆</div><span>UCLA</span><div class="mq-d">◆</div><span>PEPPERDINE</span><div class="mq-d">◆</div><span>LOYOLA</span><div class="mq-d">◆</div><span>ONYX</span><div class="mq-d">◆</div><span>WHITE PARTY</span><div class="mq-d">◆</div><span>MAMMOTH</span><div class="mq-d">◆</div><span>BIG BEAR</span><div class="mq-d">◆</div><span>PALM SPRINGS</span><div class="mq-d">◆</div><span>SAN DIEGO</span><div class="mq-d">◆</div></div></div>
 <section id="about" class="sec about"><div class="rv"><div class="s-lbl">About</div><h2 class="s-h">One City. Every Flag.</h2></div><div class="globe-wrap rv"><canvas id="globe"></canvas></div><div class="a-text rv"><p><strong>EXPAT SOCIETY</strong> is a registered LLC in Los Angeles. A private community of international students (USC, UCLA, Pepperdine, Loyola...) and expats in Los Angeles. 40+ countries. One city.</p><p>Themed parties, sunrise hikes, dinners, brunch, weekend trips to Mammoth, Big Bear, Palm Springs, San Diego. <strong>The community nobody told you existed. We're selective to keep the right energy.</strong></p></div><div class="a-quote rv">You moved. Now move differently.</div><div class="a-nums rv"><div class="a-n"><h3>200</h3><p>People</p></div><div class="a-n"><h3>40+</h3><p>Countries</p></div><div class="a-n"><h3>840+</h3><p>Applications</p></div></div></section>
 <section class="sec"><div class="rv"><div class="s-lbl">What We Do</div><h2 class="s-h">More Than Nights.</h2></div><div class="wwd rv"><div class="wwd-i"><div class="wwd-ico">🖤</div><h4>Themed Parties</h4><p>ONYX. White Party. Secret locations.</p></div><div class="wwd-i"><div class="wwd-ico">⛰️</div><h4>Hikes</h4><p>Sunrise summits, Runyon, coastal trails.</p></div><div class="wwd-i"><div class="wwd-ico">🎳</div><h4>Socials</h4><p>Bowling, brunch, dinners, game nights.</p></div><div class="wwd-i"><div class="wwd-ico">🏔️</div><h4>Trips</h4><p>Mammoth, Big Bear, Palm Springs, SD.</p></div></div></section>
@@ -240,8 +243,8 @@ var LA={lat:34.05,lon:-118.24};
 
 // NIGHT LIGHTS — ~3500 desktop, ~1700 mobile. Tiny dots, wide spread.
 var allLights=[];
-var mobileScale=isMobile?0.5:1;
-function addR(a,b,c,d,n){n=Math.round(n*mobileScale);for(var i=0;i<n;i++){allLights.push({lat:a+Math.random()*(b-a),lon:c+Math.random()*(d-c),size:Math.random()*.5+.15,bright:Math.random()*.35+.06})}}
+var mobileScale=isMobile?0.6:1.15;
+function addR(a,b,c,d,n){n=Math.round(n*mobileScale*1.15);for(var i=0;i<n;i++){allLights.push({lat:a+Math.random()*(b-a),lon:c+Math.random()*(d-c),size:Math.random()*.5+.15,bright:Math.random()*.35+.06})}}
 // North America
 addR(25,47,-90,-70,220);addR(32,49,-125,-115,100);addR(19,40,-105,-85,90);addR(16,25,-105,-90,55);addR(25,35,-100,-80,65);addR(38,45,-95,-75,55);addR(42,48,-80,-70,40);
 // Europe
@@ -272,6 +275,14 @@ addR(37,42,26,40,45);
 addR(14,25,-90,-60,35);
 // Dense corridors
 addR(29,31.5,30,32.5,30);addR(44,46,8,13,30);addR(22,27,85,92,30);addR(21,24,112,115,30);addR(34,37,135,140,25);addR(50,53,-1,3,20);
+// More world coverage
+addR(38,42,55,70,20);addR(40,45,60,75,15);addR(56,62,60,75,10);addR(48,55,25,35,15);addR(35,38,125,130,20);addR(24,26,120,122,15);
+addR(5,12,0,5,20);addR(0,8,30,40,15);addR(-15,-5,25,35,10);addR(32,36,0,10,20);addR(15,25,-15,0,10);
+addR(57,63,8,18,15);addR(60,67,20,30,10);addR(42,46,18,25,15);addR(38,42,20,25,10);addR(37,43,-8,-2,15);
+addR(45,55,-80,-60,25);addR(48,54,-115,-100,10);addR(18,22,-80,-70,15);addR(10,20,-75,-65,10);
+addR(-10,-5,-78,-72,8);addR(-45,-38,-72,-68,8);addR(15,22,95,100,15);addR(6,10,79,82,10);
+addR(33,36,130,132,10);addR(30,35,48,54,15);addR(25,30,65,70,10);
+addR(-8,-2,110,118,15);addR(2,8,100,108,10);addR(16,22,100,105,10);
 
 var gt=0,globeActive=false,globeVis=false;
 new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)globeActive=true})},{threshold:.2}).observe(gc);
@@ -301,7 +312,7 @@ function drawGlobe(){
   // ★ ALL LIGHTS — simple small dots, no gradients, no shadows
   for(var i=0;i<allLights.length;i++){
     var d=allLights[i],p=geo(d.lat,d.lon,cx,cy,R,rY);
-    if(p.z>0.1){gx.beginPath();gx.arc(p.x,p.y,d.size*gdpr,0,6.283);gx.fillStyle='rgba(255,235,180,'+(p.z*d.bright)+')';gx.fill()}
+    if(p.z>0.1){gx.beginPath();gx.arc(p.x,p.y,d.size*2*gdpr,0,6.283);gx.fillStyle='rgba(255,235,180,'+(p.z*d.bright*1.2)+')';gx.fill()}
   }
 
   // ★ NAMED CITIES — tiny subtle glows
@@ -356,6 +367,5 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener
 // ═══ PARALLAX ═══
 window.addEventListener('scroll',function(){var s=scrollY;var h=document.querySelector('.hero-ct');if(h&&s<innerHeight){h.style.transform='translateY('+s*.1+'px)';h.style.opacity=1-s/(innerHeight*.7)}},{passive:true});
 </script>
-
 </body>
 </html>
