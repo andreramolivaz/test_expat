@@ -233,7 +233,7 @@ drawPlane();
 var gc=document.getElementById('globe'),gx=gc.getContext('2d');
 var GW,GH;
 var isMobile=innerWidth<768;
-var gdpr=isMobile?1:Math.min(window.devicePixelRatio||1,2);
+var gdpr = isMobile ? 1.4 : Math.min(window.devicePixelRatio || 1, 2);
 
 function gResize(){var w=gc.parentElement.offsetWidth,h=gc.parentElement.offsetHeight;GW=gc.width=w*gdpr;GH=gc.height=h*gdpr;gc.style.width=w+'px';gc.style.height=h+'px'}
 gResize();addEventListener('resize',gResize);
@@ -243,7 +243,7 @@ var LA={lat:34.05,lon:-118.24};
 
 // NIGHT LIGHTS — ~3500 desktop, ~1700 mobile. Tiny dots, wide spread.
 var allLights=[];
-var mobileScale=isMobile?0.6:1.15;
+var mobileScale = isMobile ? 0.5 : 1.15;
 function addR(a,b,c,d,n){n=Math.round(n*mobileScale*1.15);for(var i=0;i<n;i++){allLights.push({lat:a+Math.random()*(b-a),lon:c+Math.random()*(d-c),size:Math.random()*.5+.15,bright:Math.random()*.35+.06})}}
 // North America
 addR(25,47,-90,-70,220);addR(32,49,-125,-115,100);addR(19,40,-105,-85,90);addR(16,25,-105,-90,55);addR(25,35,-100,-80,65);addR(38,45,-95,-75,55);addR(42,48,-80,-70,40);
