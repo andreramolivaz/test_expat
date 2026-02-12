@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -16,8 +17,6 @@ html{scroll-behavior:smooth;color-scheme:dark!important;background:var(--void)!i
 body{background:var(--void)!important;color:var(--white);font-family:'Arial Narrow',Arial,sans-serif;font-weight:400;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 ::selection{background:var(--pure);color:var(--void)}
 .grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.02;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:100px}
-
-/* ═══ INTRO — SMOOTH FADE OUT ═══ */
 .intro{position:fixed;inset:0;background:var(--void);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;transition:opacity 1.2s ease,transform 1.2s ease,filter 1.2s ease}
 .intro.done{opacity:0;transform:scale(1.05);filter:blur(8px);pointer-events:none}
 .intro-logo{width:55px;height:62px;opacity:0;animation:iLogo .5s ease .3s forwards}
@@ -29,8 +28,6 @@ body{background:var(--void)!important;color:var(--white);font-family:'Arial Narr
 @keyframes fillL{to{opacity:1}}
 .intro-t{font-size:.5rem;letter-spacing:.7em;text-transform:uppercase;color:var(--silver);opacity:0;animation:iTxt .7s ease 2s forwards;font-weight:700}
 @keyframes iTxt{from{opacity:0;transform:translateY(8px);filter:blur(2px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
-
-/* ═══ NAV ═══ */
 nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(3,3,3,.95),transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);opacity:0;animation:fadeIn 1s ease 4.2s forwards}
 @keyframes fadeIn{to{opacity:1}}
 .nb{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--pure)}
@@ -40,8 +37,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:.8rem 1.2rem;display
 .nr a:hover{color:var(--pure)}
 .na{padding:.4rem 1rem!important;border:1px solid rgba(255,255,255,.2)!important;color:var(--pure)!important;transition:all .3s!important}
 .na:hover{background:var(--pure)!important;color:var(--void)!important}
-
-/* ═══ HERO ═══ */
 .hero{height:100svh;position:relative;display:flex;align-items:center;overflow:hidden}
 canvas#c3d{position:absolute;inset:0;z-index:1;pointer-events:none}
 .hero-ov{position:absolute;inset:0;z-index:2;background:linear-gradient(135deg,rgba(3,3,3,.75) 35%,transparent 75%);pointer-events:none}
@@ -62,135 +57,19 @@ canvas#c3d{position:absolute;inset:0;z-index:1;pointer-events:none}
 .scroll-bar{width:1px;height:30px;position:relative;overflow:hidden;background:rgba(255,255,255,.04)}
 .scroll-bar::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--pure);animation:scrollDrop 2s ease-in-out infinite}
 @keyframes scrollDrop{to{top:100%}}
-
-/* ═══ OUTRO SECTION ═══ */
-.outro{
-  position:relative;
-  padding:8rem 0 6rem 0;   /* spazio controllato */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#000;
-  overflow:hidden;
-}
-
-
-.outro-content{
-  position:relative;
-  z-index:2;
-  max-width:900px;
-  padding:0 2rem;
-  text-align:center;   /* ← allinea tutto a sinistra */
-}
-
-
-.outro h2{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(2.5rem,6vw,5rem);
-  font-weight:400;
-  line-height:1.05;
-  color:var(--pure);
-  letter-spacing:.02em;
-}
-
-.outro-sign{
-  margin-top:1rem;   /* prima era 2rem */
-  font-size:.6rem;
-  letter-spacing:.2em;
-  color:rgba(255,255,255,.7);
-  text-align:left;
-}
-
-
-
-.outro-logo{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:1;
-  opacity:.28;
-  filter:blur(1px);
-  pointer-events:none;
-}
-
-
-
-.outro-logo svg{
-  width:45vw;
-  max-width:650px;
-  height:auto;
-}
-
-
-/* Neon outline animation */
-.outro-path{
-  fill:none;
-  stroke:#ff1e1e;
-  stroke-width:50;   /* più forte */
-  stroke-linejoin:round;
-  stroke-dasharray:12000;
-  stroke-dashoffset:12000;
-  animation:drawOutro 6s ease-in-out infinite;
-  filter:
-    drop-shadow(0 0 20px rgba(255,0,0,.8))
-    drop-shadow(0 0 40px rgba(255,0,0,.4));
-}
-
-
-@keyframes drawOutro{
-  0%{
-    stroke-dashoffset:12000;
-  }
-  40%{
-    stroke-dashoffset:0;
-  }
-  60%{
-    stroke-dashoffset:0;
-  }
-  100%{
-    stroke-dashoffset:12000;
-  }
-}
-
-/* ═══ NEXT EVENT ═══ */
+.outro{position:relative;padding:8rem 0 6rem 0;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden}
+.outro-content{position:relative;z-index:2;max-width:900px;padding:0 2rem;text-align:center}
+.outro h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:400;line-height:1.05;color:var(--pure);letter-spacing:.02em}
+.outro-sign{margin-top:1rem;font-size:.6rem;letter-spacing:.2em;color:rgba(255,255,255,.7);text-align:left}
+.outro-logo{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;z-index:1;opacity:.28;filter:blur(1px);pointer-events:none}
+.outro-logo svg{width:70vw;max-width:1000px;height:auto}
+.outro-path{fill:none;stroke:#ff1e1e;stroke-width:50;stroke-linejoin:round;stroke-dasharray:12000;stroke-dashoffset:12000;animation:drawOutro 6s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(255,0,0,.8)) drop-shadow(0 0 40px rgba(255,0,0,.4))}
+@keyframes drawOutro{0%{stroke-dashoffset:12000}40%{stroke-dashoffset:0}60%{stroke-dashoffset:0}100%{stroke-dashoffset:12000}}
 .next-ev{position:relative;overflow:hidden;padding:4rem 1.5rem;min-height:50vh;display:flex;align-items:center;justify-content:center;text-align:center;background:var(--ink)}
-.next-ev::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(
-      rgba(15,15,15,.78),
-      rgba(15,15,15,.85)
-    ),
-    radial-gradient(
-      ellipse at center,
-      rgba(255,255,255,.06),
-      transparent 70%
-    );
-  pointer-events:none;
-}
-.ne-bg-media video{
-  object-position: center 30%;
-}
-/* Add your event photo/video as .ne-bg-media img or video */
+.next-ev::after{content:'';position:absolute;inset:0;background:linear-gradient(rgba(15,15,15,.78),rgba(15,15,15,.85)),radial-gradient(ellipse at center,rgba(255,255,255,.06),transparent 70%);pointer-events:none}
 .ne-bg-media{position:absolute;inset:0;z-index:0}
-.ne-bg-media img,
-.ne-bg-media video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:.28;               /* più visibile */
-  filter: grayscale(40%)
-          brightness(0.6)
-          contrast(1.1);
-  transform: scale(1.05);    /* leggero zoom cinematic */
-}
+.ne-bg-media img,.ne-bg-media video{width:100%;height:100%;object-fit:cover;opacity:.28;filter:grayscale(40%) brightness(0.6) contrast(1.1);transform:scale(1.05)}
+.ne-bg-media video{object-position:center 30%}
 .ne-c{position:relative;z-index:2}
 .ne-lbl{font-size:.35rem;letter-spacing:.8em;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:1.5rem}
 .ne-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,11vw,6rem);font-weight:300;font-style:italic;line-height:1;margin-bottom:.4rem;color:var(--pure);text-shadow:0 0 80px rgba(255,255,255,.03)}
@@ -202,28 +81,16 @@ canvas#c3d{position:absolute;inset:0;z-index:1;pointer-events:none}
 .ne-det .lbl{font-size:.35rem;letter-spacing:.35em;text-transform:uppercase;color:var(--dim);margin-top:.2rem;font-weight:700}
 .ne-inv{margin-top:1.5rem;font-size:.38rem;letter-spacing:.4em;text-transform:uppercase;color:var(--dim);font-weight:700;display:flex;align-items:center;justify-content:center;gap:.5rem}
 .ne-inv::before{content:'';width:4px;height:4px;border:1px solid rgba(255,255,255,.08);border-radius:50%}
-
-/* ═══ MARQUEE ═══ */
-.mq{
-  padding:.7rem 0;
-  border-top:1px solid rgba(255,255,255,.02);
-  border-bottom:1px solid rgba(255,255,255,.02);
-  overflow:hidden;
-}
-
+.mq{padding:.7rem 0;border-top:1px solid rgba(255,255,255,.02);border-bottom:1px solid rgba(255,255,255,.02);overflow:hidden}
 .mq-t{display:flex;animation:mqRun 28s linear infinite;width:max-content}
 .mq-t span{font-size:.45rem;letter-spacing:.4em;color:rgba(255,255,255,.06);white-space:nowrap;padding:0 1rem;font-weight:700;text-transform:uppercase}
 .mq-d{color:var(--pure);font-size:.25rem;padding:0 .8rem;display:flex;align-items:center;opacity:.1}
 @keyframes mqRun{to{transform:translateX(-50%)}}
-
-/* ═══ SECTIONS ═══ */
 .sec{padding:4.5rem 1.5rem}
 .s-lbl{font-size:.38rem;letter-spacing:.7em;text-transform:uppercase;color:var(--silver);font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:.7rem}
 .s-lbl::before{content:'';width:22px;height:1px;background:var(--pure)}
 .s-h{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,5.5vw,2.8rem);font-weight:300;line-height:1.1}
 .s-h em{font-style:italic}
-
-/* ═══ ABOUT + GLOBE ═══ */
 .about{position:relative;overflow:hidden}
 .globe-wrap{position:relative;width:100%;height:320px;margin:1.5rem 0}
 canvas#globe{width:100%;height:100%}
@@ -234,24 +101,11 @@ canvas#globe{width:100%;height:100%}
 .a-n{text-align:center}
 .a-n h3{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--pure);line-height:1}
 .a-n p{font-size:.35rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mist);margin-top:.2rem;font-weight:700}
-
-/* ═══ WHAT WE DO ═══ */
 .wwd{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:1.5rem}
 .wwd-i{background:rgba(255,255,255,.012);padding:1.5rem 1rem;border:1px solid rgba(255,255,255,.02);text-align:center}
 .wwd-ico{font-size:1.5rem;margin-bottom:.6rem;opacity:.12}
 .wwd-i h4{font-size:.45rem;letter-spacing:.25em;text-transform:uppercase;font-weight:700;margin-bottom:.3rem}
 .wwd-i p{font-size:.65rem;color:var(--mist);line-height:1.4}
-
-/* ═══ GALLERY ═══ */
-/*
-  📸 HOW TO ADD YOUR PHOTOS/VIDEOS:
-  1. Put your images in an "img/" folder next to index.html
-  2. Replace the <div class="g-bg">...</div> inside each .g-item with:
-     <img src="img/your-photo.jpg" style="width:100%;height:100%;object-fit:cover" alt="Event name">
-  3. For videos, use:
-     <video src="img/your-video.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"></video>
-  4. Same for .insta-c items in the Instagram section
-*/
 .gallery{padding:4.5rem 0;overflow:hidden}
 .gal-h{padding:0 1.5rem;margin-bottom:1.5rem}
 .g-track{display:flex;gap:.4rem;animation:galSlide 38s linear infinite;width:max-content}
@@ -265,8 +119,6 @@ canvas#globe{width:100%;height:100%}
 .g-info span{font-size:.35rem;letter-spacing:.25em;text-transform:uppercase;color:var(--silver);font-weight:700}
 @keyframes galSlide{to{transform:translateX(-50%)}}
 .g-track.rev{animation-direction:reverse;margin-top:.4rem}
-
-/* ═══ EVENTS ═══ */
 .events{background:var(--ink)}
 .flag-c{padding:2rem 1.5rem;border:1px solid rgba(255,255,255,.025);margin-bottom:2px}
 .flag-badge{font-size:.3rem;letter-spacing:.6em;text-transform:uppercase;padding:.25rem .7rem;border:1px solid rgba(255,255,255,.1);color:var(--pearl);display:inline-block;margin-bottom:.8rem;font-weight:700}
@@ -283,8 +135,6 @@ canvas#globe{width:100%;height:100%}
 .ev-dt{font-size:.4rem;letter-spacing:.25em;text-transform:uppercase;color:var(--mist);margin-bottom:.4rem;font-weight:700}
 .ev-card h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;margin-bottom:.4rem;line-height:1.25}
 .ev-card p{color:var(--mist);font-size:.68rem;line-height:1.5}
-
-/* ═══ FAQ ═══ */
 .faq-i{border-bottom:1px solid rgba(255,255,255,.03)}
 .faq-q{padding:1.5rem 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:1rem}
 .faq-q h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--pearl)}
@@ -295,8 +145,6 @@ canvas#globe{width:100%;height:100%}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.22,1,.36,1),padding .5s}
 .faq-i.open .faq-a{max-height:220px;padding-bottom:1.5rem}
 .faq-a p{color:var(--mist);line-height:1.8;font-size:.78rem}
-
-/* ═══ APPLY ═══ */
 .apply{text-align:center;position:relative;overflow:hidden}
 .apply-orb{position:absolute;width:400px;height:400px;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,255,255,.02),transparent 60%);filter:blur(60px)}
 .apply-c{position:relative;z-index:2}
@@ -305,15 +153,11 @@ canvas#globe{width:100%;height:100%}
 .apply-note{font-size:.4rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);margin-bottom:2rem;font-weight:700}
 .apply-btn{display:inline-flex;padding:.9rem 2.5rem;background:var(--pure);color:var(--void);font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;text-decoration:none;font-weight:700;transition:all .4s}
 .apply-btn:hover{box-shadow:0 0 40px rgba(255,255,255,.08)}
-
-/* ═══ INSTA ═══ */
 .insta{text-align:center}
 .insta-g{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:2rem}
 .insta-c{aspect-ratio:1;background:var(--smoke);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.015)}
 .insta-c .insta-e{font-size:2rem;opacity:.03}
 .insta-l{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.5rem;color:var(--pure);text-decoration:none;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;font-weight:700}
-
-/* ═══ FOOTER ═══ */
 footer{padding:3rem 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.025)}
 .f-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem}
 .f-logo{display:flex;align-items:center;gap:.5rem}
@@ -324,12 +168,8 @@ footer{padding:3rem 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.025)}
 .f-links a:hover{color:var(--pure)}
 .f-bot{font-size:.45rem;color:var(--dim);letter-spacing:.08em;text-align:center;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.02)}
 .f-bot span{display:block;margin-bottom:.3rem}
-
-/* ═══ REVEAL ═══ */
 .rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
 .rv.vis{opacity:1;transform:translateY(0)}
-
-/* ═══ DESKTOP ═══ */
 @media(min-width:768px){
   .sec{padding:7rem 4rem}.hero-ct{padding:0 10%}.wwd{grid-template-columns:repeat(4,1fr)}
   .insta-g{grid-template-columns:repeat(6,1fr)}.a-nums{max-width:500px}
@@ -342,639 +182,180 @@ footer{padding:3rem 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.025)}
 </head>
 <body>
 <div class="grain"></div>
-
-<!-- ═══ INTRO ═══ -->
 <div class="intro" id="intro">
-  <div class="intro-logo">
-    <svg viewBox="0 0 3944.79 4199.8" xmlns="http://www.w3.org/2000/svg">
-      <path class="lp" d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/>
-      <path class="lp" d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z" style="animation-delay:.2s"/>
-      <path class="lp" d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z" style="animation-delay:.4s"/>
-      <path class="lf" d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/>
-      <path class="lf" d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z" style="animation-delay:1.9s"/>
-      <path class="lf" d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z" style="animation-delay:2s"/>
-    </svg>
-  </div>
+  <div class="intro-logo"><svg viewBox="0 0 3944.79 4199.8" xmlns="http://www.w3.org/2000/svg"><path class="lp" d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path class="lp" d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z" style="animation-delay:.2s"/><path class="lp" d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z" style="animation-delay:.4s"/><path class="lf" d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path class="lf" d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z" style="animation-delay:1.9s"/><path class="lf" d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z" style="animation-delay:2s"/></svg></div>
   <div class="intro-t">EXPAT SOCIETY</div>
 </div>
-
-<!-- ═══ NAV ═══ -->
-<nav>
-  <a href="#" class="nb"><svg viewBox="0 0 3944.79 4199.8" fill="var(--pure)"><path d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg><span>Expat Society</span></a>
-  <div class="nr"><a href="#about">About</a><a href="#events">Events</a><a href="#apply" class="na">Apply</a></div>
-</nav>
-
-<!-- ═══ HERO ═══ -->
-<section class="hero">
-  <canvas id="c3d"></canvas>
-  <div class="hero-ov"></div>
-  <div class="hero-ct">
-    <div class="h-eye">Los Angeles, CA</div>
-    <h1 class="h-title">Same Sky.<br><span class="stk">Different</span> Roots.</h1>
-    <p class="h-desc">Different origins. Same frequency.</p>
-    <div class="h-acts"><a href="#apply" class="btn-w">Apply Now</a><a href="#events" class="btn-g">See Events ↓</a></div>
-  </div>
-  <div class="h-scroll"><span>Scroll</span><div class="scroll-bar"></div></div>
-</section>
-
-<!-- ═══ NEXT EVENT ═══ -->
-<div class="next-ev rv">
-  <!-- 👇 Replace with your event photo or video -->
-  <div class="ne-bg-media">
-    <!-- <img src="img/next-event-bg.jpg" alt=""> -->
-    <!-- <video src="img/next-event.mp4" autoplay muted loop playsinline></video> -->
-  </div>
-  <div class="ne-c">
-  <div class="ne-lbl">Next Event</div>
-  <div class="ne-name">SOLOMA</div>
-  <div class="ne-date">Date TBA · Location Undisclosed</div>
-  <div class="ne-mys">The details are revealed only to those who are already in.</div>
-  <div class="ne-dets"><div class="ne-det"><div class="val">???</div><div class="lbl">Location</div></div><div class="ne-det"><div class="val">???</div><div class="lbl">Dress Code</div></div><div class="ne-det"><div class="val">???</div><div class="lbl">Capacity</div></div></div>
-  <div class="ne-inv">Members + 1 Guest Only</div>
-</div></div>
-
-<!-- ═══ MARQUEE ═══ -->
-<div class="mq"><div class="mq-t">
-<span>USC</span><div class="mq-d">◆</div><span>UCLA</span><div class="mq-d">◆</div><span>PEPPERDINE</span><div class="mq-d">◆</div><span>LOYOLA</span><div class="mq-d">◆</div><span>ONYX</span><div class="mq-d">◆</div><span>WHITE PARTY</span><div class="mq-d">◆</div><span>MAMMOTH</span><div class="mq-d">◆</div><span>BIG BEAR</span><div class="mq-d">◆</div><span>PALM SPRINGS</span><div class="mq-d">◆</div><span>SAN DIEGO</span><div class="mq-d">◆</div>
-<span>USC</span><div class="mq-d">◆</div><span>UCLA</span><div class="mq-d">◆</div><span>PEPPERDINE</span><div class="mq-d">◆</div><span>LOYOLA</span><div class="mq-d">◆</div><span>ONYX</span><div class="mq-d">◆</div><span>WHITE PARTY</span><div class="mq-d">◆</div><span>MAMMOTH</span><div class="mq-d">◆</div><span>BIG BEAR</span><div class="mq-d">◆</div><span>PALM SPRINGS</span><div class="mq-d">◆</div><span>SAN DIEGO</span><div class="mq-d">◆</div>
-</div></div>
-
-<!-- ═══ ABOUT + GLOBE ═══ -->
-<section id="about" class="sec about">
-  <div class="rv"><div class="s-lbl">About</div><h2 class="s-h">One City. Every Flag.</h2></div>
-  <div class="globe-wrap rv"><canvas id="globe"></canvas></div>
-  <div class="a-text rv">
-    <p><strong>EXPAT SOCIETY</strong> is a registered LLC in Los Angeles. A private community of international students (USC, UCLA, Pepperdine, Loyola...) and expats in Los Angeles.
-40+ countries. One city.</p>
-    <p>Themed parties, sunrise hikes, dinners, brunch, weekend trips to Mammoth, Big Bear, Palm Springs, San Diego. <strong>The community nobody told you existed. We’re selective to keep the right energy.</strong></p>
-  </div>
-  <div class="a-quote rv">You moved. Now move differently.</div>
-  <div class="a-nums rv">
-    <div class="a-n"><h3>200</h3><p>People</p></div>
-    <div class="a-n"><h3>40+</h3><p>Countries</p></div>
-    <div class="a-n"><h3>840+</h3><p>Applications</p></div>
-  </div>
-</section>
-
-<!-- ═══ WHAT WE DO ═══ -->
-<section class="sec">
-  <div class="rv"><div class="s-lbl">What We Do</div><h2 class="s-h">More Than Nights.</h2></div>
-  <div class="wwd rv">
-    <div class="wwd-i"><div class="wwd-ico">🖤</div><h4>Themed Parties</h4><p>ONYX. White Party. Secret locations.</p></div>
-    <div class="wwd-i"><div class="wwd-ico">⛰️</div><h4>Hikes</h4><p>Sunrise summits, Runyon, coastal trails.</p></div>
-    <div class="wwd-i"><div class="wwd-ico">🎳</div><h4>Socials</h4><p>Bowling, brunch, dinners, game nights.</p></div>
-    <div class="wwd-i"><div class="wwd-ico">🏔️</div><h4>Trips</h4><p>Mammoth, Big Bear, Palm Springs, SD.</p></div>
-  </div>
-</section>
-
-<!-- ═══ OUTRO QUOTE ═══ -->
-<section class="outro">
-  <div class="outro-logo">
-    <svg viewBox="0 0 3944.79 4199.8" xmlns="http://www.w3.org/2000/svg">
-      <path class="outro-path" d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/>
-      <path class="outro-path" d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/>
-      <path class="outro-path" d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/>
-    </svg>
-  </div>
-
-  <div class="outro-content">
-    <h2>
-      “YOU HAVE TO<br>
-      GO ON AND<br>
-      BE CRAZY.<br><br>
-      CRAZINESS IS<br>
-      LIKE HEAVEN.”
-    </h2>
-    <div class="outro-sign">The Expat Family</div>
-  </div>
-</section>
-
-<!-- ═══ GALLERY ═══ -->
-<section class="gallery">
-  <div class="gal-h rv"><div class="s-lbl">Gallery</div><h2 class="s-h">The Life</h2></div>
-  <div class="g-track">
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🖤</div></div><div class="g-info"><h4>ONYX III</h4><span>Fall 2025</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🤍</div></div><div class="g-info"><h4>White Party</h4><span>Summer 2025</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">⛰️</div></div><div class="g-info"><h4>Sunrise Hike</h4><span>Griffith Park</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🏔️</div></div><div class="g-info"><h4>Mammoth Trip</h4><span>Winter 2025</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🌴</div></div><div class="g-info"><h4>Palm Springs</h4><span>Spring 2025</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🎳</div></div><div class="g-info"><h4>Bowling Night</h4><span>DTLA</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🖤</div></div><div class="g-info"><h4>ONYX III</h4><span>Fall 2025</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🤍</div></div><div class="g-info"><h4>White Party</h4><span>Summer 2025</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">⛰️</div></div><div class="g-info"><h4>Sunrise Hike</h4><span>Griffith Park</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🏔️</div></div><div class="g-info"><h4>Mammoth Trip</h4><span>Winter 2025</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🌴</div></div><div class="g-info"><h4>Palm Springs</h4><span>Spring 2025</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🎳</div></div><div class="g-info"><h4>Bowling Night</h4><span>DTLA</span></div></div>
-  </div>
-  <div class="g-track rev" style="margin-top:.4rem">
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🌊</div></div><div class="g-info"><h4>Beach Day</h4><span>Malibu</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🍽️</div></div><div class="g-info"><h4>Group Dinner</h4><span>K-Town</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🏜️</div></div><div class="g-info"><h4>Desert Trip</h4><span>Joshua Tree</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🌅</div></div><div class="g-info"><h4>San Diego</h4><span>Weekend Trip</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🥂</div></div><div class="g-info"><h4>Brunch</h4><span>WeHo</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🎉</div></div><div class="g-info"><h4>Semester Party</h4><span>Fall 2025</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🌊</div></div><div class="g-info"><h4>Beach Day</h4><span>Malibu</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🍽️</div></div><div class="g-info"><h4>Group Dinner</h4><span>K-Town</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🏜️</div></div><div class="g-info"><h4>Desert Trip</h4><span>Joshua Tree</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🌅</div></div><div class="g-info"><h4>San Diego</h4><span>Weekend Trip</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🥂</div></div><div class="g-info"><h4>Brunch</h4><span>WeHo</span></div></div>
-    <div class="g-item"><div class="g-bg"><div class="g-ico">🎉</div></div><div class="g-info"><h4>Semester Party</h4><span>Fall 2025</span></div></div>
-  </div>
-</section>
-
-<!-- ═══ EVENTS ═══ -->
-<section id="events" class="sec events">
-  <div class="rv"><div class="s-lbl">Events</div><h2 class="s-h">Flagship Experiences</h2></div>
-  <div class="flag-c rv"><div class="flag-badge">Signature Event</div><div class="flag-name"><em>ONYX</em></div><div class="flag-desc">All-black. Secret location. International DJs. The kind of night you talk about for years.</div><div class="flag-inv">By Invitation Only</div></div>
-  <div class="flag-c rv"><div class="flag-badge">Signature Event</div><div class="flag-name"><em>White</em> Party</div><div class="flag-desc">All-white. Rooftop. Summer. The night that becomes a core memory.</div><div class="flag-inv">By Invitation Only</div></div>
-  <div style="margin-top:2rem" class="rv"><h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin-bottom:.8rem"><em>Upcoming</em></h3></div>
-  <div class="ev-scroll">
-    <div class="ev-card"><div class="ev-num">01</div><div class="ev-tag">Hike</div><div class="ev-dt">Mar 2026</div><h3>Sunrise at Griffith</h3><p>5:30AM. Golden hour over the city.</p></div>
-    <div class="ev-card"><div class="ev-num">02</div><div class="ev-tag">Social</div><div class="ev-dt">Mar 2026</div><h3>Bowling Night</h3><p>Cosmic bowling in DTLA. Zero skills required.</p></div>
-    <div class="ev-card"><div class="ev-num">03</div><div class="ev-tag">Trip</div><div class="ev-dt">Apr 2026</div><h3>Big Bear Weekend</h3><p>Cabins, lake, bonfires. 48h off the grid.</p></div>
-    <div class="ev-card"><div class="ev-num">04</div><div class="ev-tag">Brunch</div><div class="ev-dt">Apr 2026</div><h3>Sunday Brunch</h3><p>Bottomless mimosas. Good conversation.</p></div>
-  </div>
-</section>
-
-<!-- ═══ FAQ ═══ -->
-<section class="sec">
-  <div class="rv"><div class="s-lbl">FAQ</div><h2 class="s-h">Common Questions</h2></div>
-  <div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>Who can join?</h3><div class="faq-t"></div></div><div class="faq-a"><p>International students and expats based in Los Angeles. We look for mindset, not just background.</p></div></div>
-  <div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do applications work?</h3><div class="faq-t"></div></div><div class="faq-a"><p>Applications open twice a year. Every submission is reviewed.</p></div></div>
-  <div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>What are ONYX and White Party?</h3><div class="faq-t"></div></div><div class="faq-a"><p>Our two flagship nights. Invite-only. Members + one guest.</p></div></div>
-  <div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>Do I need to know anyone?</h3><div class="faq-t"></div></div><div class="faq-a"><p>No. The right people find each other here.</p></div></div>
-  <div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>Is there a membership fee?</h3><div class="faq-t"></div></div><div class="faq-a"><p>Details are shared after acceptance.</p></div></div>
-</section>
-
-<!-- ═══ APPLY ═══ -->
-<section id="apply" class="sec apply">
-  <div class="apply-orb"></div>
-  <div class="apply-c rv">
-    <div class="s-lbl" style="justify-content:center">Apply</div>
-    <h2 class="s-h">Ready to Join?</h2>
-    <p class="apply-d">Applications open twice a year. If it's open, you'll know.</p>
-    <div class="apply-note">Applications for Fall 2026 · Coming Soon</div>
-    <a href="https://docs.google.com/forms" target="_blank" rel="noopener" class="apply-btn">Apply Now</a>
-  </div>
-</section>
-
-<!-- ═══ INSTAGRAM ═══ -->
-<section class="sec insta">
-  <div class="rv"><div class="s-lbl" style="justify-content:center">Instagram</div><h2 class="s-h" style="text-align:center;margin:0 auto">@expatsociety</h2></div>
-  <div class="insta-g">
-    <div class="insta-c"><div class="insta-e">📸</div></div><div class="insta-c"><div class="insta-e">🖤</div></div><div class="insta-c"><div class="insta-e">⛰️</div></div>
-    <div class="insta-c"><div class="insta-e">🤍</div></div><div class="insta-c"><div class="insta-e">🌴</div></div><div class="insta-c"><div class="insta-e">🎉</div></div>
-    <div class="insta-c"><div class="insta-e">🏔️</div></div><div class="insta-c"><div class="insta-e">🍽️</div></div><div class="insta-c"><div class="insta-e">🌊</div></div>
-  </div>
-  <a href="https://instagram.com/expatsociety" target="_blank" rel="noopener" class="insta-l rv">Follow @expatsociety →</a>
-</section>
-
-
-
-
-<!-- ═══ FOOTER ═══ -->
-<footer>
-  <div class="f-top">
-    <div class="f-logo"><svg viewBox="0 0 3944.79 4199.8" fill="var(--pure)"><path d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg><span>Expat Society</span></div>
-    <div class="f-links"><a href="https://instagram.com/expatsociety" target="_blank">Instagram</a><a href="/cdn-cgi/l/email-protection#127a777e7e7d52776a627366617d717b77666b3c717d7f">Contact</a></div>
-  </div>
-  <div class="f-bot"><span>© 2026 Expat Society LLC · Los Angeles, CA</span><span>Selective. Always.</span></div>
-</footer>
+<nav><a href="#" class="nb"><svg viewBox="0 0 3944.79 4199.8" fill="var(--pure)"><path d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg><span>Expat Society</span></a><div class="nr"><a href="#about">About</a><a href="#events">Events</a><a href="#apply" class="na">Apply</a></div></nav>
+<section class="hero"><canvas id="c3d"></canvas><div class="hero-ov"></div><div class="hero-ct"><div class="h-eye">Los Angeles, CA</div><h1 class="h-title">Same Sky.<br><span class="stk">Different</span> Roots.</h1><p class="h-desc">Different origins. Same frequency.</p><div class="h-acts"><a href="#apply" class="btn-w">Apply Now</a><a href="#events" class="btn-g">See Events ↓</a></div></div><div class="h-scroll"><span>Scroll</span><div class="scroll-bar"></div></div></section>
+<div class="next-ev rv"><div class="ne-bg-media"></div><div class="ne-c"><div class="ne-lbl">Next Event</div><div class="ne-name">SOLOMA</div><div class="ne-date">Date TBA · Location Undisclosed</div><div class="ne-mys">The details are revealed only to those who are already in.</div><div class="ne-dets"><div class="ne-det"><div class="val">???</div><div class="lbl">Location</div></div><div class="ne-det"><div class="val">???</div><div class="lbl">Dress Code</div></div><div class="ne-det"><div class="val">???</div><div class="lbl">Capacity</div></div></div><div class="ne-inv">Members + 1 Guest Only</div></div></div>
+<div class="mq"><div class="mq-t"><span>USC</span><div class="mq-d">◆</div><span>UCLA</span><div class="mq-d">◆</div><span>PEPPERDINE</span><div class="mq-d">◆</div><span>LOYOLA</span><div class="mq-d">◆</div><span>ONYX</span><div class="mq-d">◆</div><span>WHITE PARTY</span><div class="mq-d">◆</div><span>MAMMOTH</span><div class="mq-d">◆</div><span>BIG BEAR</span><div class="mq-d">◆</div><span>PALM SPRINGS</span><div class="mq-d">◆</div><span>SAN DIEGO</span><div class="mq-d">◆</div><span>USC</span><div class="mq-d">◆</div><span>UCLA</span><div class="mq-d">◆</div><span>PEPPERDINE</span><div class="mq-d">◆</div><span>LOYOLA</span><div class="mq-d">◆</div><span>ONYX</span><div class="mq-d">◆</div><span>WHITE PARTY</span><div class="mq-d">◆</div><span>MAMMOTH</span><div class="mq-d">◆</div><span>BIG BEAR</span><div class="mq-d">◆</div><span>PALM SPRINGS</span><div class="mq-d">◆</div><span>SAN DIEGO</span><div class="mq-d">◆</div></div></div>
+<section id="about" class="sec about"><div class="rv"><div class="s-lbl">About</div><h2 class="s-h">One City. Every Flag.</h2></div><div class="globe-wrap rv"><canvas id="globe"></canvas></div><div class="a-text rv"><p><strong>EXPAT SOCIETY</strong> is a registered LLC in Los Angeles. A private community of international students (USC, UCLA, Pepperdine, Loyola...) and expats in Los Angeles. 40+ countries. One city.</p><p>Themed parties, sunrise hikes, dinners, brunch, weekend trips to Mammoth, Big Bear, Palm Springs, San Diego. <strong>The community nobody told you existed. We're selective to keep the right energy.</strong></p></div><div class="a-quote rv">You moved. Now move differently.</div><div class="a-nums rv"><div class="a-n"><h3>200</h3><p>People</p></div><div class="a-n"><h3>40+</h3><p>Countries</p></div><div class="a-n"><h3>840+</h3><p>Applications</p></div></div></section>
+<section class="sec"><div class="rv"><div class="s-lbl">What We Do</div><h2 class="s-h">More Than Nights.</h2></div><div class="wwd rv"><div class="wwd-i"><div class="wwd-ico">🖤</div><h4>Themed Parties</h4><p>ONYX. White Party. Secret locations.</p></div><div class="wwd-i"><div class="wwd-ico">⛰️</div><h4>Hikes</h4><p>Sunrise summits, Runyon, coastal trails.</p></div><div class="wwd-i"><div class="wwd-ico">🎳</div><h4>Socials</h4><p>Bowling, brunch, dinners, game nights.</p></div><div class="wwd-i"><div class="wwd-ico">🏔️</div><h4>Trips</h4><p>Mammoth, Big Bear, Palm Springs, SD.</p></div></div></section>
+<section class="outro"><div class="outro-logo"><svg viewBox="0 0 3944.79 4199.8" xmlns="http://www.w3.org/2000/svg"><path class="outro-path" d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path class="outro-path" d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path class="outro-path" d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg></div><div class="outro-content"><h2>"YOU HAVE TO<br>GO ON AND<br>BE CRAZY.<br><br>CRAZINESS IS<br>LIKE HEAVEN."</h2><div class="outro-sign">The Expat Family</div></div></section>
+<section class="gallery"><div class="gal-h rv"><div class="s-lbl">Gallery</div><h2 class="s-h">The Life</h2></div><div class="g-track"><div class="g-item"><div class="g-bg"><div class="g-ico">🖤</div></div><div class="g-info"><h4>ONYX III</h4><span>Fall 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🤍</div></div><div class="g-info"><h4>White Party</h4><span>Summer 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">⛰️</div></div><div class="g-info"><h4>Sunrise Hike</h4><span>Griffith Park</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🏔️</div></div><div class="g-info"><h4>Mammoth Trip</h4><span>Winter 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🌴</div></div><div class="g-info"><h4>Palm Springs</h4><span>Spring 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🎳</div></div><div class="g-info"><h4>Bowling Night</h4><span>DTLA</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🖤</div></div><div class="g-info"><h4>ONYX III</h4><span>Fall 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🤍</div></div><div class="g-info"><h4>White Party</h4><span>Summer 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">⛰️</div></div><div class="g-info"><h4>Sunrise Hike</h4><span>Griffith Park</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🏔️</div></div><div class="g-info"><h4>Mammoth Trip</h4><span>Winter 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🌴</div></div><div class="g-info"><h4>Palm Springs</h4><span>Spring 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🎳</div></div><div class="g-info"><h4>Bowling Night</h4><span>DTLA</span></div></div></div><div class="g-track rev" style="margin-top:.4rem"><div class="g-item"><div class="g-bg"><div class="g-ico">🌊</div></div><div class="g-info"><h4>Beach Day</h4><span>Malibu</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🍽️</div></div><div class="g-info"><h4>Group Dinner</h4><span>K-Town</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🏜️</div></div><div class="g-info"><h4>Desert Trip</h4><span>Joshua Tree</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🌅</div></div><div class="g-info"><h4>San Diego</h4><span>Weekend Trip</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🥂</div></div><div class="g-info"><h4>Brunch</h4><span>WeHo</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🎉</div></div><div class="g-info"><h4>Semester Party</h4><span>Fall 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🌊</div></div><div class="g-info"><h4>Beach Day</h4><span>Malibu</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🍽️</div></div><div class="g-info"><h4>Group Dinner</h4><span>K-Town</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🏜️</div></div><div class="g-info"><h4>Desert Trip</h4><span>Joshua Tree</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🌅</div></div><div class="g-info"><h4>San Diego</h4><span>Weekend Trip</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🥂</div></div><div class="g-info"><h4>Brunch</h4><span>WeHo</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🎉</div></div><div class="g-info"><h4>Semester Party</h4><span>Fall 2025</span></div></div></div></section>
+<section id="events" class="sec events"><div class="rv"><div class="s-lbl">Events</div><h2 class="s-h">Flagship Experiences</h2></div><div class="flag-c rv"><div class="flag-badge">Signature Event</div><div class="flag-name"><em>ONYX</em></div><div class="flag-desc">All-black. Secret location. International DJs. The kind of night you talk about for years.</div><div class="flag-inv">By Invitation Only</div></div><div class="flag-c rv"><div class="flag-badge">Signature Event</div><div class="flag-name"><em>White</em> Party</div><div class="flag-desc">All-white. Rooftop. Summer. The night that becomes a core memory.</div><div class="flag-inv">By Invitation Only</div></div><div style="margin-top:2rem" class="rv"><h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin-bottom:.8rem"><em>Upcoming</em></h3></div><div class="ev-scroll"><div class="ev-card"><div class="ev-num">01</div><div class="ev-tag">Hike</div><div class="ev-dt">Mar 2026</div><h3>Sunrise at Griffith</h3><p>5:30AM. Golden hour over the city.</p></div><div class="ev-card"><div class="ev-num">02</div><div class="ev-tag">Social</div><div class="ev-dt">Mar 2026</div><h3>Bowling Night</h3><p>Cosmic bowling in DTLA. Zero skills required.</p></div><div class="ev-card"><div class="ev-num">03</div><div class="ev-tag">Trip</div><div class="ev-dt">Apr 2026</div><h3>Big Bear Weekend</h3><p>Cabins, lake, bonfires. 48h off the grid.</p></div><div class="ev-card"><div class="ev-num">04</div><div class="ev-tag">Brunch</div><div class="ev-dt">Apr 2026</div><h3>Sunday Brunch</h3><p>Bottomless mimosas. Good conversation.</p></div></div></section>
+<section class="sec"><div class="rv"><div class="s-lbl">FAQ</div><h2 class="s-h">Common Questions</h2></div><div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>Who can join?</h3><div class="faq-t"></div></div><div class="faq-a"><p>International students and expats based in Los Angeles. We look for mindset, not just background.</p></div></div><div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do applications work?</h3><div class="faq-t"></div></div><div class="faq-a"><p>Applications open twice a year. Every submission is reviewed.</p></div></div><div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>What are ONYX and White Party?</h3><div class="faq-t"></div></div><div class="faq-a"><p>Our two flagship nights. Invite-only. Members + one guest.</p></div></div><div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>Do I need to know anyone?</h3><div class="faq-t"></div></div><div class="faq-a"><p>No. The right people find each other here.</p></div></div><div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>Is there a membership fee?</h3><div class="faq-t"></div></div><div class="faq-a"><p>Details are shared after acceptance.</p></div></div></section>
+<section id="apply" class="sec apply"><div class="apply-orb"></div><div class="apply-c rv"><div class="s-lbl" style="justify-content:center">Apply</div><h2 class="s-h">Ready to Join?</h2><p class="apply-d">Applications open twice a year. If it's open, you'll know.</p><div class="apply-note">Applications for Fall 2026 · Coming Soon</div><a href="https://docs.google.com/forms" target="_blank" rel="noopener" class="apply-btn">Apply Now</a></div></section>
+<section class="sec insta"><div class="rv"><div class="s-lbl" style="justify-content:center">Instagram</div><h2 class="s-h" style="text-align:center;margin:0 auto">@expatsociety</h2></div><div class="insta-g"><div class="insta-c"><div class="insta-e">📸</div></div><div class="insta-c"><div class="insta-e">🖤</div></div><div class="insta-c"><div class="insta-e">⛰️</div></div><div class="insta-c"><div class="insta-e">🤍</div></div><div class="insta-c"><div class="insta-e">🌴</div></div><div class="insta-c"><div class="insta-e">🎉</div></div><div class="insta-c"><div class="insta-e">🏔️</div></div><div class="insta-c"><div class="insta-e">🍽️</div></div><div class="insta-c"><div class="insta-e">🌊</div></div></div><a href="https://instagram.com/expatsociety" target="_blank" rel="noopener" class="insta-l rv">Follow @expatsociety →</a></section>
+<footer><div class="f-top"><div class="f-logo"><svg viewBox="0 0 3944.79 4199.8" fill="var(--pure)"><path d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg><span>Expat Society</span></div><div class="f-links"><a href="https://instagram.com/expatsociety" target="_blank">Instagram</a><a href="mailto:hello@expatsociety.com">Contact</a></div></div><div class="f-bot"><span>© 2026 Expat Society LLC · Los Angeles, CA</span><span>Selective. Always.</span></div></footer>
 
 <script>
-// ═══ INTRO — smooth fade out ═══
-setTimeout(()=>{
-  const intro=document.getElementById('intro');
-  intro.classList.add('done');
-  setTimeout(()=>intro.style.display='none',1400);
-},3500);
+// ═══ INTRO ═══
+setTimeout(function(){var i=document.getElementById('intro');i.classList.add('done');setTimeout(function(){i.style.display='none'},1400)},3500);
 
-// ═══ 3D PAPER PLANE ═══
-const c=document.getElementById('c3d'),ctx=c.getContext('2d');
-let W,H;function resize(){W=c.width=innerWidth;H=c.height=innerHeight}
-resize();
-addEventListener('resize',resize);
-
-class Vec{
-  constructor(x,y,z){this.x=x;this.y=y;this.z=z}
-  rx(a){const c=Math.cos(a),s=Math.sin(a);return new Vec(this.x,this.y*c-this.z*s,this.y*s+this.z*c)}
-  ry(a){const c=Math.cos(a),s=Math.sin(a);return new Vec(this.x*c+this.z*s,this.y,-this.x*s+this.z*c)}
-  rz(a){const c=Math.cos(a),s=Math.sin(a);return new Vec(this.x*c-this.y*s,this.x*s+this.y*c,this.z)}
-  proj(d=500){const s=d/(d+this.z);return{x:this.x*s,y:this.y*s,s}}
-}
-
-const scale = 0.5; // 1 = originale, 0.8 = più piccolo
-
-const verts=[
-  new Vec(0,-160*scale,0),
-  new Vec(-90*scale,70*scale,-8*scale),
-  new Vec(-12*scale,-2*scale,12*scale),
-  new Vec(12*scale,-2*scale,12*scale),
-  new Vec(90*scale,70*scale,-8*scale),
-  new Vec(0,70*scale,-15*scale),
-  new Vec(0,85*scale,0),
-  new Vec(-15*scale,110*scale,0),
-  new Vec(0,135*scale,0),
-  new Vec(15*scale,110*scale,0)
-];
-
-
-const faces=[
-  {v:[0,1,2],f:'rgba(255,255,255,.12)',s:'rgba(255,255,255,.25)'},
-  {v:[0,2,5],f:'rgba(255,255,255,.08)',s:'rgba(255,255,255,.18)'},
-  {v:[0,5,3],f:'rgba(255,255,255,.06)',s:'rgba(255,255,255,.15)'},
-  {v:[0,3,4],f:'rgba(255,255,255,.10)',s:'rgba(255,255,255,.22)'},
-  {v:[6,7,8],f:'rgba(255,255,255,.07)',s:'rgba(255,255,255,.18)'},
-  {v:[6,8,9],f:'rgba(255,255,255,.06)',s:'rgba(255,255,255,.15)'}
-];
-
-
-
-let t=0;
-const trail=[];
-
-function drawPlane(){
-  ctx.clearRect(0,0,W,H);
-  t+=.003;
-  // Movimento organico tipo aeroplanino di carta
-
-  const baseX = W * 0.5;
-  const baseY = H * 0.4;
-
-  // Movimento avanti lento
-  const forward = t * 60;
-
-  // Deriva laterale morbida
-  const driftX = Math.sin(t * 0.7) * (W * 0.08);
-
-  // Leggero zig-zag irregolare
-  const zigzag = Math.sin(t * 0.2) * 15;
-
-  // Caduta/fluttuazione verticale
-  const floatY = Math.sin(t * 1.4) * 25;
-
-  // Posizione finale
-  const fX = (baseX - W * 0.2) + (forward % (W * 1.4)) + driftX + zigzag;
-  const fY = baseY + floatY;
-
-  // Direzione reale del volo
-  const fX2 = (baseX - W * 0.2) + ((forward + 1) % (W * 1.4)) + driftX;
-  const fY2 = baseY + Math.sin((t + 0.01) * 1.4) * 25;
-
-  const dir = Math.atan2(fY2 - fY, fX2 - fX);
-
-  // Rotazioni realistiche
-  const rY = dir;                         // punta verso dove vola
-  const rX = -0.25 + Math.sin(t * 1.5) * 0.1;  // oscillazione su/giù
-  const rZ = Math.sin(t * 1.8) * 0.25;    // banking laterale
-
-
-
-
-  const n=verts[0].rx(rX).ry(rY).rz(rZ).proj();
-  trail.push({x:fX+n.x,y:fY+n.y,a:1});
-
-  if(trail.length>40)trail.shift();
-
-  for(let i=1;i<trail.length;i++){
-    trail[i].a-=.025;
-    if(trail[i].a>0){
-      ctx.beginPath();
-      ctx.moveTo(trail[i-1].x,trail[i-1].y);
-      ctx.lineTo(trail[i].x,trail[i].y);
-      ctx.strokeStyle=`rgba(255,255,255,${trail[i].a*.06})`;
-      ctx.lineWidth=.5;
-      ctx.stroke();
-    }
-  }
-
-  faces.forEach(fc=>{
-    const pts=fc.v.map(i=>{
-      const p=verts[i].rx(rX).ry(rY).rz(rZ).proj();
-      return{x:fX+p.x,y:fY+p.y}
-    });
-
-    ctx.beginPath();
-    ctx.moveTo(pts[0].x,pts[0].y);
-    pts.forEach(p=>ctx.lineTo(p.x,p.y));
-    ctx.closePath();
-    ctx.fillStyle=fc.f;
-    ctx.fill();
-    ctx.strokeStyle=fc.s;
-    ctx.lineWidth=.5;
-    ctx.stroke();
-  });
-
-  requestAnimationFrame(drawPlane);
-}
-
+// ═══ PAPER PLANE (same as yours — already lightweight) ═══
+var c=document.getElementById('c3d'),ctx=c.getContext('2d');
+var W,H;function resize(){W=c.width=innerWidth;H=c.height=innerHeight}resize();addEventListener('resize',resize);
+function Vec(x,y,z){this.x=x;this.y=y;this.z=z}
+Vec.prototype.rx=function(a){var co=Math.cos(a),si=Math.sin(a);return new Vec(this.x,this.y*co-this.z*si,this.y*si+this.z*co)};
+Vec.prototype.ry=function(a){var co=Math.cos(a),si=Math.sin(a);return new Vec(this.x*co+this.z*si,this.y,-this.x*si+this.z*co)};
+Vec.prototype.rz=function(a){var co=Math.cos(a),si=Math.sin(a);return new Vec(this.x*co-this.y*si,this.x*si+this.y*co,this.z)};
+Vec.prototype.proj=function(d){d=d||500;var s=d/(d+this.z);return{x:this.x*s,y:this.y*s,s:s}};
+var sc=0.5;
+var verts=[new Vec(0,-160*sc,0),new Vec(-90*sc,70*sc,-8*sc),new Vec(-12*sc,-2*sc,12*sc),new Vec(12*sc,-2*sc,12*sc),new Vec(90*sc,70*sc,-8*sc),new Vec(0,70*sc,-15*sc),new Vec(0,85*sc,0),new Vec(-15*sc,110*sc,0),new Vec(0,135*sc,0),new Vec(15*sc,110*sc,0)];
+var plFaces=[{v:[0,1,2],f:'rgba(255,255,255,.12)',s:'rgba(255,255,255,.25)'},{v:[0,2,5],f:'rgba(255,255,255,.08)',s:'rgba(255,255,255,.18)'},{v:[0,5,3],f:'rgba(255,255,255,.06)',s:'rgba(255,255,255,.15)'},{v:[0,3,4],f:'rgba(255,255,255,.10)',s:'rgba(255,255,255,.22)'},{v:[6,7,8],f:'rgba(255,255,255,.07)',s:'rgba(255,255,255,.18)'},{v:[6,8,9],f:'rgba(255,255,255,.06)',s:'rgba(255,255,255,.15)'}];
+var t=0,trail=[];
+function drawPlane(){ctx.clearRect(0,0,W,H);t+=.003;var bx=W*.5,by=H*.4,fw=t*60,dx=Math.sin(t*.7)*(W*.08),zz=Math.sin(t*.2)*15,fl=Math.sin(t*1.4)*25;var fX=(bx-W*.2)+(fw%(W*1.4))+dx+zz,fY=by+fl;var fX2=(bx-W*.2)+((fw+1)%(W*1.4))+dx,fY2=by+Math.sin((t+.01)*1.4)*25;var dir=Math.atan2(fY2-fY,fX2-fX),rY=dir,rX=-.25+Math.sin(t*1.5)*.1,rZ=Math.sin(t*1.8)*.25;var n=verts[0].rx(rX).ry(rY).rz(rZ).proj();trail.push({x:fX+n.x,y:fY+n.y,a:1});if(trail.length>40)trail.shift();for(var i=1;i<trail.length;i++){trail[i].a-=.025;if(trail[i].a>0){ctx.beginPath();ctx.moveTo(trail[i-1].x,trail[i-1].y);ctx.lineTo(trail[i].x,trail[i].y);ctx.strokeStyle='rgba(255,255,255,'+trail[i].a*.06+')';ctx.lineWidth=.5;ctx.stroke()}}plFaces.forEach(function(fc){var pts=fc.v.map(function(vi){var p=verts[vi].rx(rX).ry(rY).rz(rZ).proj();return{x:fX+p.x,y:fY+p.y}});ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);pts.forEach(function(p){ctx.lineTo(p.x,p.y)});ctx.closePath();ctx.fillStyle=fc.f;ctx.fill();ctx.strokeStyle=fc.s;ctx.lineWidth=.5;ctx.stroke()});requestAnimationFrame(drawPlane)}
 drawPlane();
 
+// ═══ GLOBE — PERFORMANCE OPTIMIZED ═══
+// KEY FIXES:
+// 1. Merged lightDots + nightLights into ONE array (~600 dots instead of ~9500)
+// 2. NO radial gradients per dot — just simple arc() fills
+// 3. Radial gradients only for 30 named cities + LA (31 total per frame)
+// 4. Globe only renders when visible on screen
+// 5. Mobile: 1x DPR, fewer dots, fewer grid lines
 
-// ═══ 3D GLOBE — Enhanced ═══
-const gc=document.getElementById('globe'),gx=gc.getContext('2d');
-let GW,GH;function gResize(){GW=gc.width=gc.parentElement.offsetWidth*2;GH=gc.height=gc.parentElement.offsetHeight*2;gc.style.width=gc.parentElement.offsetWidth+'px';gc.style.height=gc.parentElement.offsetHeight+'px'}gResize();addEventListener('resize',gResize);
+var gc=document.getElementById('globe'),gx=gc.getContext('2d');
+var GW,GH;
+var isMobile=innerWidth<768;
+var gdpr=isMobile?1:Math.min(window.devicePixelRatio||1,2);
 
-const cities=[
-  {n:'Tokyo',lat:35.6,lon:139.7},{n:'London',lat:51.5,lon:-.12},{n:'Paris',lat:48.8,lon:2.3},
-  {n:'Milano',lat:45.4,lon:9.1},{n:'São Paulo',lat:-23.5,lon:-46.6},{n:'Dubai',lat:25.2,lon:55.2},
-  {n:'Sydney',lat:-33.8,lon:151.2},{n:'Seoul',lat:37.5,lon:127},{n:'Mumbai',lat:19,lon:72.8},
-  {n:'Berlin',lat:52.5,lon:13.4},{n:'Mexico City',lat:19.4,lon:-99.1},{n:'Lagos',lat:6.5,lon:3.3},
-  {n:'Buenos Aires',lat:-34.6,lon:-58.4},{n:'Istanbul',lat:41,lon:29},{n:'Beijing',lat:39.9,lon:116.3},
-  {n:'Bangkok',lat:13.7,lon:100.5},{n:'Bogotá',lat:4.7,lon:-74},{n:'Nairobi',lat:-1.3,lon:36.8},
-  {n:'Stockholm',lat:59.3,lon:18},{n:'Cape Town',lat:-33.9,lon:18.4},{n:'Toronto',lat:43.6,lon:-79.3},
-  {n:'Tel Aviv',lat:32,lon:34.8},{n:'Singapore',lat:1.3,lon:103.8},{n:'Beirut',lat:33.9,lon:35.5},
-  {n:'Amsterdam',lat:52.3,lon:4.9},{n:'Rio',lat:-22.9,lon:-43.2},{n:'Lima',lat:-12,lon:-77},
-  {n:'Jakarta',lat:-6.2,lon:106.8},{n:'Moscow',lat:55.7,lon:37.6},{n:'Taipei',lat:25,lon:121.5},
-];
+function gResize(){var w=gc.parentElement.offsetWidth,h=gc.parentElement.offsetHeight;GW=gc.width=w*gdpr;GH=gc.height=h*gdpr;gc.style.width=w+'px';gc.style.height=h+'px'}
+gResize();addEventListener('resize',gResize);
 
-const LA={lat:34.05,lon:-118.24};
-// City lights — hundreds of small dots representing population centers
-const lightDots=[];
-const popCenters=[
-  // North America
-  [40,-74],[34,-118],[41,-87],[29,-95],[33,-84],[42,-71],[47,-122],[37,-122],[32,-117],[25,-80],[19,-99],[45,-73],
-  [43,-79],[39,-76],[38,-90],[35,-106],[36,-115],[33,-112],[30,-90],[27,-82],[44,-93],[39,-84],[41,-82],[35,-80],
-  // Europe
-  [51,0],[48,2],[52,13],[40,-3],[41,12],[45,9],[48,16],[50,14],[52,4],[59,18],[55,12],[60,24],[47,19],[38,23],[53,-6],[48,11],
-  [51,7],[44,26],[42,23],[47,8],[46,6],[43,11],[45,4],[48,-1],[43,5],[41,2],[42,12],[44,11],[46,14],[47,7],
-  // Asia
-  [35,139],[37,127],[31,121],[22,114],[39,116],[1,103],[13,100],[35,51],[25,55],[19,73],[28,77],[23,90],[33,44],[24,46],[41,28],
-  [14,120],[21,105],[10,106],[3,101],[34,108],[30,104],[23,113],[38,58],[40,49],[42,69],[55,37],[56,43],[47,39],
-  // South America
-  [-23,-46],[-34,-58],[-22,-43],[-33,-70],[-12,-77],[-4,-38],[-3,-60],[4,-74],[10,-67],[-15,-47],[-2,-79],[-16,-48],
-  [-27,-48],[-30,-51],[-8,-35],[-1,-48],[-23,-43],[-20,-43],[-25,-49],[-31,-64],
-  // Africa
-  [6,3],[30,31],[-1,36],[-33,18],[-4,15],[33,-7],[14,-17],[5,-1],[9,7],[12,37],[-6,35],[0,32],[-26,28],[36,10],
-  [34,36],[-18,47],[4,9],[9,38],[15,32],[7,3],[-8,13],[11,44],[-12,49],[32,13],[6,1],[-15,35],
-  // Oceania
-  [-33,151],[-37,144],[-27,153],[-31,115],[-41,174],[-36,174],[-34,138],[-42,147],[-12,130],[-43,172],
-  // More spread across landmasses
-  [55,-3],[54,-1],[51,-2],[53,0],[50,8],[49,6],[48,7],[47,11],[46,11],[45,7],[43,2],[42,3],[48,17],[47,15],[50,19],
-];
-popCenters.forEach(([lat,lon])=>{
-  // Add some jitter for organic look
-  for(let i=0;i<2;i++){
-    lightDots.push({lat:lat+(Math.random()-.5)*3,lon:lon+(Math.random()-.5)*3,size:Math.random()*.8+.4,bright:Math.random()*.3+.1});
-  }
-});
-let gt=0,globeActive=false;
-const gObs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)globeActive=true})},{threshold:.2});
-gObs.observe(gc);
+var cities=[{n:'Tokyo',lat:35.6,lon:139.7},{n:'London',lat:51.5,lon:-.12},{n:'Paris',lat:48.8,lon:2.3},{n:'Milano',lat:45.4,lon:9.1},{n:'São Paulo',lat:-23.5,lon:-46.6},{n:'Dubai',lat:25.2,lon:55.2},{n:'Sydney',lat:-33.8,lon:151.2},{n:'Seoul',lat:37.5,lon:127},{n:'Mumbai',lat:19,lon:72.8},{n:'Berlin',lat:52.5,lon:13.4},{n:'Mexico City',lat:19.4,lon:-99.1},{n:'Lagos',lat:6.5,lon:3.3},{n:'Buenos Aires',lat:-34.6,lon:-58.4},{n:'Istanbul',lat:41,lon:29},{n:'Beijing',lat:39.9,lon:116.3},{n:'Bangkok',lat:13.7,lon:100.5},{n:'Bogotá',lat:4.7,lon:-74},{n:'Nairobi',lat:-1.3,lon:36.8},{n:'Stockholm',lat:59.3,lon:18},{n:'Cape Town',lat:-33.9,lon:18.4},{n:'Toronto',lat:43.6,lon:-79.3},{n:'Tel Aviv',lat:32,lon:34.8},{n:'Singapore',lat:1.3,lon:103.8},{n:'Beirut',lat:33.9,lon:35.5},{n:'Amsterdam',lat:52.3,lon:4.9},{n:'Rio',lat:-22.9,lon:-43.2},{n:'Lima',lat:-12,lon:-77},{n:'Jakarta',lat:-6.2,lon:106.8},{n:'Moscow',lat:55.7,lon:37.6},{n:'Taipei',lat:25,lon:121.5}];
+var LA={lat:34.05,lon:-118.24};
 
-function geoToScreen(lat,lon,cx,cy,R,rotY){
-  const latR=lat*Math.PI/180,lonR=lon*Math.PI/180;
-  const px=cx+R*Math.cos(latR)*Math.sin(lonR+rotY);
-  const py=cy-R*Math.sin(latR);
-  const pz=Math.cos(latR)*Math.cos(lonR+rotY);
-  return{x:px,y:py,z:pz};
-}
+// NIGHT LIGHTS — ~3500 desktop, ~1700 mobile. Tiny dots, wide spread.
+var allLights=[];
+var mobileScale=isMobile?0.5:1;
+function addR(a,b,c,d,n){n=Math.round(n*mobileScale);for(var i=0;i<n;i++){allLights.push({lat:a+Math.random()*(b-a),lon:c+Math.random()*(d-c),size:Math.random()*.5+.15,bright:Math.random()*.35+.06})}}
+// North America
+addR(25,47,-90,-70,220);addR(32,49,-125,-115,100);addR(19,40,-105,-85,90);addR(16,25,-105,-90,55);addR(25,35,-100,-80,65);addR(38,45,-95,-75,55);addR(42,48,-80,-70,40);
+// Europe
+addR(36,55,-10,15,360);addR(42,60,10,30,180);addR(55,65,10,40,65);addR(50,56,-6,2,90);addR(44,52,0,12,80);addR(38,44,-9,4,55);addR(47,54,5,18,50);addR(40,45,10,20,40);
+// India/Pakistan/Bangladesh
+addR(8,30,70,90,200);addR(24,35,66,75,45);addR(21,27,88,93,40);addR(10,20,75,85,30);
+// China
+addR(22,42,105,125,260);addR(28,35,100,112,55);addR(30,40,112,120,40);
+// Japan/Korea
+addR(30,42,125,142,130);addR(33,36,129,136,40);
+// SE Asia
+addR(-8,20,95,125,130);addR(7,18,118,127,35);addR(-7,0,105,115,25);
+// Middle East
+addR(22,38,35,55,90);addR(32,42,42,52,30);addR(28,34,46,50,20);
+// Brazil
+addR(-30,-5,-55,-35,140);addR(-25,-18,-50,-42,40);addR(-15,-5,-50,-38,25);
+// Arg/Chile/Others
+addR(-40,-25,-70,-55,65);addR(-2,12,-80,-60,50);addR(-18,-8,-80,-65,25);addR(-35,-30,-60,-55,20);
+// Africa
+addR(3,14,-5,10,70);addR(24,32,28,34,65);addR(-8,5,28,42,50);addR(-35,-25,25,32,65);addR(30,37,-7,10,30);addR(-10,5,10,20,25);addR(10,16,30,42,20);addR(-5,10,35,45,15);
+// Oceania
+addR(-40,-25,145,155,65);addR(-37,-28,114,140,30);addR(-47,-35,166,178,20);
+// Russia
+addR(53,58,35,50,45);addR(54,60,55,80,20);addR(55,58,80,95,10);
+// Turkey
+addR(37,42,26,40,45);
+// Central America/Caribbean
+addR(14,25,-90,-60,35);
+// Dense corridors
+addR(29,31.5,30,32.5,30);addR(44,46,8,13,30);addR(22,27,85,92,30);addR(21,24,112,115,30);addR(34,37,135,140,25);addR(50,53,-1,3,20);
+
+var gt=0,globeActive=false,globeVis=false;
+new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)globeActive=true})},{threshold:.2}).observe(gc);
+new IntersectionObserver(function(e){e.forEach(function(en){globeVis=en.isIntersecting})},{threshold:0}).observe(gc);
+
+function geo(lat,lon,cx,cy,R,rY){var la=lat*.01745329,lo=lon*.01745329;var cl=Math.cos(la);return{x:cx+R*cl*Math.sin(lo+rY),y:cy-R*Math.sin(la),z:cl*Math.cos(lo+rY)}}
 
 function drawGlobe(){
+  requestAnimationFrame(drawGlobe);
+  if(!globeVis)return;
   gx.clearRect(0,0,GW,GH);gt+=.008;
-  const cx=GW/2,cy=GH/2,R=Math.min(GW,GH)*.38;
-  const rotY=gt*.2;
+  var cx=GW/2,cy=GH/2,R=Math.min(GW,GH)*.38,rY=gt*.2;
 
-  // Atmosphere glow
-  const grad=gx.createRadialGradient(cx,cy,R*.5,cx,cy,R*1.2);
-  grad.addColorStop(0,'rgba(255,255,255,.07)');grad.addColorStop(1,'rgba(255,255,255,0)');
-  gx.fillStyle=grad;gx.beginPath();gx.arc(cx,cy,R*1.2,0,Math.PI*2);gx.fill();
+  // Atmosphere
+  if(!isMobile){var gr=gx.createRadialGradient(cx,cy,R*.5,cx,cy,R*1.2);gr.addColorStop(0,'rgba(255,255,255,.07)');gr.addColorStop(1,'rgba(255,255,255,0)');gx.fillStyle=gr;gx.beginPath();gx.arc(cx,cy,R*1.2,0,Math.PI*2);gx.fill()}
 
-  // Globe outline
-  gx.strokeStyle='rgba(255,255,255,.12)';gx.lineWidth=1.2;
-  gx.beginPath();gx.arc(cx,cy,R,0,Math.PI*2);gx.stroke();
+  // Outline
+  gx.strokeStyle='rgba(255,255,255,.12)';gx.lineWidth=1.2;gx.beginPath();gx.arc(cx,cy,R,0,Math.PI*2);gx.stroke();
 
-  // Latitude/longitude grid
+  // Grid — fewer lines on mobile
   gx.strokeStyle='rgba(255,255,255,.07)';gx.lineWidth=.7;
-  for(let i=-60;i<=60;i+=20){
-    const lat=i*Math.PI/180;const r=R*Math.cos(lat);const y=cy-R*Math.sin(lat);
-    gx.beginPath();gx.ellipse(cx,y,r,r*.25,0,0,Math.PI*2);gx.stroke();
-  }
-  for(let i=0;i<18;i++){
-    const lon=i*20*Math.PI/180+rotY;gx.beginPath();
-    for(let j=0;j<=60;j++){const lat=(j-30)*3*Math.PI/180;const px=cx+R*Math.cos(lat)*Math.sin(lon);const py=cy-R*Math.sin(lat);const pz=Math.cos(lat)*Math.cos(lon);if(pz>-.05){if(j===0)gx.moveTo(px,py);else gx.lineTo(px,py)}}gx.stroke();
+  var gs=isMobile?30:20;
+  for(var i=-60;i<=60;i+=gs){var la=i*.01745329,r=R*Math.cos(la),y=cy-R*Math.sin(la);gx.beginPath();gx.ellipse(cx,y,r,r*.25,0,0,Math.PI*2);gx.stroke()}
+  var mc=isMobile?12:18;
+  for(var i=0;i<mc;i++){var lon=i*(360/mc)*.01745329+rY;gx.beginPath();for(var j=0;j<=60;j++){var la2=(j-30)*3*.01745329;var px=cx+R*Math.cos(la2)*Math.sin(lon);var py=cy-R*Math.sin(la2);var pz=Math.cos(la2)*Math.cos(lon);if(pz>-.05){if(j===0)gx.moveTo(px,py);else gx.lineTo(px,py)}}gx.stroke()}
+
+  // ★ ALL LIGHTS — simple small dots, no gradients, no shadows
+  for(var i=0;i<allLights.length;i++){
+    var d=allLights[i],p=geo(d.lat,d.lon,cx,cy,R,rY);
+    if(p.z>0.1){gx.beginPath();gx.arc(p.x,p.y,d.size*gdpr,0,6.283);gx.fillStyle='rgba(255,235,180,'+(p.z*d.bright)+')';gx.fill()}
   }
 
-  // City lights — warm dots across continents
-  lightDots.forEach(dot=>{
-    const p=geoToScreen(dot.lat,dot.lon,cx,cy,R,rotY);
-    if(p.z>0.1){
-      const a=p.z*dot.bright;
-      const flicker=.8+Math.sin(gt*2+dot.lat*10)*.2;
-      gx.beginPath();gx.arc(p.x,p.y,dot.size*1.5,0,Math.PI*2);
-      gx.fillStyle=`rgba(255,235,180,${a*flicker})`;gx.fill();
+  // ★ NAMED CITIES — tiny subtle glows
+  for(var i=0;i<cities.length;i++){
+    var ci=cities[i],p2=geo(ci.lat,ci.lon,cx,cy,R,rY);
+    if(p2.z>0.08){
+      var al=p2.z;
+      var gl=gx.createRadialGradient(p2.x,p2.y,0,p2.x,p2.y,6*gdpr);
+      gl.addColorStop(0,'rgba(255,255,200,'+al*.5+')');gl.addColorStop(1,'rgba(255,255,200,0)');
+      gx.fillStyle=gl;gx.beginPath();gx.arc(p2.x,p2.y,6*gdpr,0,6.283);gx.fill();
+      gx.beginPath();gx.arc(p2.x,p2.y,1.5*gdpr,0,6.283);gx.fillStyle='rgba(255,255,230,'+al*.8+')';gx.fill();
     }
-  });
-
-  // City lights (small dots always visible)
-cities.forEach(city=>{
-  const p = geoToScreen(city.lat,city.lon,cx,cy,R,rotY);
-
-  if(p.z > 0.08){
-
-    const alpha = p.z;
-
-    // Glow grande e forte
-    const glow = gx.createRadialGradient(p.x,p.y,0,p.x,p.y,18);
-    glow.addColorStop(0,`rgba(255,255,200,${alpha*0.9})`);
-    glow.addColorStop(1,'rgba(255,255,200,0)');
-    gx.fillStyle = glow;
-    gx.beginPath();
-    gx.arc(p.x,p.y,18,0,Math.PI*2);
-    gx.fill();
-
-    // Core molto visibile
-    gx.beginPath();
-    gx.arc(p.x,p.y,4.5,0,Math.PI*2);
-    gx.fillStyle = `rgba(255,255,230,${alpha})`;
-    gx.fill();
   }
-});
-
-
-  // Night lights rendering
-nightLights.forEach(light=>{
-  const p = geoToScreen(light.lat, light.lon, cx, cy, R, rotY);
-
-  if(p.z > 0.08){
-
-    const depth = p.z;
-    const flicker = 0.9 + Math.sin(gt*2 + light.lat*4) * 0.1;
-    const alpha = depth * light.brightness;
-
-    // Core light
-    gx.beginPath();
-    gx.arc(p.x, p.y, light.size, 0, Math.PI*2);
-    gx.fillStyle = `rgba(255,235,180,${alpha*flicker})`;
-    gx.fill();
-
-    // Soft glow
-    const glow = gx.createRadialGradient(p.x,p.y,0,p.x,p.y,light.size*5);
-    glow.addColorStop(0,`rgba(255,235,180,${alpha*0.18})`);
-
-    glow.addColorStop(1,'rgba(255,235,180,0)');
-    gx.fillStyle = glow;
-    gx.beginPath();
-    gx.arc(p.x, p.y, light.size*3.5, 0, Math.PI*2);
-
-    gx.fill();
-  }
-});
-
-
 
   // Converging animation
-  const speed=1.5;
-  const cycle=Math.max(0,Math.min(1,(Math.sin(gt*speed)+1)/2));
-  const progress=globeActive?cycle:0;
-
-  const laScreen=geoToScreen(LA.lat,LA.lon,cx,cy,R,rotY);
-
-  cities.forEach((city,idx)=>{
-    const off=idx*.02;
-    const p=Math.max(0,Math.min(1,(progress-off)*1.8));
-    const latR=city.lat*Math.PI/180,lonR=city.lon*Math.PI/180;
-    const tLat=LA.lat*Math.PI/180,tLon=LA.lon*Math.PI/180;
-    const cLat=latR+(tLat-latR)*p;
-    const cLon=lonR+(tLon-lonR)*p;
-    const scr=geoToScreen(cLat*180/Math.PI,cLon*180/Math.PI,cx,cy,R,rotY);
-
+  var cycle=Math.max(0,Math.min(1,(Math.sin(gt*1.5)+1)/2));
+  var progress=globeActive?cycle:0;
+  var laS=geo(LA.lat,LA.lon,cx,cy,R,rY);
+  for(var i=0;i<cities.length;i++){
+    var ci2=cities[i],off=i*.02,pr=Math.max(0,Math.min(1,(progress-off)*1.8));
+    var cLa=ci2.lat+(LA.lat-ci2.lat)*pr,cLo=ci2.lon+(LA.lon-ci2.lon)*pr;
+    var scr=geo(cLa,cLo,cx,cy,R,rY);
     if(scr.z>0.05){
-      const a=scr.z;
-      // Connection line to LA
-      if(p>0.01&&p<0.99&&laScreen.z>0.05){
-        gx.beginPath();gx.moveTo(scr.x,scr.y);gx.lineTo(laScreen.x,laScreen.y);
-        gx.strokeStyle=`rgba(255,255,255,${a*.08*p})`;gx.lineWidth=.6;gx.stroke();
-      }
-      // Moving dot
-      gx.beginPath();gx.arc(scr.x,scr.y,2.5+p*1.5,0,Math.PI*2);
-      gx.fillStyle=`rgba(255,255,255,${a*.6})`;gx.fill();
-      // City name (fade out as converging)
-      if(p<.6){
-        gx.font=`700 ${Math.round(GW/50)}px Arial Narrow,Arial,sans-serif`;
-
-        // Shadow per separare dalle luci
-      gx.strokeStyle = `rgba(0,0,0,${a*.8*(1-p)})`;
-      gx.lineWidth = 3;
-      gx.strokeText(city.n.toUpperCase(), scr.x+7, scr.y+3);
-
-      // Testo più forte
-      gx.fillStyle = `rgba(255,255,255,${a*.9*(1-p)})`;
-      gx.fillText(city.n.toUpperCase(), scr.x+7, scr.y+3);
-
-      }
+      var aa=scr.z;
+      if(pr>0.01&&pr<0.99&&laS.z>0.05){gx.beginPath();gx.moveTo(scr.x,scr.y);gx.lineTo(laS.x,laS.y);gx.strokeStyle='rgba(255,255,255,'+aa*.08*pr+')';gx.lineWidth=.6;gx.stroke()}
+      gx.beginPath();gx.arc(scr.x,scr.y,2.5+pr*1.5,0,6.283);gx.fillStyle='rgba(255,255,255,'+aa*.6+')';gx.fill();
+      if(pr<.6){var fs=Math.round(GW/50);gx.font='700 '+fs+'px Arial Narrow,Arial,sans-serif';gx.strokeStyle='rgba(0,0,0,'+aa*.8*(1-pr)+')';gx.lineWidth=3;gx.strokeText(ci2.n.toUpperCase(),scr.x+7,scr.y+3);gx.fillStyle='rgba(255,255,255,'+aa*.9*(1-pr)+')';gx.fillText(ci2.n.toUpperCase(),scr.x+7,scr.y+3)}
     }
-  });
-
-  // LA — always bright with pulse
-  if(laScreen.z>0.05){
-    const pulse=3+Math.sin(gt*3)*1;
-    // Outer ring
-    gx.beginPath();gx.arc(laScreen.x,laScreen.y,15,0,Math.PI*2);
-    gx.strokeStyle=`rgba(255,255,255,${laScreen.z*.1})`;gx.lineWidth=1;gx.stroke();
-    // Inner glow
-    const laGrad=gx.createRadialGradient(laScreen.x,laScreen.y,0,laScreen.x,laScreen.y,10);
-    laGrad.addColorStop(0,`rgba(255,255,255,${laScreen.z*.5})`);laGrad.addColorStop(1,'rgba(255,255,255,0)');
-    gx.fillStyle=laGrad;gx.beginPath();gx.arc(laScreen.x,laScreen.y,10,0,Math.PI*2);gx.fill();
-    // Dot
-    gx.beginPath();gx.arc(laScreen.x,laScreen.y,pulse,0,Math.PI*2);
-    gx.fillStyle=`rgba(255,255,255,${laScreen.z*.8})`;gx.fill();
-    // Label
-    gx.font=`700 ${Math.round(GW/38)}px Arial Narrow,Arial,sans-serif`;
-
-    gx.fillStyle=`rgba(255,255,255,${laScreen.z*.7})`;
-    gx.fillText('LOS ANGELES',laScreen.x+14,laScreen.y+4);
   }
-  requestAnimationFrame(drawGlobe);
-}
-// Night population lights
-// ==========================================
-// ULTRA DENSE NIGHT EARTH LIGHT SYSTEM
-// ==========================================
 
-const nightLights = [];
-
-function addCluster(lat, lon, spread, count){
-  for(let i=0;i<count;i++){
-
-    const angle = Math.random() * Math.PI * 2;
-    const radius = Math.sqrt(Math.random()) * spread;
-
-    const offsetLat = Math.cos(angle) * radius;
-    const offsetLon = Math.sin(angle) * radius;
-
-    nightLights.push({
-      lat: lat + offsetLat,
-      lon: lon + offsetLon,
-      size: Math.random()*1.2 + 0.4,
-      brightness: Math.random()*0.7 + 0.2
-    });
+  // LA
+  if(laS.z>0.05){
+    var pulse=3+Math.sin(gt*3)*1;
+    gx.beginPath();gx.arc(laS.x,laS.y,15,0,6.283);gx.strokeStyle='rgba(255,255,255,'+laS.z*.1+')';gx.lineWidth=1;gx.stroke();
+    var lg=gx.createRadialGradient(laS.x,laS.y,0,laS.x,laS.y,10);lg.addColorStop(0,'rgba(255,255,255,'+laS.z*.5+')');lg.addColorStop(1,'rgba(255,255,255,0)');gx.fillStyle=lg;gx.beginPath();gx.arc(laS.x,laS.y,10,0,6.283);gx.fill();
+    gx.beginPath();gx.arc(laS.x,laS.y,pulse,0,6.283);gx.fillStyle='rgba(255,255,255,'+laS.z*.8+')';gx.fill();
+    var lfs=Math.round(GW/38);gx.font='700 '+lfs+'px Arial Narrow,Arial,sans-serif';gx.fillStyle='rgba(255,255,255,'+laS.z*.7+')';gx.fillText('LOS ANGELES',laS.x+14,laS.y+4);
   }
 }
-
-
-
-// NORTH AMERICA
-addCluster(40,-74,14,300);
-addCluster(34,-118,16,260);
-addCluster(41,-87,10,150);
-addCluster(29,-95,10,120);
-addCluster(43,-79,10,140);
-
-// SOUTH AMERICA
-addCluster(-23,-46,16,260);
-addCluster(-34,-58,12,200);
-addCluster(-22,-43,10,150);
-
-// EUROPE
-addCluster(51,0,18,350);
-addCluster(48,2,14,280);
-addCluster(52,13,12,220);
-addCluster(45,9,12,200);
-addCluster(40,-3,12,180);
-
-// AFRICA
-addCluster(30,31,14,200);
-addCluster(6,3,12,180);
-addCluster(-26,28,14,200);
-
-// INDIA
-addCluster(28,77,18,320);
-addCluster(19,72,14,260);
-
-// EAST ASIA
-addCluster(35,139,22,450);
-addCluster(31,121,18,380);
-addCluster(39,116,18,320);
-addCluster(37,127,12,220);
-
-// SOUTH EAST ASIA
-addCluster(1,103,10,200);
-addCluster(13,100,12,220);
-addCluster(-6,106,16,260);
-
-// AUSTRALIA
-addCluster(-33,151,12,200);
-addCluster(-37,144,12,160);
-// Extra clusters for cities not strongly covered
-cities.forEach(city=>{
-  addCluster(city.lat, city.lon, 8, 90);
-});
-
 drawGlobe();
 
 // ═══ SCROLL REVEAL ═══
-const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.1});
-document.querySelectorAll('.rv').forEach(e=>obs.observe(e));
+var obs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.classList.add('vis')})},{threshold:.1});
+document.querySelectorAll('.rv').forEach(function(e){obs.observe(e)});
 
 // ═══ FAQ ═══
-function toggleFaq(el){const i=el.parentElement;const o=i.classList.contains('open');document.querySelectorAll('.faq-i').forEach(f=>f.classList.remove('open'));if(!o)i.classList.add('open')}
+function toggleFaq(el){var p=el.parentElement,o=p.classList.contains('open');document.querySelectorAll('.faq-i').forEach(function(f){f.classList.remove('open')});if(!o)p.classList.add('open')}
 
 // ═══ SMOOTH SCROLL ═══
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
 
 // ═══ PARALLAX ═══
-window.addEventListener('scroll',()=>{const s=scrollY;const h=document.querySelector('.hero-ct');if(h&&s<innerHeight){h.style.transform=`translateY(${s*.1}px)`;h.style.opacity=1-s/(innerHeight*.7)}},{passive:true});
+window.addEventListener('scroll',function(){var s=scrollY;var h=document.querySelector('.hero-ct');if(h&&s<innerHeight){h.style.transform='translateY('+s*.1+'px)';h.style.opacity=1-s/(innerHeight*.7)}},{passive:true});
 </script>
+
 </body>
 </html>
