@@ -9,6 +9,80 @@
 <title>EXPAT SOCIETY</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3944.79 4199.8'%3E%3Cpath fill='%23fff' d='M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z'/%3E%3Cpath fill='%23fff' d='M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z'/%3E%3Cpath fill='%23fff' d='M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z'/%3E%3C/svg%3E">
 <style>
+  /* MEMBER MODAL */
+.member-modal{
+position:fixed;
+inset:0;
+background:rgba(3,3,3,.97);
+backdrop-filter:blur(10px);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:99999;
+}
+
+.member-modal.active{
+display:flex;
+}
+
+.member-modal-inner{
+background:rgba(255,255,255,.02);
+border:1px solid rgba(255,255,255,.08);
+padding:3rem 3rem 2.5rem;
+text-align:center;
+width:320px;
+}
+
+.member-title{
+font-family:'Cormorant Garamond',serif;
+font-size:1.8rem;
+margin-bottom:.5rem;
+}
+
+.member-sub{
+font-size:.55rem;
+letter-spacing:.3em;
+text-transform:uppercase;
+color:var(--mist);
+margin-bottom:2rem;
+}
+
+.member-modal input{
+width:100%;
+padding:.8rem;
+background:transparent;
+border:1px solid rgba(255,255,255,.15);
+color:white;
+text-align:center;
+letter-spacing:.2em;
+margin-bottom:1.5rem;
+}
+
+.member-btn{
+width:100%;
+padding:.8rem;
+background:white;
+color:black;
+border:none;
+letter-spacing:.3em;
+text-transform:uppercase;
+font-size:.55rem;
+cursor:pointer;
+transition:.3s;
+}
+
+.member-btn:hover{
+background:rgba(255,255,255,.85);
+}
+
+.member-error{
+margin-top:1rem;
+font-size:.5rem;
+letter-spacing:.2em;
+color:#ff4d4d;
+height:1rem;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
 :root{--void:#030303;--ink:#080808;--smoke:#0e0e0e;--ash:#161616;--dim:#2a2a2a;--mist:#666;--silver:#999;--bone:#bbb;--pearl:#ddd;--white:#eee;--pure:#fff}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -371,7 +445,8 @@ footer{padding:3rem 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.025)}
   <div class="intro-logo"><svg viewBox="0 0 3944.79 4199.8" xmlns="http://www.w3.org/2000/svg"><path class="lp" d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path class="lp" d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z" style="animation-delay:.2s"/><path class="lp" d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z" style="animation-delay:.4s"/><path class="lf" d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path class="lf" d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z" style="animation-delay:1.9s"/><path class="lf" d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z" style="animation-delay:2s"/></svg></div>
   <div class="intro-t">EXPAT SOCIETY</div>
 </div>
-<nav><a href="#" class="nb"><svg viewBox="0 0 3944.79 4199.8" fill="var(--pure)"><path d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg><span>Expat Society</span></a><div class="nr"><a href="#about">About</a><a href="#events">Events</a><a href="#apply" class="na">Apply</a></div></nav>
+<nav><a href="#" class="nb"><svg viewBox="0 0 3944.79 4199.8" fill="var(--pure)"><path d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg><span>Expat Society</span></a><div class="nr"><a href="#about">About</a><a href="#events">Events</a><a href="#apply" class="na">Apply</a>   <a href="#" onclick="openMemberModal()">Members Only</a>
+</div></nav>
 <section class="hero"><canvas id="c3d"></canvas><div class="hero-ov"></div><div class="hero-ct"><div class="h-eye">Los Angeles, CA</div><h1 class="h-title">International<br><span class="stk">Minds</span>.</h1><p class="h-desc">Different origins. Same frequency.</p><div class="h-acts"><a href="#apply" class="btn-w">Apply Now</a><a href="#events" class="btn-g">See Events ↓</a></div></div><div class="h-scroll"><span>Explore</span><div class="scroll-bar"></div></div></section>
 <div class="next-ev rv">
 
@@ -1127,8 +1202,91 @@ document.addEventListener("DOMContentLoaded", function(){
   }
 
 });
+function openMemberModal(){
+  document.getElementById("memberModal").classList.add("active");
+  document.getElementById("memberCode").focus();
+}
+
+function checkMemberCode(){
+  const correctCode = "ONYX2026"; // ← change this to your real code
+  const input = document.getElementById("memberCode").value;
+  const error = document.getElementById("memberError");
+
+  if(input === correctCode){
+    sessionStorage.setItem("memberAccess", "granted");
+    window.location.href = "members.html";
+  } else {
+    error.textContent = "Invalid Code";
+  }
+}
+
+
+
+
+
+function closeMemberModal(){
+  document.getElementById("memberModal").classList.remove("active");
+  document.getElementById("memberCode").value = "";
+  document.getElementById("memberError").textContent = "";
+}
+
+// === MEMBER MODAL SYSTEM ===
+document.addEventListener("DOMContentLoaded", function(){
+
+  const modal = document.getElementById("memberModal");
+  const input = document.getElementById("memberCode");
+  const error = document.getElementById("memberError");
+
+  window.openMemberModal = function(){
+    modal.classList.add("active");
+    input.focus();
+  }
+
+  window.closeMemberModal = function(){
+    modal.classList.remove("active");
+    input.value = "";
+    error.textContent = "";
+  }
+
+  window.checkMemberCode = function(){
+    const correctCode = "ONYX2026";
+
+    if(input.value === correctCode){
+      sessionStorage.setItem("memberAccess", "granted");
+      window.location.href = "members.html";
+    } else {
+      error.textContent = "Invalid Code";
+    }
+  }
+
+  // click fuori chiude
+  modal.addEventListener("click", function(e){
+    if(e.target === modal){
+      closeMemberModal();
+    }
+  });
+
+  // ESC chiude
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+      closeMemberModal();
+    }
+  });
+
+});
 
 
 </script>
+  <!-- MEMBER MODAL -->
+<div id="memberModal" class="member-modal">
+  <div class="member-modal-inner">
+    <div class="member-title">Member Access</div>
+    <p class="member-sub">Enter your private code</p>
+    <input type="password" id="memberCode" placeholder="Access Code">
+    <button onclick="checkMemberCode()" class="member-btn">Enter</button>
+    <div id="memberError" class="member-error"></div>
+  </div>
+</div>
+
 </body>
 </html>
