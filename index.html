@@ -632,8 +632,85 @@ var sc=0.5;
 var verts=[new Vec(0,-160*sc,0),new Vec(-90*sc,70*sc,-8*sc),new Vec(-12*sc,-2*sc,12*sc),new Vec(12*sc,-2*sc,12*sc),new Vec(90*sc,70*sc,-8*sc),new Vec(0,70*sc,-15*sc),new Vec(0,85*sc,0),new Vec(-15*sc,110*sc,0),new Vec(0,135*sc,0),new Vec(15*sc,110*sc,0)];
 var plFaces=[{v:[0,1,2],f:'rgba(255,255,255,.12)',s:'rgba(255,255,255,.25)'},{v:[0,2,5],f:'rgba(255,255,255,.08)',s:'rgba(255,255,255,.18)'},{v:[0,5,3],f:'rgba(255,255,255,.06)',s:'rgba(255,255,255,.15)'},{v:[0,3,4],f:'rgba(255,255,255,.10)',s:'rgba(255,255,255,.22)'},{v:[6,7,8],f:'rgba(255,255,255,.07)',s:'rgba(255,255,255,.18)'},{v:[6,8,9],f:'rgba(255,255,255,.06)',s:'rgba(255,255,255,.15)'}];
 var t=0,trail=[];
-function drawPlane(){ctx.clearRect(0,0,W,H);t+=.003;var bx=W*.5,by=H*.4,fw=t*60,dx=Math.sin(t*.7)*(W*.08),zz=Math.sin(t*.2)*15,fl=Math.sin(t*1.4)*25;var fX=(bx-W*.2)+(fw%(W*1.4))+dx+zz,fY=by+fl;var fX2=(bx-W*.2)+((fw+1)%(W*1.4))+dx,fY2=by+Math.sin((t+.01)*1.4)*25;var dir=Math.atan2(fY2-fY,fX2-fX),rY=dir,rX=-.25+Math.sin(t*1.5)*.1,rZ=Math.sin(t*1.8)*.25;var n=verts[0].rx(rX).ry(rY).rz(rZ).proj();trail.push({x:fX+n.x,y:fY+n.y,a:1});if(trail.length>40)trail.shift();for(var i=1;i<trail.length;i++){trail[i].a-=.025;if(trail[i].a>0){ctx.beginPath();ctx.moveTo(trail[i-1].x,trail[i-1].y);ctx.lineTo(trail[i].x,trail[i].y);ctx.strokeStyle='rgba(255,255,255,'+trail[i].a*.06+')';ctx.lineWidth=.5;ctx.stroke()}}plFaces.forEach(function(fc){var pts=fc.v.map(function(vi){var p=verts[vi].rx(rX).ry(rY).rz(rZ).proj();return{x:fX+p.x,y:fY+p.y}});ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);pts.forEach(function(p){ctx.lineTo(p.x,p.y)});ctx.closePath();ctx.fillStyle=fc.f;ctx.fill();ctx.strokeStyle=fc.s;ctx.lineWidth=.5;ctx.stroke()});requestAnimationFrame(drawPlane)}
+let planeRunning = false;
+let planeFrame;
+
+function drawPlane(){
+  if(!planeRunning) return;
+
+  ctx.clearRect(0,0,W,H);
+  t+=.003;
+
+  var bx=W*.5,by=H*.4,fw=t*60,
+      dx=Math.sin(t*.7)*(W*.08),
+      zz=Math.sin(t*.2)*15,
+      fl=Math.sin(t*1.4)*25;
+
+  var fX=(bx-W*.2)+(fw%(W*1.4))+dx+zz,
+      fY=by+fl;
+
+  var fX2=(bx-W*.2)+((fw+1)%(W*1.4))+dx,
+      fY2=by+Math.sin((t+.01)*1.4)*25;
+
+  var dir=Math.atan2(fY2-fY,fX2-fX),
+      rY=dir,
+      rX=-.25+Math.sin(t*1.5)*.1,
+      rZ=Math.sin(t*1.8)*.25;
+
+  var n=verts[0].rx(rX).ry(rY).rz(rZ).proj();
+  trail.push({x:fX+n.x,y:fY+n.y,a:1});
+  if(trail.length>40)trail.shift();
+
+  for(var i=1;i<trail.length;i++){
+    trail[i].a-=.025;
+    if(trail[i].a>0){
+      ctx.beginPath();
+      ctx.moveTo(trail[i-1].x,trail[i-1].y);
+      ctx.lineTo(trail[i].x,trail[i].y);
+      ctx.strokeStyle='rgba(255,255,255,'+trail[i].a*.06+')';
+      ctx.lineWidth=.5;
+      ctx.stroke();
+    }
+  }
+
+  plFaces.forEach(function(fc){
+    var pts=fc.v.map(function(vi){
+      var p=verts[vi].rx(rX).ry(rY).rz(rZ).proj();
+      return{x:fX+p.x,y:fY+p.y};
+    });
+
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x,pts[0].y);
+    pts.forEach(function(p){ctx.lineTo(p.x,p.y)});
+    ctx.closePath();
+    ctx.fillStyle=fc.f;
+    ctx.fill();
+    ctx.strokeStyle=fc.s;
+    ctx.lineWidth=.5;
+    ctx.stroke();
+  });
+
+  planeFrame = requestAnimationFrame(drawPlane);
+}
 drawPlane();
+const heroSection = document.querySelector('.hero');
+
+const heroObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      if(!planeRunning){
+        planeRunning = true;
+        drawPlane();
+      }
+    } else {
+      planeRunning = false;
+      cancelAnimationFrame(planeFrame);
+    }
+  });
+}, { threshold: 0.2 });
+
+heroObserver.observe(heroSection);
+
 
 // ═══ GLOBE — PERFORMANCE OPTIMIZED ═══
 // KEY FIXES:
