@@ -267,6 +267,26 @@ canvas#globe{width:100%;height:100%}
 .ev-scroll{display:flex;gap:.6rem;overflow-x:auto;padding:.8rem 0;scrollbar-width:none;scroll-snap-type:x mandatory}
 .ev-scroll::-webkit-scrollbar{display:none}
 .ev-card{min-width:250px;flex-shrink:0;background:rgba(255,255,255,.008);padding:1.8rem 1.3rem;border:1px solid rgba(255,255,255,.02);scroll-snap-align:start}
+/* EVENTI PASSATI */
+.ev-card.past {
+  opacity: .2;
+  filter: grayscale(100%);
+  position: relative;
+}
+
+
+
+.ev-card.past::after {
+  content: '×';
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  color: rgba(255,255,255,.15);
+  pointer-events: none;
+}
+
 .ev-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:rgba(255,255,255,.02);line-height:1;margin-bottom:.4rem}
 .ev-tag{display:inline-block;font-size:.3rem;letter-spacing:.35em;text-transform:uppercase;padding:.2rem .6rem;border:1px solid rgba(255,255,255,.06);color:var(--pearl);margin-bottom:.8rem;font-weight:700}
 .ev-dt{font-size:.4rem;letter-spacing:.25em;text-transform:uppercase;color:var(--mist);margin-bottom:.4rem;font-weight:700}
@@ -571,7 +591,191 @@ footer{padding:3rem 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.025)}
 
 
 
-<section id="events" class="sec events"><div class="rv"><div class="s-lbl">Events</div><h2 class="s-h">Flagship Experiences</h2></div><div class="flag-c rv"><div class="flag-badge">Signature Event</div><div class="flag-name"><em>ONYX</em></div><div class="flag-desc">All-black. Secret location. The kind of night you talk about for years.</div><div class="flag-inv">By Invitation Only</div></div><div class="flag-c rv"><div class="flag-badge">Signature Event</div><div class="flag-name"><em>White</em> Party</div><div class="flag-desc">All-white. Rooftop. Summer. The night that becomes a core memory.</div><div class="flag-inv">By Invitation Only</div></div><div style="margin-top:2rem" class="rv"><h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin-bottom:.8rem"><em>Upcoming</em></h3></div><div class="ev-scroll"><div class="ev-card"><div class="ev-num">01</div><div class="ev-tag">Hike</div><div class="ev-dt">Mar 2026</div><h3>Sunrise at Griffith</h3><p>5:30AM. Golden hour over the city.</p></div><div class="ev-card"><div class="ev-num">02</div><div class="ev-tag">Social</div><div class="ev-dt">Mar 2026</div><h3>Bowling Night</h3><p>Cosmic bowling in DTLA. Zero skills required.</p></div><div class="ev-card"><div class="ev-num">03</div><div class="ev-tag">Trip</div><div class="ev-dt">Apr 2026</div><h3>Big Bear Weekend</h3><p>Cabins, lake, bonfires. 48h off the grid.</p></div><div class="ev-card"><div class="ev-num">04</div><div class="ev-tag">Brunch</div><div class="ev-dt">Apr 2026</div><h3>Sunday Brunch</h3><p>Bottomless mimosas. Good conversation.</p></div></div></section>
+<section id="events" class="sec events">
+
+  <div class="rv">
+    <div class="s-lbl">Events</div>
+    <h2 class="s-h">Upcoming</h2>
+<p class="h-desc">Dates may shift. You'll know if you're in.</p>
+  </div>
+
+  <div class="ev-scroll" id="eventsContainer">
+
+   <!-- JANUARY -->
+<div class="ev-card" data-date="2026-01-15">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Community</div>
+  <div class="ev-dt">Jan 15, 2026</div>
+  <h3>Welcome Night at Socks</h3>
+  <p>First connections. Fresh energy.</p>
+</div>
+
+<div class="ev-card" data-date="2026-01-25">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Outdoor</div>
+  <div class="ev-dt">Jan 25, 2026</div>
+  <h3>Hike</h3>
+  <p>Golden hour. City below.</p>
+</div>
+
+<div class="ev-card" data-date="2026-01-29">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Flagship · Members</div>
+  <div class="ev-dt">Jan 29–31, 2026</div>
+  <h3>Members Only I</h3>
+  <p>Private access. Inner circle energy.</p>
+</div>
+
+<div class="ev-card" data-date="2026-01-30">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Social</div>
+  <div class="ev-dt">Jan 30, 2026</div>
+  <h3>Brunch</h3>
+  <p>Slow mornings. Sharp minds.</p>
+</div>
+
+<!-- FEBRUARY -->
+<div class="ev-card" data-date="2026-02-08">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Social</div>
+  <div class="ev-dt">Feb 08, 2026</div>
+  <h3>Bowling</h3>
+  <p>Low lights. High energy.</p>
+</div>
+
+<div class="ev-card" data-date="2026-02-13">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Voyage</div>
+  <div class="ev-dt">Feb 13–16, 2026</div>
+  <h3>Voyage I — Snow Mammoth</h3>
+  <p>Cabin nights. Off-grid energy.</p>
+</div>
+
+<div class="ev-card" data-date="2026-02-20">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Social</div>
+  <div class="ev-dt">Feb 20, 2026</div>
+  <h3>Wine & Binds</h3>
+  <p>Conversations that linger.</p>
+</div>
+
+<div class="ev-card" data-date="2026-02-26">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Dinner Series</div>
+  <div class="ev-dt">Feb 26, 2026</div>
+  <h3>Dinner Series I</h3>
+  <p>Private table. Real dialogue.</p>
+</div>
+
+<div class="ev-card" data-date="2026-02-27">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Flagship</div>
+  <div class="ev-dt">Feb 27–28, 2026</div>
+  <h3>Flagship I</h3>
+  <p>Signature experience. Elevated setting.</p>
+</div>
+
+<!-- MARCH -->
+<div class="ev-card" data-date="2026-03-06">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Social</div>
+  <div class="ev-dt">Mar 06, 2026</div>
+  <h3>Karaoke</h3>
+  <p>No filters. Just presence.</p>
+</div>
+
+<div class="ev-card" data-date="2026-03-12">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Dinner Series</div>
+  <div class="ev-dt">Mar 12, 2026</div>
+  <h3>Dinner Series II</h3>
+  <p>Same table. New faces.</p>
+</div>
+
+<!-- APRIL -->
+<div class="ev-card" data-date="2026-04-02">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Members</div>
+  <div class="ev-dt">Apr 02–04, 2026</div>
+  <h3>Members Only II</h3>
+  <p>Deeper circle. Elevated access.</p>
+</div>
+
+<div class="ev-card" data-date="2026-04-03">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Experience</div>
+  <div class="ev-dt">Apr 03, 2026</div>
+  <h3>Top Golf</h3>
+  <p>Precision under pressure.</p>
+</div>
+
+<div class="ev-card" data-date="2026-04-10">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Voyage</div>
+  <div class="ev-dt">Apr 10–12, 2026</div>
+  <h3>Voyage II</h3>
+  <p>New terrain. Same tribe.</p>
+</div>
+
+<div class="ev-card" data-date="2026-04-11">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Creative</div>
+  <div class="ev-dt">Apr 11, 2026</div>
+  <h3>Arts & Crafts</h3>
+  <p>Build something unexpected.</p>
+</div>
+
+<div class="ev-card" data-date="2026-04-17">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Dinner Series</div>
+  <div class="ev-dt">Apr 17, 2026</div>
+  <h3>Dinner Series III</h3>
+  <p>Energy shifts at the table.</p>
+</div>
+
+<div class="ev-card" data-date="2026-04-19">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Active</div>
+  <div class="ev-dt">Apr 19, 2026</div>
+  <h3>Run Club</h3>
+  <p>Momentum matters.</p>
+</div>
+
+<div class="ev-card" data-date="2026-04-26">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Outdoor</div>
+  <div class="ev-dt">Apr 26, 2026</div>
+  <h3>Hike</h3>
+  <p>Elevation changes perspective.</p>
+</div>
+
+<div class="ev-card" data-date="2026-04-30">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Dinner Series</div>
+  <div class="ev-dt">Apr 30, 2026</div>
+  <h3>Dinner Series IV</h3>
+  <p>The final table.</p>
+</div>
+
+<!-- MAY -->
+<div class="ev-card" data-date="2026-05-01">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Signature</div>
+  <div class="ev-dt">May 01–02, 2026</div>
+  <h3>White Party</h3>
+  <p>All white. High frequency.</p>
+</div>
+
+<div class="ev-card" data-date="2026-05-14">
+  <div class="ev-num"></div>
+  <div class="ev-tag">Community</div>
+  <div class="ev-dt">May 14, 2026</div>
+  <h3>Expat Commencement</h3>
+  <p>A milestone worth celebrating.</p>
+</div>
+
+
+</section>
 <section class="sec"><div class="rv"><div class="s-lbl">FAQ</div><h2 class="s-h">Common Questions</h2></div><div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>Who can join?</h3><div class="faq-t"></div></div><div class="faq-a"><p>International students and expats based in Los Angeles. We look for mindset, not just background.</p></div></div><div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do applications work?</h3><div class="faq-t"></div></div><div class="faq-a"><p>Applications open twice a year. Every submission is reviewed.</p></div></div><div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>What are ONYX and White Party?</h3><div class="faq-t"></div></div><div class="faq-a"><p>Our two flagship nights. Invite-only. Members + one guest.</p></div></div><div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>Do I need to know anyone?</h3><div class="faq-t"></div></div><div class="faq-a"><p>No. The right people find each other here.</p></div></div><div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>Is there a membership fee?</h3><div class="faq-t"></div></div><div class="faq-a"><p>Details are shared after acceptance.</p></div></div></section>
 <section id="apply" class="sec apply"><div class="apply-orb"></div><div class="apply-c rv"><div class="s-lbl" style="justify-content:center">Apply</div><h2 class="s-h">Ready to Join?</h2><p class="apply-d">Applications open twice a year. If it's open, you'll know.</p><div class="apply-note">Applications for Fall 2026 · Coming Soon</div><a href="https://docs.google.com/forms" target="_blank" rel="noopener" class="apply-btn">Apply Now</a></div></section>
 <section class="sec insta"><div class="rv"><div class="s-lbl" style="justify-content:center">Instagram</div><h2 class="s-h" style="text-align:center;margin:0 auto">@expatsociety</h2></div><div class="insta-g">
@@ -614,7 +818,7 @@ footer{padding:3rem 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.025)}
 
 </div>
 </div><a href="https://instagram.com/expatsociety" target="_blank" rel="noopener" class="insta-l rv">Follow @expatsociety →</a></section>
-<footer><div class="f-top"><div class="f-logo"><svg viewBox="0 0 3944.79 4199.8" fill="var(--pure)"><path d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg><span>Expat Society</span></div><div class="f-links"><a href="https://instagram.com/expatsociety" target="_blank">Instagram</a><a href="mailto:hello@expatsociety.com">Contact</a></div></div><div class="f-bot"><span>© 2026 Expat Society LLC · Los Angeles, CA</span><span>Selective. Always.</span></div></footer>
+<footer><div class="f-top"><div class="f-logo"><svg viewBox="0 0 3944.79 4199.8" fill="var(--pure)"><path d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg><span>Expat Society</span></div><div class="f-links"><a href="https://instagram.com/expatsociety" target="_blank">Instagram</a><a href="mailto:hello@expatsociety.com">Contact</a></div></div><div class="f-bot"><span>© 2026 Expat Society LLC · Los Angeles, CA. All rights reserved.</span><span>Selective. Always.</span></div></footer>
 
 <script>
 // ═══ INTRO ═══
@@ -881,6 +1085,49 @@ function toggleSound(){
   var vid = document.getElementById('eventVideo');
   vid.muted = !vid.muted;
 }
+document.addEventListener("DOMContentLoaded", function(){
+
+  const container = document.getElementById("eventsContainer");
+  const cards = Array.from(container.querySelectorAll(".ev-card"));
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  // Ordina cronologicamente
+  cards.sort((a,b)=>{
+    return new Date(a.dataset.date) - new Date(b.dataset.date);
+  });
+
+  container.innerHTML = "";
+
+  let firstUpcoming = null;
+
+  cards.forEach((card,index)=>{
+
+    const eventDate = new Date(card.dataset.date);
+    eventDate.setHours(0,0,0,0);
+
+    if(eventDate < today){
+      card.classList.add("past");
+    } else if(!firstUpcoming){
+      firstUpcoming = card; // salva primo evento futuro
+    }
+
+    card.querySelector(".ev-num").textContent =
+      String(index+1).padStart(2,"0");
+
+    container.appendChild(card);
+  });
+
+  // 👇 Scroll automatico al primo evento futuro
+  if(firstUpcoming){
+    setTimeout(()=>{
+      container.scrollLeft =
+        firstUpcoming.offsetLeft - 20; // piccolo margine
+    }, 100);
+  }
+
+});
+
 
 </script>
 </body>
