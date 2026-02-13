@@ -634,12 +634,23 @@ var plFaces=[{v:[0,1,2],f:'rgba(255,255,255,.12)',s:'rgba(255,255,255,.25)'},{v:
 var t=0,trail=[];
 let planeRunning = false;
 let planeFrame;
-
+let fpsInterval = 1000 / 24; // 30fps
+let then = Date.now();
 function drawPlane(){
   if(!planeRunning) return;
 
+  planeFrame = requestAnimationFrame(drawPlane);
+
+  let now = Date.now();
+  let elapsed = now - then;
+
+  if(elapsed < fpsInterval) return;
+
+  then = now - (elapsed % fpsInterval);
+
   ctx.clearRect(0,0,W,H);
   t+=.003;
+
 
   var bx=W*.5,by=H*.4,fw=t*60,
       dx=Math.sin(t*.7)*(W*.08),
