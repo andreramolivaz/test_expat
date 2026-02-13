@@ -69,9 +69,27 @@ canvas#c3d{position:absolute;inset:0;z-index:1;pointer-events:none}
 .outro-path{fill:none;stroke:#ff1e1e;stroke-width:50;stroke-linejoin:round;stroke-dasharray:12000;stroke-dashoffset:12000;animation:drawOutro 6s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(255,0,0,.8)) drop-shadow(0 0 40px rgba(255,0,0,.4))}
 @keyframes drawOutro{0%{stroke-dashoffset:12000}40%{stroke-dashoffset:0}60%{stroke-dashoffset:0}100%{stroke-dashoffset:12000}}
 .next-ev{position:relative;overflow:hidden;padding:4rem 1.5rem;min-height:50vh;display:flex;align-items:center;justify-content:center;text-align:center;background:var(--ink)}
-.next-ev::after{content:'';position:absolute;inset:0;background:linear-gradient(rgba(15,15,15,.78),rgba(15,15,15,.85)),radial-gradient(ellipse at center,rgba(255,255,255,.06),transparent 70%);pointer-events:none}
+.next-ev::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(10,10,10,.85), rgba(10,10,10,.9)),
+    radial-gradient(ellipse at center, rgba(255,255,255,.08), transparent 70%);
+  backdrop-filter: blur(2px);
+  pointer-events:none;
+}
 .ne-bg-media{position:absolute;inset:0;z-index:0}
-.ne-bg-media img,.ne-bg-media video{width:100%;height:100%;object-fit:cover;opacity:.28;filter:grayscale(40%) brightness(0.6) contrast(1.1);transform:scale(1.05)}
+.ne-bg-media video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.45;
+  filter:brightness(.7) contrast(1.1);
+  transform:scale(1.05);
+}
 .ne-bg-media video{object-position:center 30%}
 .ne-c{position:relative;z-index:2}
 .ne-lbl{font-size:.35rem;letter-spacing:.8em;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:1.5rem}
@@ -105,7 +123,79 @@ canvas#globe{width:100%;height:100%}
 .a-n h3{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--pure);line-height:1}
 .a-n p{font-size:.35rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mist);margin-top:.2rem;font-weight:700}
 .wwd{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:1.5rem}
-.wwd-i{background:rgba(255,255,255,.012);padding:1.5rem 1rem;border:1px solid rgba(255,255,255,.02);text-align:center}
+.wwd-i{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.05);
+  height:220px;
+  display:flex;
+  align-items:flex-end;
+  padding:0;
+}
+.wwd-bg{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  filter:brightness(0.6) contrast(1.05);
+  transform:scale(1.05);
+  transition:transform .6s ease;
+}
+
+.wwd-i::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    rgba(0,0,0,.2),
+    rgba(0,0,0,.75)
+  );
+}
+
+.wwd-content{
+  position:relative;
+  z-index:2;
+  padding:1.5rem;
+  text-align:left;
+}
+
+.wwd-i h4{
+  font-size:.6rem;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  font-weight:700;
+  margin-bottom:.4rem;
+}
+
+.wwd-i p{
+  font-size:.7rem;
+  color:rgba(255,255,255,.8);
+}
+
+.wwd-i:hover .wwd-bg{
+  transform:scale(1.1);
+}
+.sound-toggle{
+  position:absolute;
+  bottom:20px;
+  right:20px;
+  z-index:5;
+  background:rgba(0,0,0,.6);
+  color:white;
+  border:1px solid rgba(255,255,255,.2);
+  padding:.5rem 1rem;
+  font-size:.5rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.sound-toggle:hover{
+  background:white;
+  color:black;
+}
+
 .wwd-ico{font-size:1.5rem;margin-bottom:.6rem;opacity:.12}
 .wwd-i h4{font-size:.45rem;letter-spacing:.25em;text-transform:uppercase;font-weight:700;margin-bottom:.3rem}
 .wwd-i p{font-size:.65rem;color:var(--mist);line-height:1.4}
@@ -190,11 +280,64 @@ footer{padding:3rem 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.025)}
   <div class="intro-t">EXPAT SOCIETY</div>
 </div>
 <nav><a href="#" class="nb"><svg viewBox="0 0 3944.79 4199.8" fill="var(--pure)"><path d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg><span>Expat Society</span></a><div class="nr"><a href="#about">About</a><a href="#events">Events</a><a href="#apply" class="na">Apply</a></div></nav>
-<section class="hero"><canvas id="c3d"></canvas><div class="hero-ov"></div><div class="hero-ct"><div class="h-eye">Los Angeles, CA</div><h1 class="h-title">Same Sky.<br><span class="stk">Different</span> Roots.</h1><p class="h-desc">Different origins. Same frequency.</p><div class="h-acts"><a href="#apply" class="btn-w">Apply Now</a><a href="#events" class="btn-g">See Events ↓</a></div></div><div class="h-scroll"><span>Scroll</span><div class="scroll-bar"></div></div></section>
-<div class="next-ev rv"><div class="ne-bg-media"></div><div class="ne-c"><div class="ne-lbl">Next Event</div><div class="ne-name">FANCYNAME</div><div class="ne-date">Date TBA · Location Undisclosed</div><div class="ne-mys">The details are revealed only to those who are already in.</div><div class="ne-dets"><div class="ne-det"><div class="val">???</div><div class="lbl">Location</div></div><div class="ne-det"><div class="val">???</div><div class="lbl">Dress Code</div></div><div class="ne-det"><div class="val">???</div><div class="lbl">Capacity</div></div></div><div class="ne-inv">Members + 1 Guest Only</div></div></div>
+<section class="hero"><canvas id="c3d"></canvas><div class="hero-ov"></div><div class="hero-ct"><div class="h-eye">Los Angeles, CA</div><h1 class="h-title">Same Sky.<br><span class="stk">Different</span> Roots.</h1><p class="h-desc">Different origins. Same frequency.</p><div class="h-acts"><a href="#apply" class="btn-w">Apply Now</a><a href="#events" class="btn-g">See Events ↓</a></div></div><div class="h-scroll"><span>Explore</span><div class="scroll-bar"></div></div></section>
+<div class="next-ev rv">
+
+  <div class="ne-bg-media">
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      id="eventVideo">
+      <source src="video/onyx-preview.mp4" type="video/mp4">
+    </video>
+      </div>
+    <button class="sound-toggle" onclick="toggleSound()">Sound On</button>
+
+
+
+  <div class="ne-c">
+<div class="ne-lbl">Next Event</div><div class="ne-name">VORAZ</div><div class="ne-date">Date TBA · Location Undisclosed</div><div class="ne-mys">The details are revealed only to those who are already in.</div><div class="ne-dets"><div class="ne-det"><div class="val">???</div><div class="lbl">Location</div></div><div class="ne-det"><div class="val">???</div><div class="lbl">Dress Code</div></div><div class="ne-det"><div class="val">???</div><div class="lbl">Capacity</div></div></div><div class="ne-inv">Members + 1 Guest Only</div></div></div>
 <div class="mq"><div class="mq-t"><span>USC</span><div class="mq-d">◆</div><span>UCLA</span><div class="mq-d">◆</div><span>PEPPERDINE</span><div class="mq-d">◆</div><span>LOYOLA</span><div class="mq-d">◆</div><span>ONYX</span><div class="mq-d">◆</div><span>WHITE PARTY</span><div class="mq-d">◆</div><span>MAMMOTH</span><div class="mq-d">◆</div><span>BIG BEAR</span><div class="mq-d">◆</div><span>PALM SPRINGS</span><div class="mq-d">◆</div><span>SAN DIEGO</span><div class="mq-d">◆</div><span>USC</span><div class="mq-d">◆</div><span>UCLA</span><div class="mq-d">◆</div><span>PEPPERDINE</span><div class="mq-d">◆</div><span>LOYOLA</span><div class="mq-d">◆</div><span>ONYX</span><div class="mq-d">◆</div><span>WHITE PARTY</span><div class="mq-d">◆</div><span>MAMMOTH</span><div class="mq-d">◆</div><span>BIG BEAR</span><div class="mq-d">◆</div><span>PALM SPRINGS</span><div class="mq-d">◆</div><span>SAN DIEGO</span><div class="mq-d">◆</div></div></div>
 <section id="about" class="sec about"><div class="rv"><div class="s-lbl">About</div><h2 class="s-h">One City. Every Flag.</h2></div><div class="globe-wrap rv"><canvas id="globe"></canvas></div><div class="a-text rv"><p><strong>EXPAT SOCIETY</strong> is a registered LLC in Los Angeles. A private community of international students (USC, UCLA, Pepperdine, Loyola...) and expats in Los Angeles. 40+ countries. One city.</p><p>Themed parties, sunrise hikes, dinners, brunch, weekend trips to Mammoth, Big Bear, Palm Springs, San Diego. <strong>The community nobody told you existed. We're selective to keep the right energy.</strong></p></div><div class="a-quote rv">You moved. Now move differently.</div><div class="a-nums rv"><div class="a-n"><h3>200</h3><p>People</p></div><div class="a-n"><h3>40+</h3><p>Countries</p></div><div class="a-n"><h3>840+</h3><p>Applications</p></div></div></section>
-<section class="sec"><div class="rv"><div class="s-lbl">What We Do</div><h2 class="s-h">More Than Nights.</h2></div><div class="wwd rv"><div class="wwd-i"><div class="wwd-ico">🖤</div><h4>Themed Parties</h4><p>ONYX. White Party. Secret locations.</p></div><div class="wwd-i"><div class="wwd-ico">⛰️</div><h4>Hikes</h4><p>Sunrise summits, Runyon, coastal trails.</p></div><div class="wwd-i"><div class="wwd-ico">🎳</div><h4>Socials</h4><p>Bowling, brunch, dinners, game nights.</p></div><div class="wwd-i"><div class="wwd-ico">🏔️</div><h4>Trips</h4><p>Mammoth, Big Bear, Palm Springs, SD.</p></div></div></section>
+<section class="sec"><div class="rv"><div class="s-lbl">What We Do</div><h2 class="s-h">More Than Nights.</h2></div>
+ <div class="wwd rv">
+
+  <div class="wwd-i">
+    <div class="wwd-bg" style="background-image:url('img/party.jpg')"></div>
+    <div class="wwd-content">
+      <h4>Themed Parties</h4>
+      <p>ONYX. White Party. Secret locations.</p>
+    </div>
+  </div>
+
+  <div class="wwd-i">
+    <div class="wwd-bg" style="background-image:url('img/hike.jpg')"></div>
+    <div class="wwd-content">
+      <h4>Hikes</h4>
+      <p>Sunrise summits, Runyon, coastal trails.</p>
+    </div>
+  </div>
+
+  <div class="wwd-i">
+    <div class="wwd-bg" style="background-image:url('img/social.jpg')"></div>
+    <div class="wwd-content">
+      <h4>Socials</h4>
+      <p>Brunch, dinners, game nights.</p>
+    </div>
+  </div>
+
+  <div class="wwd-i">
+    <div class="wwd-bg" style="background-image:url('img/trip.jpg')"></div>
+    <div class="wwd-content">
+      <h4>Trips</h4>
+      <p>Mammoth, Big Bear, Palm Springs, SD.</p>
+    </div>
+  </div>
+
+</div>
+</section>
 <section class="outro"><div class="outro-logo"><svg viewBox="-150 -150 4244.79 4499.8" xmlns="http://www.w3.org/2000/svg"><path class="outro-path" d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path class="outro-path" d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path class="outro-path" d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg></div><div class="outro-content"><h2>"YOU HAVE TO<br>GO ON AND<br>BE CRAZY.<br><br>CRAZINESS IS<br>LIKE HEAVEN."</h2><div class="outro-sign">The Expat Family</div></div></section>
 <section class="gallery"><div class="gal-h rv"><div class="s-lbl">Gallery</div><h2 class="s-h">The Life</h2></div><div class="g-track"><div class="g-item"><div class="g-bg"><div class="g-ico">🖤</div></div><div class="g-info"><h4>ONYX III</h4><span>Fall 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🤍</div></div><div class="g-info"><h4>White Party</h4><span>Summer 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">⛰️</div></div><div class="g-info"><h4>Sunrise Hike</h4><span>Griffith Park</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🏔️</div></div><div class="g-info"><h4>Mammoth Trip</h4><span>Winter 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🌴</div></div><div class="g-info"><h4>Palm Springs</h4><span>Spring 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🎳</div></div><div class="g-info"><h4>Bowling Night</h4><span>DTLA</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🖤</div></div><div class="g-info"><h4>ONYX III</h4><span>Fall 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🤍</div></div><div class="g-info"><h4>White Party</h4><span>Summer 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">⛰️</div></div><div class="g-info"><h4>Sunrise Hike</h4><span>Griffith Park</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🏔️</div></div><div class="g-info"><h4>Mammoth Trip</h4><span>Winter 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🌴</div></div><div class="g-info"><h4>Palm Springs</h4><span>Spring 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🎳</div></div><div class="g-info"><h4>Bowling Night</h4><span>DTLA</span></div></div></div><div class="g-track rev" style="margin-top:.4rem"><div class="g-item"><div class="g-bg"><div class="g-ico">🌊</div></div><div class="g-info"><h4>Beach Day</h4><span>Malibu</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🍽️</div></div><div class="g-info"><h4>Group Dinner</h4><span>K-Town</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🏜️</div></div><div class="g-info"><h4>Desert Trip</h4><span>Joshua Tree</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🌅</div></div><div class="g-info"><h4>San Diego</h4><span>Weekend Trip</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🥂</div></div><div class="g-info"><h4>Brunch</h4><span>WeHo</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🎉</div></div><div class="g-info"><h4>Semester Party</h4><span>Fall 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🌊</div></div><div class="g-info"><h4>Beach Day</h4><span>Malibu</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🍽️</div></div><div class="g-info"><h4>Group Dinner</h4><span>K-Town</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🏜️</div></div><div class="g-info"><h4>Desert Trip</h4><span>Joshua Tree</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🌅</div></div><div class="g-info"><h4>San Diego</h4><span>Weekend Trip</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🥂</div></div><div class="g-info"><h4>Brunch</h4><span>WeHo</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🎉</div></div><div class="g-info"><h4>Semester Party</h4><span>Fall 2025</span></div></div></div></section>
 <section id="events" class="sec events"><div class="rv"><div class="s-lbl">Events</div><h2 class="s-h">Flagship Experiences</h2></div><div class="flag-c rv"><div class="flag-badge">Signature Event</div><div class="flag-name"><em>ONYX</em></div><div class="flag-desc">All-black. Secret location. International DJs. The kind of night you talk about for years.</div><div class="flag-inv">By Invitation Only</div></div><div class="flag-c rv"><div class="flag-badge">Signature Event</div><div class="flag-name"><em>White</em> Party</div><div class="flag-desc">All-white. Rooftop. Summer. The night that becomes a core memory.</div><div class="flag-inv">By Invitation Only</div></div><div style="margin-top:2rem" class="rv"><h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin-bottom:.8rem"><em>Upcoming</em></h3></div><div class="ev-scroll"><div class="ev-card"><div class="ev-num">01</div><div class="ev-tag">Hike</div><div class="ev-dt">Mar 2026</div><h3>Sunrise at Griffith</h3><p>5:30AM. Golden hour over the city.</p></div><div class="ev-card"><div class="ev-num">02</div><div class="ev-tag">Social</div><div class="ev-dt">Mar 2026</div><h3>Bowling Night</h3><p>Cosmic bowling in DTLA. Zero skills required.</p></div><div class="ev-card"><div class="ev-num">03</div><div class="ev-tag">Trip</div><div class="ev-dt">Apr 2026</div><h3>Big Bear Weekend</h3><p>Cabins, lake, bonfires. 48h off the grid.</p></div><div class="ev-card"><div class="ev-num">04</div><div class="ev-tag">Brunch</div><div class="ev-dt">Apr 2026</div><h3>Sunday Brunch</h3><p>Bottomless mimosas. Good conversation.</p></div></div></section>
@@ -376,6 +519,11 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener
 
 // ═══ PARALLAX ═══
 window.addEventListener('scroll',function(){var s=scrollY;var h=document.querySelector('.hero-ct');if(h&&s<innerHeight){h.style.transform='translateY('+s*.1+'px)';h.style.opacity=1-s/(innerHeight*.7)}},{passive:true});
+function toggleSound(){
+  var vid = document.getElementById('eventVideo');
+  vid.muted = !vid.muted;
+}
+
 </script>
 </body>
 </html>
