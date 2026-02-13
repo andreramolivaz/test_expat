@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Expat Society</title>
+
+
+<style>
+
+:root{
+--void:#030303;
+--ink:#080808;
+--mist:#666;
+--silver:#999;
+--pure:#fff;
+--white:#eee;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+background:var(--void);
+color:var(--white);
+font-family:'Arial Narrow',Arial,sans-serif;
+overflow-x:hidden;
+}
+
+.archive-section{
+  margin-top:8rem;
+}
+
+.archive-separator{
+  height:1px;
+  width:100%;
+  background:rgba(255,255,255,.08);
+  margin-bottom:5rem;
+}
+
+
+.grain{
+position:fixed;
+inset:0;
+pointer-events:none;
+opacity:.02;
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+background-size:100px;
+z-index:1;
+}
+
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+z-index:900;
+padding:1rem 2rem;
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:linear-gradient(to bottom,rgba(3,3,3,.95),transparent);
+backdrop-filter:blur(12px);
+}
+
+.nb{
+display:flex;
+align-items:center;
+gap:.5rem;
+text-decoration:none;
+color:var(--pure);
+}
+
+.nb svg{
+width:18px;
+height:20px;
+}
+
+.nb span{
+font-size:.55rem;
+letter-spacing:.3em;
+text-transform:uppercase;
+font-weight:700;
+}
+
+.nr a{
+color:var(--silver);
+text-decoration:none;
+font-size:.5rem;
+letter-spacing:.18em;
+text-transform:uppercase;
+font-weight:700;
+}
+
+.sec{
+padding:8rem 2rem 4rem 2rem;
+max-width:1200px;
+margin:auto;
+}
+
+.s-lbl{
+font-size:.38rem;
+letter-spacing:.7em;
+text-transform:uppercase;
+color:var(--silver);
+font-weight:700;
+margin-bottom:1rem;
+}
+
+.s-h{
+font-family:'Cormorant Garamond',serif;
+font-size:clamp(2rem,5vw,3rem);
+font-weight:300;
+margin-bottom:2rem;
+}
+
+.insta-g{
+  display:grid;
+  grid-template-columns:repeat(5, 1fr); /* 4 per riga SEMPRE */
+  gap:2px;
+}
+
+.insta-c{
+  position:relative;
+  aspect-ratio:1 / 1;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.04);
+}
+
+.insta-c img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+
+
+.insta-c:hover img{
+transform:scale(1.05);
+}
+.download-icon{
+  position:absolute;
+  top:10px;
+  right:10px;
+  width:28px;
+  height:28px;
+  border:1px solid rgba(255,255,255,.3);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.8rem;
+  text-decoration:none;
+  color:white;
+  background:rgba(0,0,0,.5);
+  backdrop-filter:blur(4px);
+  opacity:0;
+  transition:.3s ease;
+}
+
+.insta-c:hover .download-icon{
+  opacity:1;
+}
+
+.download-icon:hover{
+  background:white;
+  color:black;
+}
+
+.download-overlay{
+position:absolute;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(0,0,0,.6);
+color:white;
+text-decoration:none;
+font-size:.55rem;
+letter-spacing:.35em;
+text-transform:uppercase;
+opacity:0;
+transition:.4s;
+backdrop-filter:blur(3px);
+}
+
+.insta-c:hover .download-overlay{
+opacity:1;
+}
+
+footer{
+padding:3rem 2rem;
+border-top:1px solid rgba(255,255,255,.05);
+text-align:center;
+font-size:.45rem;
+letter-spacing:.08em;
+color:var(--mist);
+}
+
+/* MODAL */
+
+.img-modal{
+position:fixed;
+inset:0;
+background:rgba(3,3,3,.97);
+backdrop-filter:blur(10px);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:99999;
+}
+
+.img-modal.active{
+display:flex;
+}
+
+.img-modal-inner{
+max-width:90vw;
+max-height:90vh;
+text-align:center;
+}
+
+.img-modal-inner img{
+max-width:100%;
+max-height:75vh;
+object-fit:contain;
+}
+
+.modal-actions{
+margin-top:2rem;
+display:flex;
+gap:2rem;
+justify-content:center;
+}
+
+.download-btn{
+border:1px solid rgba(255,255,255,.3);
+padding:.7rem 2rem;
+font-size:.6rem;
+letter-spacing:.35em;
+text-transform:uppercase;
+color:white;
+text-decoration:none;
+transition:.4s;
+}
+
+.download-btn:hover{
+background:white;
+color:black;
+}
+
+.close-btn{
+background:transparent;
+border:none;
+color:rgba(255,255,255,.4);
+font-size:.6rem;
+letter-spacing:.3em;
+text-transform:uppercase;
+cursor:pointer;
+}
+
+@media(max-width:600px){
+.sec{padding:7rem 1rem 3rem 1rem;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="grain"></div>
+
+<nav>
+  <a href="index.html" class="nb">
+    <svg viewBox="0 0 3944.79 4199.8" fill="var(--pure)">
+      <path d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/>
+      <path d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/>
+      <path d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/>
+    </svg>
+    <span>Expat Society</span>
+  </a>
+
+
+
+</nav>
+
+
+<section class="sec">
+
+  <div class="s-lbl">Archive I</div>
+  <h2 class="s-h">ZICHT</h2>
+
+<div class="insta-g gallery-grid">
+
+  <!-- 001–012 -->
+  <div class="insta-c"><img src="img/zicht/001.jpg"><a href="img/zicht/001.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/002.jpg"><a href="img/zicht/002.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/003.jpg"><a href="img/zicht/003.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/004.jpg"><a href="img/zicht/004.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/005.jpg"><a href="img/zicht/005.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/006.jpg"><a href="img/zicht/006.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/007.jpg"><a href="img/zicht/007.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/008.jpg"><a href="img/zicht/008.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/009.jpg"><a href="img/zicht/009.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/010.jpg"><a href="img/zicht/010.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/011.jpg"><a href="img/zicht/011.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/012.jpg"><a href="img/zicht/012.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+
+  <!-- 013–024 -->
+  <div class="insta-c"><img src="img/zicht/013.jpg"><a href="img/zicht/013.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/014.jpg"><a href="img/zicht/014.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/015.jpg"><a href="img/zicht/015.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/016.jpg"><a href="img/zicht/016.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/017.jpg"><a href="img/zicht/017.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/018.jpg"><a href="img/zicht/018.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/019.jpg"><a href="img/zicht/019.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/020.jpg"><a href="img/zicht/020.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/021.jpg"><a href="img/zicht/021.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/022.jpg"><a href="img/zicht/022.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/023.jpg"><a href="img/zicht/023.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/024.jpg"><a href="img/zicht/024.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+
+  <!-- 025–036 -->
+  <div class="insta-c"><img src="img/zicht/025.jpg"><a href="img/zicht/025.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/026.jpg"><a href="img/zicht/026.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/027.jpg"><a href="img/zicht/027.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/028.jpg"><a href="img/zicht/028.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/029.jpg"><a href="img/zicht/029.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/030.jpg"><a href="img/zicht/030.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/031.jpg"><a href="img/zicht/031.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/032.jpg"><a href="img/zicht/032.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/033.jpg"><a href="img/zicht/033.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/034.jpg"><a href="img/zicht/034.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/035.jpg"><a href="img/zicht/035.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="insta-c"><img src="img/zicht/036.jpg"><a href="img/zicht/036.jpg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+
+</div>
+
+    <div class="archive-separator"></div>
+
+  <div class="s-lbl">Archive II</div>
+  <h2 class="s-h">Wine night</h2>
+<div class="insta-g gallery-grid">
+
+  <div class="insta-c"><img src="img/wine/1.jpeg"><a href="img/wine/1.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/2.jpeg"><a href="img/wine/2.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/4.jpeg"><a href="img/wine/4.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/5.jpeg"><a href="img/wine/5.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/6.jpeg"><a href="img/wine/6.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/7.jpeg"><a href="img/wine/7.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/8.jpeg"><a href="img/wine/8.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/9.jpeg"><a href="img/wine/9.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/10.jpeg"><a href="img/wine/10.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/6.jpeg"><a href="img/wine/6.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/7.jpeg"><a href="img/wine/7.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/8.jpeg"><a href="img/wine/8.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/9.jpeg"><a href="img/wine/9.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/10.jpeg"><a href="img/wine/10.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/11.jpeg"><a href="img/wine/11.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/12.jpeg"><a href="img/wine/12.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/13.jpeg"><a href="img/wine/13.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/14.jpeg"><a href="img/wine/14.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/15.jpeg"><a href="img/wine/15.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/16.jpeg"><a href="img/wine/16.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/17.jpeg"><a href="img/wine/17.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/18.jpeg"><a href="img/wine/18.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/19.jpeg"><a href="img/wine/19.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/20.jpeg"><a href="img/wine/20.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/21.jpeg"><a href="img/wine/21.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/22.jpeg"><a href="img/wine/22.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/23.jpeg"><a href="img/wine/23.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/24.jpeg"><a href="img/wine/24.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/25.jpeg"><a href="img/wine/25.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/26.jpeg"><a href="img/wine/26.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/27.jpeg"><a href="img/wine/27.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/28.jpeg"><a href="img/wine/28.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/29.jpeg"><a href="img/wine/29.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/30.jpeg"><a href="img/wine/30.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/31.jpeg"><a href="img/wine/31.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/32.jpeg"><a href="img/wine/32.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/33.jpeg"><a href="img/wine/33.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/34.jpeg"><a href="img/wine/34.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/35.jpeg"><a href="img/wine/35.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/36.jpeg"><a href="img/wine/36.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/37.jpeg"><a href="img/wine/37.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/38.jpeg"><a href="img/wine/38.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/39.jpeg"><a href="img/wine/39.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/40.jpeg"><a href="img/wine/40.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/41.jpeg"><a href="img/wine/41.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/42.jpeg"><a href="img/wine/42.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/43.jpeg"><a href="img/wine/43.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/44.jpeg"><a href="img/wine/44.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/45.jpeg"><a href="img/wine/45.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/46.jpeg"><a href="img/wine/46.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/47.jpeg"><a href="img/wine/47.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/48.jpeg"><a href="img/wine/48.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/49.jpeg"><a href="img/wine/49.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/50.jpeg"><a href="img/wine/50.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/51.jpeg"><a href="img/wine/51.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/52.jpeg"><a href="img/wine/52.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/53.jpeg"><a href="img/wine/53.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/54.jpeg"><a href="img/wine/54.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/55.jpeg"><a href="img/wine/55.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/56.jpeg"><a href="img/wine/56.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/57.jpeg"><a href="img/wine/57.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/58.jpeg"><a href="img/wine/58.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/59.jpeg"><a href="img/wine/59.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/60.jpeg"><a href="img/wine/60.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/61.jpeg"><a href="img/wine/61.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/62.jpeg"><a href="img/wine/62.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/63.jpeg"><a href="img/wine/63.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/64.jpeg"><a href="img/wine/64.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/65.jpeg"><a href="img/wine/65.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/66.jpeg"><a href="img/wine/66.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/67.jpeg"><a href="img/wine/67.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/68.jpeg"><a href="img/wine/68.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/69.jpeg"><a href="img/wine/69.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/70.jpeg"><a href="img/wine/70.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/71.jpeg"><a href="img/wine/71.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/72.jpeg"><a href="img/wine/72.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/73.jpeg"><a href="img/wine/73.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/74.jpeg"><a href="img/wine/74.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/75.jpeg"><a href="img/wine/75.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/76.jpeg"><a href="img/wine/76.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/77.jpeg"><a href="img/wine/77.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/78.jpeg"><a href="img/wine/78.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/79.jpeg"><a href="img/wine/79.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/80.jpeg"><a href="img/wine/80.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/81.jpeg"><a href="img/wine/81.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/82.jpeg"><a href="img/wine/82.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/83.jpeg"><a href="img/wine/83.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/84.jpeg"><a href="img/wine/84.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/85.jpeg"><a href="img/wine/85.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/86.jpeg"><a href="img/wine/86.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/87.jpeg"><a href="img/wine/87.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/88.jpeg"><a href="img/wine/88.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/89.jpeg"><a href="img/wine/89.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/90.jpeg"><a href="img/wine/90.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/91.jpeg"><a href="img/wine/91.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/92.jpeg"><a href="img/wine/92.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/93.jpeg"><a href="img/wine/93.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/94.jpeg"><a href="img/wine/94.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/95.jpeg"><a href="img/wine/95.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/96.jpeg"><a href="img/wine/96.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/97.jpeg"><a href="img/wine/97.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/98.jpeg"><a href="img/wine/98.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="insta-c"><img src="img/wine/99.jpeg"><a href="img/wine/99.jpeg" download class="download-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  </div>
+  <div class="archive-separator"></div>
+
+  <div class="s-lbl">Archive III</div>
+  <h2 class="s-h">ONYX III</h2>
+
+  <div class="insta-g gallery-grid">
+
+    <div class="insta-c">
+      <img src="img/onyx/1.JPG">
+<a href="img/onyx/1.JPG" download class="download-icon">
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="white">
+    <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>    </div>
+
+    <div class="insta-c">
+      <img src="img/onyx/2.JPG">
+<a href="img/onyx/2.JPG" download class="download-icon">
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="white">
+    <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>    </div>
+
+    <div class="insta-c">
+      <img src="img/onyx/3.JPG">
+<a href="img/onyx/3.JPG" download class="download-icon">
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="white">
+    <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>    </div>
+
+    <div class="insta-c">
+      <img src="img/onyx/4.JPG">
+<a href="img/onyx/4.JPG" download class="download-icon">
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="white">
+    <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>    </div>
+      <div class="insta-c">
+      <img src="img/onyx/5.JPG">
+<a href="img/onyx/5.JPG" download class="download-icon">
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="white">
+    <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>    </div>
+      <div class="insta-c">
+      <img src="img/onyx/6.JPG">
+<a href="img/onyx/6.JPG" download class="download-icon">
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="white">
+    <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>    </div>
+  <div class="insta-c">
+      <img src="img/onyx/8.jpg">
+<a href="img/onyx/8.jpg" download class="download-icon">
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="white">
+    <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>    </div>
+      <div class="insta-c">
+      <img src="img/onyx/9.jpeg">
+<a href="img/onyx/9.jpeg" download class="download-icon">
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="white">
+    <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>    </div>
+    <div class="insta-c">
+      <img src="img/onyx/7.JPG">
+<a href="img/onyx/5.JPG" download class="download-icon">
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="white">
+    <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>    </div>
+
+  </div>
+
+</section>
+
+<div id="imgModal" class="img-modal">
+<div class="img-modal-inner">
+<img id="modalImage" src="">
+<div class="modal-actions">
+<a id="downloadBtn" href="#" download class="download-btn">Download</a>
+<button class="close-btn" onclick="closeModal()">Close</button>
+</div>
+</div>
+</div>
+
+
+<footer>
+© 2026 Expat Society LLC. All rights reserved.
+</footer>
+
+
+<script>
+
+// BLOCCO ACCESSO
+if(!sessionStorage.getItem("memberAccess")){
+window.location.href = "index.html";
+}
+
+// MODAL
+
+const modal = document.getElementById("imgModal");
+const modalImg = document.getElementById("modalImage");
+const downloadBtn = document.getElementById("downloadBtn");
+
+document.querySelectorAll(".gallery-grid img").forEach(img => {
+img.addEventListener("click", function(){
+const fullPath = this.dataset.full;
+modalImg.src = fullPath;
+downloadBtn.href = fullPath;
+modal.classList.add("active");
+document.body.style.overflow = "hidden";
+});
+});
+
+function closeModal(){
+modal.classList.remove("active");
+document.body.style.overflow = "auto";
+}
+
+modal.addEventListener("click", function(e){
+if(!e.target.closest(".img-modal-inner")){
+closeModal();
+}
+});
+
+document.addEventListener("keydown", function(e){
+if(e.key === "Escape"){
+closeModal();
+}
+});
+
+</script>
+
+</body>
+</html>
