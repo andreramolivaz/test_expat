@@ -203,9 +203,46 @@ canvas#globe{width:100%;height:100%}
 .gal-h{padding:0 1.5rem;margin-bottom:1.5rem}
 .g-track{display:flex;gap:.4rem;animation:galSlide 38s linear infinite;width:max-content}
 .g-track:hover{animation-play-state:paused}
-.g-item{width:220px;height:290px;background:var(--smoke);flex-shrink:0;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.015)}
+.g-item{
+  width:220px;
+  height:290px;
+  flex-shrink:0;
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.05);
+}.g-item img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.7) contrast(1.05);
+  transition:transform .6s ease;
+}
+
+.g-item::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    rgba(0,0,0,.2),
+    rgba(0,0,0,.75)
+  );
+  z-index:1;
+}
+
+.g-info{
+  position:absolute;
+  bottom:1rem;
+  left:1rem;
+  z-index:2;
+}
+
+.g-item:hover img{
+  transform:scale(1.08);
+}
+
 .g-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(3,3,3,.8),transparent 35%);z-index:1}
-.g-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--smoke),var(--ash))}
 .g-bg .g-ico{font-size:3rem;opacity:.03}
 .g-info{position:absolute;bottom:1rem;left:1rem;z-index:3}
 .g-info h4{font-size:.85rem;font-weight:700;margin-bottom:.1rem}
@@ -248,7 +285,35 @@ canvas#globe{width:100%;height:100%}
 .apply-btn:hover{box-shadow:0 0 40px rgba(255,255,255,.08)}
 .insta{text-align:center}
 .insta-g{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:2rem}
-.insta-c{aspect-ratio:1;background:var(--smoke);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.015)}
+.insta-c{
+  aspect-ratio:1;
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.05);
+}.insta-c img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.75) contrast(1.05);
+  transition:transform .5s ease;
+}
+
+.insta-c::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    rgba(0,0,0,.15),
+    rgba(0,0,0,.6)
+  );
+}
+
+.insta-c:hover img{
+  transform:scale(1.06);
+}
+
 .insta-c .insta-e{font-size:2rem;opacity:.03}
 .insta-l{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.5rem;color:var(--pure);text-decoration:none;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;font-weight:700}
 footer{padding:3rem 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.025)}
@@ -337,13 +402,182 @@ footer{padding:3rem 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.025)}
   </div>
 
 </div>
+<section class="gallery">
+
+  <div class="gal-h rv">
+    <div class="s-lbl">Gallery</div>
+    <h2 class="s-h">The Life</h2>
+  </div>
+
+  <div class="g-track">
+
+    <div class="g-item">
+      <img src="./img/1.jpg" alt="">
+      <div class="g-info">
+<h4>Unscripted</h4>
+<span>Nothing staged.</span>
+
+      </div>
+    </div>
+
+    <div class="g-item">
+      <img src="./img/2.jpg" alt="">
+      <div class="g-info">
+<h4>In Motion</h4>
+<span>Always moving.</span>
+
+      </div>
+    </div>
+
+    <div class="g-item">
+      <img src="./img/3.jpg" alt="">
+      <div class="g-info">
+<h4>Moments</h4>
+<span>Not manufactured.</span>
+
+      </div>
+    </div>
+
+    <div class="g-item">
+      <img src="./img/4.jpg" alt="">
+      <div class="g-info">
+ <h4>Presence</h4>
+<span>Energy speaks.</span>
+
+      </div>
+    </div>
+
+    <div class="g-item">
+      <img src="./img/5.jpg" alt="">
+      <div class="g-info">
+<h4>Connected</h4>
+<span>Across borders.</span>
+
+      </div>
+    </div>
+
+    <div class="g-item">
+      <img src="./img/6.jpg" alt="">
+      <div class="g-info">
+<h4>After Hours</h4>
+<span>Where it shifts.</span>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="g-track rev" style="margin-top:.4rem">
+
+    <div class="g-item">
+      <img src="./img/7.jpg" alt="">
+      <div class="g-info">
+<h4>Gathered</h4>
+<span>By design.</span>
+
+      </div>
+    </div>
+
+    <div class="g-item">
+      <img src="./img/8.jpg" alt="">
+      <div class="g-info">
+<h4>Aligned</h4>
+<span>Same frequency.</span>
+
+      </div>
+    </div>
+
+    <div class="g-item">
+      <img src="./img/9.jpg" alt="">
+      <div class="g-info">
+<h4>Beyond</h4>
+<span>Not ordinary.</span>
+
+      </div>
+    </div>
+
+    <div class="g-item">
+      <img src="./img/10.jpg" alt="">
+      <div class="g-info">
+<h4>Unfiltered</h4>
+<span>Real energy.</span>
+
+      </div>
+    </div>
+
+    <div class="g-item">
+      <img src="./img/11.jpg" alt="">
+      <div class="g-info">
+<h4>Shared</h4>
+<span>Not posted.</span>
+
+      </div>
+    </div>
+
+    <div class="g-item">
+      <img src="./img/12.jpg" alt="">
+      <div class="g-info">
+<h4>The Life</h4>
+<span>As it happens.</span>
+
+      </div>
+    </div>
+
+  </div>
+
 </section>
-<section class="outro"><div class="outro-logo"><svg viewBox="-150 -150 4244.79 4499.8" xmlns="http://www.w3.org/2000/svg"><path class="outro-path" d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path class="outro-path" d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path class="outro-path" d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg></div><div class="outro-content"><h2>"YOU HAVE TO<br>GO ON AND<br>BE CRAZY.<br><br>CRAZINESS IS<br>LIKE HEAVEN."</h2><div class="outro-sign">The Expat Family</div></div></section>
-<section class="gallery"><div class="gal-h rv"><div class="s-lbl">Gallery</div><h2 class="s-h">The Life</h2></div><div class="g-track"><div class="g-item"><div class="g-bg"><div class="g-ico">🖤</div></div><div class="g-info"><h4>ONYX III</h4><span>Fall 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🤍</div></div><div class="g-info"><h4>White Party</h4><span>Summer 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">⛰️</div></div><div class="g-info"><h4>Sunrise Hike</h4><span>Griffith Park</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🏔️</div></div><div class="g-info"><h4>Mammoth Trip</h4><span>Winter 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🌴</div></div><div class="g-info"><h4>Palm Springs</h4><span>Spring 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🎳</div></div><div class="g-info"><h4>Bowling Night</h4><span>DTLA</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🖤</div></div><div class="g-info"><h4>ONYX III</h4><span>Fall 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🤍</div></div><div class="g-info"><h4>White Party</h4><span>Summer 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">⛰️</div></div><div class="g-info"><h4>Sunrise Hike</h4><span>Griffith Park</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🏔️</div></div><div class="g-info"><h4>Mammoth Trip</h4><span>Winter 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🌴</div></div><div class="g-info"><h4>Palm Springs</h4><span>Spring 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🎳</div></div><div class="g-info"><h4>Bowling Night</h4><span>DTLA</span></div></div></div><div class="g-track rev" style="margin-top:.4rem"><div class="g-item"><div class="g-bg"><div class="g-ico">🌊</div></div><div class="g-info"><h4>Beach Day</h4><span>Malibu</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🍽️</div></div><div class="g-info"><h4>Group Dinner</h4><span>K-Town</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🏜️</div></div><div class="g-info"><h4>Desert Trip</h4><span>Joshua Tree</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🌅</div></div><div class="g-info"><h4>San Diego</h4><span>Weekend Trip</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🥂</div></div><div class="g-info"><h4>Brunch</h4><span>WeHo</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🎉</div></div><div class="g-info"><h4>Semester Party</h4><span>Fall 2025</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🌊</div></div><div class="g-info"><h4>Beach Day</h4><span>Malibu</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🍽️</div></div><div class="g-info"><h4>Group Dinner</h4><span>K-Town</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🏜️</div></div><div class="g-info"><h4>Desert Trip</h4><span>Joshua Tree</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🌅</div></div><div class="g-info"><h4>San Diego</h4><span>Weekend Trip</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🥂</div></div><div class="g-info"><h4>Brunch</h4><span>WeHo</span></div></div><div class="g-item"><div class="g-bg"><div class="g-ico">🎉</div></div><div class="g-info"><h4>Semester Party</h4><span>Fall 2025</span></div></div></div></section>
+
+
+
+
+
+
+
+
+
 <section id="events" class="sec events"><div class="rv"><div class="s-lbl">Events</div><h2 class="s-h">Flagship Experiences</h2></div><div class="flag-c rv"><div class="flag-badge">Signature Event</div><div class="flag-name"><em>ONYX</em></div><div class="flag-desc">All-black. Secret location. The kind of night you talk about for years.</div><div class="flag-inv">By Invitation Only</div></div><div class="flag-c rv"><div class="flag-badge">Signature Event</div><div class="flag-name"><em>White</em> Party</div><div class="flag-desc">All-white. Rooftop. Summer. The night that becomes a core memory.</div><div class="flag-inv">By Invitation Only</div></div><div style="margin-top:2rem" class="rv"><h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin-bottom:.8rem"><em>Upcoming</em></h3></div><div class="ev-scroll"><div class="ev-card"><div class="ev-num">01</div><div class="ev-tag">Hike</div><div class="ev-dt">Mar 2026</div><h3>Sunrise at Griffith</h3><p>5:30AM. Golden hour over the city.</p></div><div class="ev-card"><div class="ev-num">02</div><div class="ev-tag">Social</div><div class="ev-dt">Mar 2026</div><h3>Bowling Night</h3><p>Cosmic bowling in DTLA. Zero skills required.</p></div><div class="ev-card"><div class="ev-num">03</div><div class="ev-tag">Trip</div><div class="ev-dt">Apr 2026</div><h3>Big Bear Weekend</h3><p>Cabins, lake, bonfires. 48h off the grid.</p></div><div class="ev-card"><div class="ev-num">04</div><div class="ev-tag">Brunch</div><div class="ev-dt">Apr 2026</div><h3>Sunday Brunch</h3><p>Bottomless mimosas. Good conversation.</p></div></div></section>
 <section class="sec"><div class="rv"><div class="s-lbl">FAQ</div><h2 class="s-h">Common Questions</h2></div><div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>Who can join?</h3><div class="faq-t"></div></div><div class="faq-a"><p>International students and expats based in Los Angeles. We look for mindset, not just background.</p></div></div><div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>How do applications work?</h3><div class="faq-t"></div></div><div class="faq-a"><p>Applications open twice a year. Every submission is reviewed.</p></div></div><div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>What are ONYX and White Party?</h3><div class="faq-t"></div></div><div class="faq-a"><p>Our two flagship nights. Invite-only. Members + one guest.</p></div></div><div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>Do I need to know anyone?</h3><div class="faq-t"></div></div><div class="faq-a"><p>No. The right people find each other here.</p></div></div><div class="faq-i rv"><div class="faq-q" onclick="toggleFaq(this)"><h3>Is there a membership fee?</h3><div class="faq-t"></div></div><div class="faq-a"><p>Details are shared after acceptance.</p></div></div></section>
 <section id="apply" class="sec apply"><div class="apply-orb"></div><div class="apply-c rv"><div class="s-lbl" style="justify-content:center">Apply</div><h2 class="s-h">Ready to Join?</h2><p class="apply-d">Applications open twice a year. If it's open, you'll know.</p><div class="apply-note">Applications for Fall 2026 · Coming Soon</div><a href="https://docs.google.com/forms" target="_blank" rel="noopener" class="apply-btn">Apply Now</a></div></section>
-<section class="sec insta"><div class="rv"><div class="s-lbl" style="justify-content:center">Instagram</div><h2 class="s-h" style="text-align:center;margin:0 auto">@expatsociety</h2></div><div class="insta-g"><div class="insta-c"><div class="insta-e">📸</div></div><div class="insta-c"><div class="insta-e">🖤</div></div><div class="insta-c"><div class="insta-e">⛰️</div></div><div class="insta-c"><div class="insta-e">🤍</div></div><div class="insta-c"><div class="insta-e">🌴</div></div><div class="insta-c"><div class="insta-e">🎉</div></div><div class="insta-c"><div class="insta-e">🏔️</div></div><div class="insta-c"><div class="insta-e">🍽️</div></div><div class="insta-c"><div class="insta-e">🌊</div></div></div><a href="https://instagram.com/expatsociety" target="_blank" rel="noopener" class="insta-l rv">Follow @expatsociety →</a></section>
+<section class="sec insta"><div class="rv"><div class="s-lbl" style="justify-content:center">Instagram</div><h2 class="s-h" style="text-align:center;margin:0 auto">@expatsociety</h2></div><div class="insta-g">
+
+  <div class="insta-c">
+    <img src="./img/13.jpg" alt="">
+  </div>
+
+  <div class="insta-c">
+    <img src="./img/14.jpg" alt="">
+  </div>
+
+  <div class="insta-c">
+    <img src="./img/15.jpg" alt="">
+  </div>
+
+  <div class="insta-c">
+    <img src="./img/16.jpg" alt="">
+  </div>
+
+  <div class="insta-c">
+    <img src="./img/17.jpg" alt="">
+  </div>
+
+  <div class="insta-c">
+    <img src="./img/18.jpg" alt="">
+  </div>
+
+  <div class="insta-c">
+    <img src="./img/19.jpg" alt="">
+  </div>
+
+  <div class="insta-c">
+    <img src="./img/20.jpg" alt="">
+  </div>
+
+  <div class="insta-c">
+    <img src="./img/21.jpg" alt="">
+  </div>
+
+</div>
+</div><a href="https://instagram.com/expatsociety" target="_blank" rel="noopener" class="insta-l rv">Follow @expatsociety →</a></section>
 <footer><div class="f-top"><div class="f-logo"><svg viewBox="0 0 3944.79 4199.8" fill="var(--pure)"><path d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg><span>Expat Society</span></div><div class="f-links"><a href="https://instagram.com/expatsociety" target="_blank">Instagram</a><a href="mailto:hello@expatsociety.com">Contact</a></div></div><div class="f-bot"><span>© 2026 Expat Society LLC · Los Angeles, CA</span><span>Selective. Always.</span></div></footer>
 
 <script>
