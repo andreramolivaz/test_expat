@@ -111,7 +111,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:.8rem 1.2rem;display
 .na{padding:.4rem 1rem!important;border:1px solid rgba(255,255,255,.2)!important;color:var(--pure)!important;transition:all .3s!important}
 .na:hover{background:var(--pure)!important;color:var(--void)!important}
 .hero{height:100svh;position:relative;display:flex;align-items:center;overflow:hidden}
-canvas#c3d{position:absolute;inset:0;z-index:1;pointer-events:none}
 .hero-ov{position:absolute;inset:0;z-index:2;background:linear-gradient(135deg,rgba(3,3,3,.75) 35%,transparent 75%);pointer-events:none}
 .hero-ct{position:relative;z-index:5;padding:0 1.5rem;max-width:550px;opacity:0;animation:heroIn 1.2s ease 4s forwards}
 @keyframes heroIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
@@ -140,7 +139,7 @@ canvas#c3d{position:absolute;inset:0;z-index:1;pointer-events:none}
   max-width:800px;
   height:auto;
 }
-.outro-path{fill:none;stroke:#ff1e1e;stroke-width:50;stroke-linejoin:round;stroke-dasharray:12000;stroke-dashoffset:12000;animation:drawOutro 6s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(255,0,0,.8)) drop-shadow(0 0 40px rgba(255,0,0,.4))}
+.outro-path{fill:none;stroke:#ff1e1e;stroke-width:60;stroke-linejoin:round;stroke-dasharray:12000;stroke-dashoffset:12000;animation:drawOutro 6s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(255,0,0,.8)) drop-shadow(0 0 40px rgba(255,0,0,.4))}
 @keyframes drawOutro{0%{stroke-dashoffset:12000}40%{stroke-dashoffset:0}60%{stroke-dashoffset:0}100%{stroke-dashoffset:12000}}
 .next-ev{position:relative;overflow:hidden;padding:4rem 1.5rem;min-height:50vh;display:flex;align-items:center;justify-content:center;text-align:center;background:var(--ink)}
 .next-ev::after{
@@ -149,7 +148,7 @@ canvas#c3d{position:absolute;inset:0;z-index:1;pointer-events:none}
   inset:0;
   background:
     linear-gradient(rgba(10,10,10,.85), rgba(10,10,10,.9)),
-    radial-gradient(ellipse at center, rgba(255,255,255,.08), transparent 70%);
+radial-gradient(ellipse at center, rgba(255,255,255,.08), transparent 70%);
   backdrop-filter: blur(2px);
   pointer-events:none;
 }
@@ -160,8 +159,8 @@ canvas#c3d{position:absolute;inset:0;z-index:1;pointer-events:none}
   width:100%;
   height:100%;
   object-fit:cover;
-  opacity:.45;
-  filter:brightness(.7) contrast(1.1);
+  opacity:.90;
+  filter:brightness(.8) contrast(1.1);
   transform:scale(1.05);
 }
 .ne-bg-media video{object-position:center 30%}
@@ -447,7 +446,7 @@ footer{padding:3rem 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.025)}
 </div>
 <nav><a href="#" class="nb"><svg viewBox="0 0 3944.79 4199.8" fill="var(--pure)"><path d="M1938.38,3356.78l-342.94,174.11c-47.26,23.99-62.76,83.99-33.05,127.88l340.13,502.35c35.58,52.55,113.39,51.34,147.32-2.29l325.79-514.96c27.87-44.04,11.58-102.52-35.03-125.83l-322.99-161.5c-24.96-12.48-54.36-12.39-79.24.24Z"/><path d="M1807.17,2954.06l-15.84-2852.96c-.61-109.46-150.13-140.61-194.4-40.51L9.02,3651.08c-37.83,85.54,50.31,172.4,135.29,133.32l1603.75-737.52c36.21-16.65,59.33-52.96,59.11-92.81Z"/><path d="M2127.9,2966.16l-22.3-2852.91c-.86-109.46,148.23-142.61,193.84-43.1l1635.76,3568.93c38.97,85.02-48,173.05-133.49,135.12l-1613.47-716.02c-36.43-16.17-60.04-52.16-60.35-92.02Z"/></svg><span>Expat Society</span></a><div class="nr"><a href="#about">About</a><a href="#events">Events</a>  <a href="#" class="na" onclick="openMemberModal()">Members</a>
 </div></nav>
-<section class="hero"><canvas id="c3d"></canvas><div class="hero-ov"></div><div class="hero-ct"><div class="h-eye">Los Angeles, CA</div><h1 class="h-title">International<br><span class="stk">Minds</span>.</h1><p class="h-desc">Different origins. Same frequency.</p><div class="h-acts"><a href="#apply" class="btn-w">Apply Now</a><a href="#events" class="btn-g">See Events ↓</a></div></div><div class="h-scroll"><span>Explore</span><div class="scroll-bar"></div></div></section>
+<section class="hero"><div class="hero-ov"></div><div class="hero-ct"><div class="h-eye">Los Angeles, CA</div><h1 class="h-title">International<br><span class="stk">Minds</span>.</h1><p class="h-desc">Different origins. Same frequency.</p><div class="h-acts"><a href="#apply" class="btn-w">Apply Now</a><a href="#events" class="btn-g">See Events ↓</a></div></div><div class="h-scroll"><span>Explore</span><div class="scroll-bar"></div></div></section>
 <div class="next-ev rv">
 
   <div class="ne-bg-media">
@@ -899,107 +898,7 @@ footer{padding:3rem 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.025)}
 // ═══ INTRO ═══
 setTimeout(function(){var i=document.getElementById('intro');i.classList.add('done');setTimeout(function(){i.style.display='none'},1400)},3500);
 
-// ═══ PAPER PLANE (same as yours — already lightweight) ═══
-var c=document.getElementById('c3d'),ctx=c.getContext('2d');
-var W,H;function resize(){W=c.width=innerWidth;H=c.height=innerHeight}resize();addEventListener('resize',resize);
-function Vec(x,y,z){this.x=x;this.y=y;this.z=z}
-Vec.prototype.rx=function(a){var co=Math.cos(a),si=Math.sin(a);return new Vec(this.x,this.y*co-this.z*si,this.y*si+this.z*co)};
-Vec.prototype.ry=function(a){var co=Math.cos(a),si=Math.sin(a);return new Vec(this.x*co+this.z*si,this.y,-this.x*si+this.z*co)};
-Vec.prototype.rz=function(a){var co=Math.cos(a),si=Math.sin(a);return new Vec(this.x*co-this.y*si,this.x*si+this.y*co,this.z)};
-Vec.prototype.proj=function(d){d=d||500;var s=d/(d+this.z);return{x:this.x*s,y:this.y*s,s:s}};
-var sc=0.5;
-var verts=[new Vec(0,-160*sc,0),new Vec(-90*sc,70*sc,-8*sc),new Vec(-12*sc,-2*sc,12*sc),new Vec(12*sc,-2*sc,12*sc),new Vec(90*sc,70*sc,-8*sc),new Vec(0,70*sc,-15*sc),new Vec(0,85*sc,0),new Vec(-15*sc,110*sc,0),new Vec(0,135*sc,0),new Vec(15*sc,110*sc,0)];
-var plFaces=[{v:[0,1,2],f:'rgba(255,255,255,.12)',s:'rgba(255,255,255,.25)'},{v:[0,2,5],f:'rgba(255,255,255,.08)',s:'rgba(255,255,255,.18)'},{v:[0,5,3],f:'rgba(255,255,255,.06)',s:'rgba(255,255,255,.15)'},{v:[0,3,4],f:'rgba(255,255,255,.10)',s:'rgba(255,255,255,.22)'},{v:[6,7,8],f:'rgba(255,255,255,.07)',s:'rgba(255,255,255,.18)'},{v:[6,8,9],f:'rgba(255,255,255,.06)',s:'rgba(255,255,255,.15)'}];
-var t=0,trail=[];
-let planeRunning = false;
-let planeFrame;
-let fpsInterval = 1000 / 24; // 30fps
-let then = Date.now();
-function drawPlane(){
-  if(!planeRunning) return;
 
-  planeFrame = requestAnimationFrame(drawPlane);
-
-  let now = Date.now();
-  let elapsed = now - then;
-
-  if(elapsed < fpsInterval) return;
-
-  then = now - (elapsed % fpsInterval);
-
-  ctx.clearRect(0,0,W,H);
-  t+=.003;
-
-
-  var bx=W*.5,by=H*.4,fw=t*60,
-      dx=Math.sin(t*.7)*(W*.08),
-      zz=Math.sin(t*.2)*15,
-      fl=Math.sin(t*1.4)*25;
-
-  var fX=(bx-W*.2)+(fw%(W*1.4))+dx+zz,
-      fY=by+fl;
-
-  var fX2=(bx-W*.2)+((fw+1)%(W*1.4))+dx,
-      fY2=by+Math.sin((t+.01)*1.4)*25;
-
-  var dir=Math.atan2(fY2-fY,fX2-fX),
-      rY=dir,
-      rX=-.25+Math.sin(t*1.5)*.1,
-      rZ=Math.sin(t*1.8)*.25;
-
-  var n=verts[0].rx(rX).ry(rY).rz(rZ).proj();
-  trail.push({x:fX+n.x,y:fY+n.y,a:1});
-  if(trail.length>40)trail.shift();
-
-  for(var i=1;i<trail.length;i++){
-    trail[i].a-=.025;
-    if(trail[i].a>0){
-      ctx.beginPath();
-      ctx.moveTo(trail[i-1].x,trail[i-1].y);
-      ctx.lineTo(trail[i].x,trail[i].y);
-      ctx.strokeStyle='rgba(255,255,255,'+trail[i].a*.06+')';
-      ctx.lineWidth=.5;
-      ctx.stroke();
-    }
-  }
-
-  plFaces.forEach(function(fc){
-    var pts=fc.v.map(function(vi){
-      var p=verts[vi].rx(rX).ry(rY).rz(rZ).proj();
-      return{x:fX+p.x,y:fY+p.y};
-    });
-
-    ctx.beginPath();
-    ctx.moveTo(pts[0].x,pts[0].y);
-    pts.forEach(function(p){ctx.lineTo(p.x,p.y)});
-    ctx.closePath();
-    ctx.fillStyle=fc.f;
-    ctx.fill();
-    ctx.strokeStyle=fc.s;
-    ctx.lineWidth=.5;
-    ctx.stroke();
-  });
-
-  planeFrame = requestAnimationFrame(drawPlane);
-}
-drawPlane();
-const heroSection = document.querySelector('.hero');
-
-const heroObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      if(!planeRunning){
-        planeRunning = true;
-        drawPlane();
-      }
-    } else {
-      planeRunning = false;
-      cancelAnimationFrame(planeFrame);
-    }
-  });
-}, { threshold: 0.2 });
-
-heroObserver.observe(heroSection);
 
 
 // ═══ GLOBE — PERFORMANCE OPTIMIZED ═══
