@@ -1106,12 +1106,22 @@ function openMemberModal(){
   document.getElementById("memberCode").focus();
 }
 
-function checkMemberCode(){
-  const correctCode = "ONYX2026"; // ← change this to your real code
+async function sha256(message) {
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+  return hashHex;
+}
+
+async function checkMemberCode() {
+  const correctHash = "62a5272d39eb2aa2a3cf18634b87e0ee413467ace14c56fb2fa8867513386948"; // ← put the SHA256 hash here
   const input = document.getElementById("memberCode").value;
   const error = document.getElementById("memberError");
 
-  if(input === correctCode){
+  const inputHash = await sha256(input);
+
+  if (inputHash === correctHash) {
     sessionStorage.setItem("memberAccess", "granted");
     window.location.href = "members.html";
   } else {
@@ -1147,16 +1157,7 @@ document.addEventListener("DOMContentLoaded", function(){
     error.textContent = "";
   }
 
-  window.checkMemberCode = function(){
-    const correctCode = "ONYX2026";
 
-    if(input.value === correctCode){
-      sessionStorage.setItem("memberAccess", "granted");
-      window.location.href = "members.html";
-    } else {
-      error.textContent = "Invalid Code";
-    }
-  }
 
   // click fuori chiude
   modal.addEventListener("click", function(e){
