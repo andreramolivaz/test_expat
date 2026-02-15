@@ -199,65 +199,6 @@ color:var(--mist);
 
 /* MODAL */
 
-.img-modal{
-position:fixed;
-inset:0;
-background:rgba(3,3,3,.97);
-backdrop-filter:blur(10px);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:99999;
-}
-
-.img-modal.active{
-display:flex;
-}
-
-.img-modal-inner{
-max-width:90vw;
-max-height:90vh;
-text-align:center;
-}
-
-.img-modal-inner img{
-max-width:100%;
-max-height:75vh;
-object-fit:contain;
-}
-
-.modal-actions{
-margin-top:2rem;
-display:flex;
-gap:2rem;
-justify-content:center;
-}
-
-.download-btn{
-border:1px solid rgba(255,255,255,.3);
-padding:.7rem 2rem;
-font-size:.6rem;
-letter-spacing:.35em;
-text-transform:uppercase;
-color:white;
-text-decoration:none;
-transition:.4s;
-}
-
-.download-btn:hover{
-background:white;
-color:black;
-}
-
-.close-btn{
-background:transparent;
-border:none;
-color:rgba(255,255,255,.4);
-font-size:.6rem;
-letter-spacing:.3em;
-text-transform:uppercase;
-cursor:pointer;
-}
 
 @media(max-width:600px){
 .sec{padding:7rem 1rem 3rem 1rem;}
@@ -524,15 +465,7 @@ cursor:pointer;
 
 </section>
 
-<div id="imgModal" class="img-modal">
-<div class="img-modal-inner">
-<img id="modalImage" src="">
-<div class="modal-actions">
-<a id="downloadBtn" href="#" download class="download-btn">Download</a>
-<button class="close-btn" onclick="closeModal()">Close</button>
-</div>
-</div>
-</div>
+
 
 
 <footer>
@@ -549,36 +482,6 @@ window.location.href = "index.html";
 
 // MODAL
 
-const modal = document.getElementById("imgModal");
-const modalImg = document.getElementById("modalImage");
-const downloadBtn = document.getElementById("downloadBtn");
-
-document.querySelectorAll(".gallery-grid img").forEach(img => {
-img.addEventListener("click", function(){
-const fullPath = this.dataset.full;
-modalImg.src = fullPath;
-downloadBtn.href = fullPath;
-modal.classList.add("active");
-document.body.style.overflow = "hidden";
-});
-});
-
-function closeModal(){
-modal.classList.remove("active");
-document.body.style.overflow = "auto";
-}
-
-modal.addEventListener("click", function(e){
-if(!e.target.closest(".img-modal-inner")){
-closeModal();
-}
-});
-
-document.addEventListener("keydown", function(e){
-if(e.key === "Escape"){
-closeModal();
-}
-});
 
 </script>
 
